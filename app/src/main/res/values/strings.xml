@@ -1,3 +1,76 @@
 <resources>
     <string name="app_name">OnlineParkingTicket</string>
+    <string name="permission_require">Permission required for this app</string>
+    <string name="redirect_setting">Go to settings and enable permissions</string>
+    <string name="nodatafound">No data available.</string>
+    <string name="check">CHECK</string>
+    <string name="createnewaccount">Create new account</string>
+    <string name="login">Login</string>
+
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="cpassword">Confirm Password</string>
+    <string name="rememberme">Remember me</string>
+    <string name="registernow">Register Now</string>
+    <string name="forgetpassword">Forgot Password?</string>
+
+
+    <string name="msg_plz_enter_name">Please enter name.</string>
+    <string name="msg_plz_enter_email">Please enter email.</string>
+    <string name="msg_plz_enter_valid_email">Please enter valid email.</string>
+    <string name="msg_plz_enter_password">Please enter password.</string>
+    <string name="msg_plz_enter_dl">Please enter driving licence number.</string>
+    <string name="next">Next</string>
+    <string name="name">Name</string>
+    <string name="enterpersonaldetail">Enter Your Personal Details</string>
+    <string name="drivinglicence">Driving Licence</string>
+    <string name="signup">SIGN UP</string>
+    <string name="enteryourmobilenumber">Enter Your Mobile Number</string>
+    <string name="otp">Enter activation code which we sent on your mobile number.</string>
+    <string name="enteractivationcode">Enter Activation Code</string>
+    <string name="didnotgetcode">Didn\'t get code?</string>
+    <string name="resendnow">Resend now</string>
+    <string name="finastep">By tapping the button below, you agree \n to our terms of use and Privacy Policy</string>
+    <string name="finalstepone">To learn more, see our</string>
+    <string name="privacypolicy">&#160; Privacy Policy &#160;</string>
+    <string name="tandc">&#160; Terms of Use &#160;</string>
+    <string name="and"> and </string>
+    <string name="getstarted">Get Started</string>
+    <string name="choosepassword">Choose Password</string>
+    <string name="newpassword">New Password</string>
+    <string name="user">User</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="Resolvedtickets">Resolved tickets</string>
+    <string name="pendingtickets">Pending tickets</string>
+    <string name="Profile">Profile</string>
+    <string name="setting">Setting</string>
+    <string name="logout">Logout</string>
+    <string name="searchbyplate">Search by Plate Number/ Violation Number</string>
+    <string name="search">Search</string>
+
+
+    <string name="paid">PAID</string>
+    <string name="unpaid">UNPAID</string>
+    <string name="fixit">Fix it</string>
+    <string name="Violation">Violation</string>
+    <string name="ticketcharge">Ticket charge </string>
+    <string name="violation">Violation</string>
+
+
+
+
+
+    <string name="nameco">Name :</string>
+    <string name="nmamee">John Doe</string>
+    <string name="date">Date :</string>
+    <string name="datetime">07/10/2018 09:41 AM </string>
+    <string name="emaill">Email :</string>
+    <string name="emaillis">name@mail.com </string>
+    <string name="submitrequest">Submit Request</string>
+    <string name="check_box_read">By clicling this box you agree the Terms and conditions</string>
+    <string name="reviewrequest">Review Request</string>
 </resources>
