@@ -1,7 +1,9 @@
-package com.example.aoscart.onlineparkingticket;
+package com.onlineparkingticket;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.onlineparkingticket.R;
 
 public class MainActivity extends AppCompatActivity {
 
