@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/bg_screen"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_above="@+id/txt_appname"
+        android:src="@drawable/logo"/>
+
+    <com.onlineparkingticket.commonTextView.TextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/check"
+        android:textStyle="bold"
+        android:id="@+id/txt_appname"
+        android:textSize="@dimen/_25sdp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorPrimary"/>
+
+
+    <com.onlineparkingticket.commonTextView.TextViewBlack
+        android:id="@+id/txt_createaccount"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_weight="1"
+        android:background="@drawable/button_bg"
+        android:text="@string/createnewaccount"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13sdp"
+        android:textStyle="bold"
+        android:layout_below="@+id/txt_appname"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:typeface="normal" />
+    <com.onlineparkingticket.commonTextView.TextViewBlack
+        android:id="@+id/txt_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_weight="1"
+        android:background="@drawable/button_bg"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13sdp"
+        android:textStyle="bold"
+        android:layout_below="@+id/txt_createaccount"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:typeface="normal" />
+</RelativeLayout>
