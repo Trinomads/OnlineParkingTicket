@@ -1,3 +1,91 @@
 <resources>
     <string name="app_name">OnlineParkingTicket</string>
+
+
+    <!--All Page Title-->
+    <string name="plea">Plea</string>
+    <string name="digital_wallet">Digital Wallet</string>
+    <string name="notification">Notification</string>
+    <string name="push_notification">Push Notification</string>
+
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="clear">Clear</string>
+    <string name="next">Next</string>
+    <string name="done">Done</string>
+    <string name="submit">Submit</string>
+
+    <string name="guilty">Guilty</string>
+    <string name="no_contest">No Contest</string>
+    <string name="request_court_date">Request Court Date</string>
+
+    <string name="plea_guilty">Plea Guilty</string>
+    <string name="confirm_plea_guilty">Are you sure you want to plea guilty</string>
+    <string name="confirm_no_contest">Are you sure you want to plea no contest</string>
+
+    <string name="title_plea_guilty">Defendant you are pleaing guilty to violation.</string>
+    <string name="title_plea_guilty_sign">Signature in this section</string>
+
+    <string name="request_successfully">Request Successfully</string>
+    <string name="msg_request_court">Your Request has been successfully sent to the court. Court will sent you mail regarding appointment date.</string>
+
+    <string name="payment_screen">Payment Screen, Comming soon</string>
+
+    <string name="handle_it">Handle IT</string>
+    <string name="deffered_disposition">Deffered Disposition</string>
+    <string name="driving_course">Driving Safety Course</string>
+
+    <string name="redirect_driving_page">Open Driving course page on web</string>
+
+    <string name="title_name">Name</string>
+    <string name="title_email">Email</string>
+    <string name="title_driving_license">Driving License</string>
+    <string name="title_vio_no">Violation Number</string>
+    <string name="title_vio_desc">Violation Description</string>
+    <string name="title_ticket_charge">Ticket Charge</string>
+
+    <string name="thank_you">Thank You</string>
+    <string name="thank_you_desc">Your form has beed submitted. A Notification will be sent once the court has revised the document.</string>
+
+    <string name="license_plate">License Plate #</string>
+    <string name="registration_vin">Registration / VIN</string>
+    <string name="insurance">Insurance #</string>
+    <string name="address">Address</string>
+    <string name="state">State</string>
+    <string name="zip">Zip</string>
+
+
+    <string name="image_DL">Driving\nLicense</string>
+    <string name="image_VP">Vehicle\nPlate</string>
+    <string name="image_RV">Registration /\nVIN</string>
+    <string name="image_IP">Insurance\nPaper</string>
+    <string name="paid">PAID</string>
+    <string name="unpaid">UNPAID</string>
+    <string name="hint_search_ticket">Search by Plate or Violation Number</string>
+    <string name="change_password">Change Password</string>
+    <string name="about_us">About Us</string>
+    <string name="terms_of_service">Terms of service</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="logout">Logout</string>
+
+
+    <string name="old_pass">Old Password</string>
+    <string name="new_pass">New Password</string>
+    <string name="conf_pass">Confirm Password</string>
+
+
+    <string name="lorem_title">Lorem Ipsum is simply dummy text</string>
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="paid_small">Paid</string>
+    <string name="tickets">Tickets</string>
+    <string name="unpaid_small">Unpaid</string>
+    <string name="total_small">Total</string>
+    <string name="documents">Documents</string>
+    <string name="edit">Edit</string>
+    <string name="check_box_read">Check box is you are read, and have agreed to above statement.</string>
+    <string name="message">Message</string>
+    <string name="i_did_not">I did not intend to submit any evidence images</string>
+    <string name="add_image">Add Image</string>
+
 </resources>
