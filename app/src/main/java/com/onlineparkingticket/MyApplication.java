@@ -17,6 +17,7 @@ public class MyApplication extends Application {
         super.onCreate();
         instance = this;
     }
+
     public static MyApplication getInstance() {
         return instance;
     }

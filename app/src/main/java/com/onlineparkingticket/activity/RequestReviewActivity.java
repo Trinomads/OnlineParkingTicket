@@ -1,48 +1,37 @@
 package com.onlineparkingticket.activity;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.onlineparkingticket.R;
 
 @SuppressWarnings("All")
-public class DefferedDispositionActivity extends BaseActivity {
+public class RequestReviewActivity extends BaseActivity {
 
-    public static Context mContext;
-    private LinearLayout lvNext;
-    private EditText edName, edEmail, edDrivingLicense, edVioNo, edVioDesc, edTicketCharge;
+    public static RequestReviewActivity activity;
+    private LinearLayout lvSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deffered_position);
-        mContext = DefferedDispositionActivity.this;
-        init(DefferedDispositionActivity.this);
-        setHeaderWithBack(getString(R.string.deffered_disposition), true, false);
+        setContentView(R.layout.activity_request_review);
+        activity = this;
+        init(activity);
+        setHeaderWithBack(getResources().getString(R.string.reviewrequest), true, false);
 
         init();
     }
 
     private void init() {
-        lvNext = (LinearLayout) findViewById(R.id.linear_DefferedDisposition_Next);
-
-        edName = (EditText) findViewById(R.id.ed_DefferedPosition_Name);
-        edEmail = (EditText) findViewById(R.id.ed_DefferedPosition_Email);
-        edDrivingLicense = (EditText) findViewById(R.id.ed_DefferedPosition_DrivingLicense);
-        edVioNo = (EditText) findViewById(R.id.ed_DefferedPosition_Vio_NO);
-        edVioDesc = (EditText) findViewById(R.id.ed_DefferedPosition_VioDesc);
-        edTicketCharge = (EditText) findViewById(R.id.ed_DefferedPosition_TicketCharge);
-
-        lvNext.setOnClickListener(new View.OnClickListener() {
+        lvSubmit = (LinearLayout) findViewById(R.id.linear_RequestReview_Next);
+        lvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialogRequestDate();
@@ -51,7 +40,7 @@ public class DefferedDispositionActivity extends BaseActivity {
     }
 
     public void dialogRequestDate() {
-        final Dialog dialog = new Dialog(mContext);
+        final Dialog dialog = new Dialog(activity);
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -76,7 +65,7 @@ public class DefferedDispositionActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                DefferedDispositionActivity.this.finish();
+                RequestReviewActivity.this.finish();
             }
         });
 

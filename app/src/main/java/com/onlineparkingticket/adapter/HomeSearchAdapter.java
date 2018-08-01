@@ -137,8 +137,7 @@ public class HomeSearchAdapter extends RecyclerView.Adapter {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    mContext.startActivity(new Intent(mContext,SearchDetailActivity.class));
+                    mContext.startActivity(new Intent(mContext, SearchDetailActivity.class));
                 }
             });
         }

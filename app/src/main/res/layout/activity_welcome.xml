@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_above="@+id/txt_appname"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo" />
 
     <com.onlineparkingticket.commonTextView.TextViewBold
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary" />
 
 
     <com.onlineparkingticket.commonTextView.TextViewBlack
@@ -43,6 +43,7 @@
         android:layout_marginRight="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:typeface="normal" />
+
     <com.onlineparkingticket.commonTextView.TextViewBlack
         android:id="@+id/txt_login"
         android:layout_width="match_parent"

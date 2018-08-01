@@ -27,17 +27,20 @@
             <include layout="@layout/header_with_back" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_margin="@dimen/_10sdp"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,8 +50,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="@dimen/_5sdp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -59,11 +62,12 @@
                             android:id="@+id/item_CommonListTicket_Date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:padding="@dimen/_2sdp"
                             android:text="@string/nameco"
-                            android:layout_weight="1"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
+
                         <com.onlineparkingticket.commonTextView.TextViewBold
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -86,6 +90,7 @@
                             android:text="@string/date"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
+
                         <com.onlineparkingticket.commonTextView.TextViewBold
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -94,6 +99,7 @@
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -107,6 +113,7 @@
                             android:text="@string/emaill"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
+
                         <com.onlineparkingticket.commonTextView.TextViewBold
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -115,6 +122,7 @@
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -128,6 +136,7 @@
                             android:text="Phone :"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
+
                         <com.onlineparkingticket.commonTextView.TextViewBold
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -136,6 +145,7 @@
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -149,6 +159,7 @@
                             android:text="Address :"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
+
                         <com.onlineparkingticket.commonTextView.TextViewBold
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -171,6 +182,7 @@
                             android:text="Violation No :"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
+
                         <com.onlineparkingticket.commonTextView.TextViewBold
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -194,8 +206,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -205,9 +217,9 @@
                         android:id="@+id/item_violation_Date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/edit"
                         android:padding="@dimen/_2sdp"
                         android:text="Message"
-                        android:drawableRight="@drawable/edit"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_11sdp" />
 
@@ -230,18 +242,18 @@
                 </LinearLayout>
 
 
-
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/text_color" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -251,9 +263,9 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/edit"
                         android:padding="@dimen/_2sdp"
                         android:text="Evidence Added"
-                        android:drawableRight="@drawable/edit"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_11sdp" />
 
@@ -276,14 +288,13 @@
                 </LinearLayout>
 
 
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_30sdp"
                 android:padding="@dimen/_15sdp">
 
                 <CheckBox
@@ -295,9 +306,9 @@
                 <com.onlineparkingticket.commonTextView.TextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:gravity="center_vertical"
                     android:singleLine="false"
-                    android:layout_marginLeft="@dimen/_5sdp"
                     android:text="@string/check_box_read"
                     android:textColor="@color/text_color"
                     android:textColorHint="@color/text_color"
@@ -311,11 +322,11 @@
 
 
         <LinearLayout
-            android:id="@+id/linear_PleaGuilty_Next"
+            android:id="@+id/linear_RequestReview_Next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
             android:layout_gravity="right"
+            android:layout_margin="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -330,7 +341,7 @@
             <ImageView
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:src="@drawable/next_blue_bg"/>
+                android:src="@drawable/next_blue_bg" />
 
         </LinearLayout>
     </LinearLayout>

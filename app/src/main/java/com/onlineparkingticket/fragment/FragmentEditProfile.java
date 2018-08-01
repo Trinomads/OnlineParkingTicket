@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.activity.HomeNavigationDrawer;
 
 @SuppressWarnings("All")
 public class FragmentEditProfile extends Fragment {
@@ -21,6 +22,23 @@ public class FragmentEditProfile extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         mContext = getActivity();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        HomeNavigationDrawer.imNotification.setVisibility(View.VISIBLE);
+        HomeNavigationDrawer.imNotification.setImageResource(R.drawable.done);
+        HomeNavigationDrawer.drawerImg.setImageResource(R.drawable.back_arro);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        HomeNavigationDrawer.imNotification.setVisibility(View.INVISIBLE);
+        HomeNavigationDrawer.imNotification.setImageResource(R.drawable.notification);
+        HomeNavigationDrawer.drawerImg.setImageResource(R.drawable.hamburger);
+        HomeNavigationDrawer.resetData();
     }
 
     @Override
@@ -35,6 +53,18 @@ public class FragmentEditProfile extends Fragment {
     }
 
     private void setClickEvent() {
+        HomeNavigationDrawer.imNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
+        HomeNavigationDrawer.drawerImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 }

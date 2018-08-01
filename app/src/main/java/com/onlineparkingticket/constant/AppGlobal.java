@@ -10,6 +10,7 @@ import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -26,6 +27,9 @@ import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.onlineparkingticket.R;
+import com.onlineparkingticket.activity.WelcomeActivity;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -44,12 +48,11 @@ public class AppGlobal {
 
     public static final String PREFS_NAME = "kasi_lifestyle";
     // Email Pattern
-    public final static Pattern EMAIL_ADDRESS_PATTERN = Pattern
-            .compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + "\\@"
-                    + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\."
-                    + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+");
-    public final static Pattern PASSWORD_NUMBER_PATTERN = Pattern.
-            compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{6,}$");
+    public final static Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + "\\@"
+            + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+");
+
+    public final static Pattern PASSWORD_NUMBER_PATTERN = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{6,}$");
+
     // PhoneNumber Pattern
     public final static Pattern PHONE_NUMBER_PATTERN = Pattern.compile("^[7-9][0-9]{9}$");
     static final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -231,68 +234,41 @@ public class AppGlobal {
 
         }
     }
+
     /**
      * Show Progress Dialog
      *
      * @param context
      * @param msg
      */
-    /*public static void showProgressDialog(Context context) {
+    public static void showProgressDialog(Context context) {
         try {
             if (context != null) {
-                //progressDialog = CustomProgressDialog.ctor(context, msg);
-              //  progressDialog.show();
-                 progressDialog = new ProgressDialog(context);
-                 progressDialog.setMessage("Loading, Please wait...");
-                 progressDialog.setCanceledOnTouchOutside(false);
-                 progressDialog.show();
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                    progressDialog = null;
+                }
+                progressDialog = new ProgressDialog(context);
+                progressDialog.setMessage("Loading...");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }*/
+    }
 
-    /**
-     * Hide Progress Dialog
-     *
-     * @param context
-     */
-    /*public static void hideProgressDialog(Context context) {
-        // progressDialog.dismiss();
+    public static void hideProgressDialog() {
         try {
-            if (context != null) {
+            if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
-//    /**
-//     * Show Progress Dialog
-//     *
-//     * @param context
-//     * @param msg
-//     */
-//    public static void showProgressDialog(Context context, String msg) {
-//
-//        progressDialog = new ProgressDialog(context);
-//        progressDialog.setMessage(msg);
-//       // progressDialog.setCancelable(false);
-//        progressDialog.setCanceledOnTouchOutside(false);
-//        progressDialog.show();
-//
-//    }
-//
-//    /**
-//     * Hide Progress Dialog
-//     *
-//     * @param context
-//     */
-//    public static void hideProgressDialog(Context context) {
-//        progressDialog.dismiss();
-//    }
     public static void displayAlertDilog(Context mContext, String msg) {
 
         new AlertDialog.Builder(mContext).setTitle("Pleez").setMessage(msg)
@@ -557,14 +533,12 @@ public class AppGlobal {
         try {
             parsedDate = sourceFormat.parse(strdate);
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         TimeZone tz = TimeZone.getDefault();
 
-        SimpleDateFormat destFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat destFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
         destFormat.setTimeZone(tz);
 
@@ -574,7 +548,6 @@ public class AppGlobal {
         try {
             date = destFormat.parse(destDate);
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -839,24 +812,28 @@ public class AppGlobal {
         if (text == null || text.equals("") || text.equals("null")) {
             return returnBlankTag;
         } else {
-            return  text;
+            return text;
         }
     }
 
-    public static void logoutApp(Activity mContext) {
+    public static void logoutApp(Activity mainActivity) {
 
-        AppGlobal.setStringPreference(mContext, "", WsConstant.SP_FB_ID);
-        AppGlobal.setStringPreference(mContext, "", WsConstant.SP_GCM_TOKEN);
-        AppGlobal.setStringPreference(mContext, "", WsConstant.SB_NAME);
-        AppGlobal.setStringPreference(mContext, "", WsConstant.SB_PROFILE);
-        AppGlobal.setStringPreference(mContext, "", WsConstant.SB_USERKEY);
-        AppGlobal.setStringPreference(mContext, "", WsConstant.SB_USER_ID);
-        AppGlobal.setStringPreference(mContext, "", WsConstant.SP_USERDESC);
+        if (!AppGlobal.getStringPreference(mainActivity, WsConstant.SP_REMEMBER).equalsIgnoreCase("1")) {
+            AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_EMAIL);
+        }
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_TOKEN);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_ID);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_NAME);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_MOBILE);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_ADDRESS);
 
+        Intent intent = new Intent(mainActivity, WelcomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        mainActivity.startActivity(intent);
+        mainActivity.finish();
+    }
 
-        /*Intent intent = new Intent(mContext, SplashActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
-        mContext.finish();*/
+    public static void showLog(Context mContext, String msg) {
+        Log.e(mContext.getResources().getString(R.string.app_name), mContext.getClass().getSimpleName() + " :: " + msg);
     }
 }

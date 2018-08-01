@@ -3,7 +3,6 @@ package com.onlineparkingticket.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.onlineparkingticket.R;

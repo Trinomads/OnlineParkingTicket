@@ -3,24 +3,24 @@ package com.onlineparkingticket.constant;
 
 public class CommonKeyword {
     public static final String OS = "os";
-    public static final String MODEL= "model";
-    public static final String PLAYERID= "playerId";
-    public static final String ANDROID= "android";
-    public static final String CONTETNTTYPE= "Content-Type";
-    public static final String APPLICATIONJSON= "application/json";
-    public static final String ACCEPT= "application/json";
-    public static final String AUTHORIZATION= "Authorization";
-    public static final String XLOCALE= "X-LOCALE";
-    public static final String OWNER= "owner";
-    public static final String PRETENDER= "pretender";
-    public static final String BOTH= "both";
+    public static final String MODEL = "model";
+    public static final String PLAYERID = "playerId";
+    public static final String ANDROID = "android";
+    public static final String CONTETNTTYPE = "Content-Type";
+    public static final String APPLICATIONJSON = "application/json";
+    public static final String ACCEPT = "application/json";
+    public static final String AUTHORIZATION = "Authorization";
+    public static final String XLOCALE = "X-LOCALE";
+    public static final String OWNER = "owner";
+    public static final String PRETENDER = "pretender";
+    public static final String BOTH = "both";
 
 
-    public static   boolean FROM_SETTINGS = false;
+    public static boolean FROM_SETTINGS = false;
 
 
-    public static final String USER_ONLINE="1";
-    public static final String USER_OFFLINE="0";
+    public static final String USER_ONLINE = "1";
+    public static final String USER_OFFLINE = "0";
 
 
     public static final String TAG_GOOGLE_LOGIN_ANALYTICES = "google_login_analytics";
@@ -44,9 +44,6 @@ public class CommonKeyword {
 
     public static final String EVENT_WON = "event_won";
     public static final String EVENT_AUTO_COMPLETED = "event_auto_completed";
-
-
-
 
 
     public static final String PRIVATE_EVENT_CREATED = "private_event_created";

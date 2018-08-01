@@ -18,18 +18,19 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.constant.WsConstant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("All")
 public class SplashActivity extends BaseActivity {
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
     private final int SPLASH_DISPLAY_LENGTH = 2000;
-    int REQUEST_CAMERA = 102;
     public static SplashActivity activity;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,22 +73,16 @@ public class SplashActivity extends BaseActivity {
 
     private void checkUserSession() {
         try {
-
-
-            startActivity(new Intent(activity, WelcomeActivity.class));
-            finish();
-          /*  if (AppGlobal.getStringPreference(SplashActivity.this, WsConstant.SP_FB_ID).equalsIgnoreCase("")) {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            if (AppGlobal.getStringPreference(SplashActivity.this, WsConstant.SP_ID).equalsIgnoreCase("")) {
+                startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
                 finish();
             } else {
-                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                startActivity(new Intent(SplashActivity.this, HomeNavigationDrawer.class));
                 finish();
-            }*/
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     private boolean checkAndRequestPermissions() {
@@ -191,7 +186,6 @@ public class SplashActivity extends BaseActivity {
                 }
             }
         }
-
     }
 
     private void showDialogOK(String message, DialogInterface.OnClickListener okListener) {

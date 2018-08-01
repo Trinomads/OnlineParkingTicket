@@ -40,14 +40,43 @@
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_16sdp" />
 
+
             <ImageView
+                android:id="@+id/image_HomeDrawer_Notification"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:padding="10sp"
-                android:src="@drawable/notification" />
+                android:src="@drawable/notification"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/linear_Home_Paynow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:padding="@dimen/_3sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:padding="2sp"
+                    android:src="@drawable/pay"
+                    android:visibility="visible" />
+
+                <com.onlineparkingticket.commonTextView.TextViewBlack
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pay Now"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
-
 
         <RelativeLayout
             android:id="@+id/relative_container"
@@ -65,6 +94,7 @@
         android:background="@color/white"
         android:fitsSystemWindows="true">
 
+        <!--android:layout_gravity="start"-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -219,7 +249,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/linear_setting"
+                        android:id="@+id/linear_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
@@ -247,7 +277,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/linear_profile"
+                        android:id="@+id/linear_setting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"

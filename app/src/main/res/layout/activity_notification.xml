@@ -35,21 +35,21 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/swipeToRefresh_Notification"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefresh_Notification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_Notification"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                tools:listitem="@layout/item_notification" />
 
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_Notification"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingRight="@dimen/_15sdp"
-                    tools:listitem="@layout/item_notification"/>
-
-            </android.support.v4.widget.SwipeRefreshLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
 
     </LinearLayout>

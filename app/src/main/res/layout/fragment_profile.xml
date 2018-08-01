@@ -233,13 +233,13 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_70sdp"
-                        android:src="@drawable/icon_user_placeholder"/>
+                        android:src="@drawable/icon_user_placeholder" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_70sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/icon_user_placeholder"/>
+                        android:src="@drawable/icon_user_placeholder" />
 
                 </LinearLayout>
 
@@ -247,7 +247,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/icon_user_placeholder"/>
+                    android:src="@drawable/icon_user_placeholder" />
 
             </LinearLayout>
 

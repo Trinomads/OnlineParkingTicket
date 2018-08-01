@@ -27,219 +27,222 @@
             <include layout="@layout/header_with_back" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_margin="@dimen/_10sdp"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:layout_weight="1">
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:padding="@dimen/_5sdp"
-                   android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_5sdp">
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                       <com.onlineparkingticket.commonTextView.TextViewRegular
-                           android:id="@+id/item_CommonListTicket_Date"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:padding="@dimen/_2sdp"
-                           android:text="Jun 12, 2018"
-                           android:textColor="@color/text_color"
-                           android:textSize="@dimen/_11sdp" />
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
+                            android:id="@+id/item_CommonListTicket_Date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_2sdp"
+                            android:text="Jun 12, 2018"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_11sdp" />
 
-                   </LinearLayout>
+                    </LinearLayout>
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                       <com.onlineparkingticket.commonTextView.TextViewRegular
-                           android:id="@+id/item_CommonListTicket_Plate"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:padding="@dimen/_2sdp"
-                           android:text="Plate No : 1010"
-                           android:textColor="@color/text_color"
-                           android:textSize="@dimen/_11sdp" />
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
+                            android:id="@+id/item_CommonListTicket_Plate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/_2sdp"
+                            android:text="Plate No : 1010"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_11sdp" />
 
-                   </LinearLayout>
+                    </LinearLayout>
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                       <com.onlineparkingticket.commonTextView.TextViewRegular
-                           android:id="@+id/item_CommonListTicket_ViolationNo"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:padding="@dimen/_2sdp"
-                           android:text="Violation No : 12542"
-                           android:textColor="@color/text_color"
-                           android:textSize="@dimen/_11sdp" />
-
-
-                   </LinearLayout>
-
-               </LinearLayout>
-
-           </LinearLayout>
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
+                            android:id="@+id/item_CommonListTicket_ViolationNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/_2sdp"
+                            android:text="Violation No : 12542"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_11sdp" />
 
 
+                    </LinearLayout>
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:padding="@dimen/_5sdp"
-               android:orientation="vertical">
-               <com.onlineparkingticket.commonTextView.TextViewBold
-                   android:id="@+id/item_violation"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:padding="@dimen/_2sdp"
-                   android:text="@string/Violation"
-                   android:textColor="@color/text_color"
-                   android:textSize="@dimen/_14sdp" />
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
+                </LinearLayout>
 
-                   <com.onlineparkingticket.commonTextView.TextViewRegular
-                       android:id="@+id/item_violation_Date"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:padding="@dimen/_2sdp"
-                       android:text="Mr. John Doe"
-                       android:textColor="@color/text_color"
-                       android:textSize="@dimen/_11sdp" />
-
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-
-                   <com.onlineparkingticket.commonTextView.TextViewRegular
-                       android:id="@+id/item_violation_Plate"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:padding="@dimen/_2sdp"
-                       android:text="You are being accused of speeding Going 15 over the limit."
-                       android:textColor="@color/text_color"
-                       android:textSize="@dimen/_11sdp" />
-
-               </LinearLayout>
+            </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
-           </LinearLayout>
+                <com.onlineparkingticket.commonTextView.TextViewBold
+                    android:id="@+id/item_violation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_2sdp"
+                    android:text="@string/Violation"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_14sdp" />
 
-           <View
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:background="@color/text_color" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:orientation="horizontal">
+                    <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:id="@+id/item_violation_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_2sdp"
+                        android:text="Mr. John Doe"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_11sdp" />
 
-               <CheckBox
-                   android:id="@+id/checkbox_ItemCommonList_Select"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="@dimen/_20sdp"
-                   android:layout_marginLeft="@dimen/_10sdp"
-                   android:visibility="gone"
-                   android:button="@drawable/custom_check_box" />
+                </LinearLayout>
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:padding="@dimen/_15sdp"
-                   android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
+                    <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:id="@+id/item_violation_Plate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_2sdp"
+                        android:text="You are being accused of speeding Going 15 over the limit."
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_11sdp" />
 
-                       <com.onlineparkingticket.commonTextView.TextViewBold
-                           android:id="@+id/item_CommonListTicket_Name"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:padding="@dimen/_2sdp"
-                           android:text="Speed : 65"
-                           android:textColor="@color/text_color"
-                           android:textSize="@dimen/_13sdp" />
-
-                       <com.onlineparkingticket.commonTextView.TextViewBold
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:padding="@dimen/_2sdp"
-                           android:text="Zone :50"
-                           android:textColor="@color/text_color"
-                           android:textSize="@dimen/_13sdp" />
-
-                   </LinearLayout>
+                </LinearLayout>
 
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/_10sdp">
+            </LinearLayout>
 
-                       <com.onlineparkingticket.commonTextView.TextViewBold
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_color" />
 
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:padding="@dimen/_2sdp"
-                           android:text="@string/ticketcharge"
-                           android:textColor="@color/text_color"
-                           android:textSize="@dimen/_13sdp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                       <com.onlineparkingticket.commonTextView.TextViewBold
-                           android:id="@+id/item_CommonListTicket_Paid"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:padding="@dimen/_2sdp"
-                           android:text="$6.75 USD"
-                           android:textColor="@color/text_color"
-                           android:textSize="@dimen/_13sdp" />
+                <CheckBox
+                    android:id="@+id/checkbox_ItemCommonList_Select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:button="@drawable/custom_check_box"
+                    android:visibility="gone" />
 
-                   </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
 
-               </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-           </LinearLayout>
+                        <com.onlineparkingticket.commonTextView.TextViewBold
+                            android:id="@+id/item_CommonListTicket_Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/_2sdp"
+                            android:text="Speed : 65"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_13sdp" />
 
-       </LinearLayout>
+                        <com.onlineparkingticket.commonTextView.TextViewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_2sdp"
+                            android:text="Zone :50"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_13sdp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <com.onlineparkingticket.commonTextView.TextViewBold
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/_2sdp"
+                            android:text="@string/ticketcharge"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <com.onlineparkingticket.commonTextView.TextViewBold
+                            android:id="@+id/item_CommonListTicket_Paid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_2sdp"
+                            android:text="$6.75 USD"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/_13sdp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear_fixit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
             android:layout_gravity="right"
+            android:layout_margin="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -254,7 +257,7 @@
             <ImageView
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:src="@drawable/fix_it"/>
+                android:src="@drawable/fix_it" />
 
         </LinearLayout>
 
@@ -262,8 +265,8 @@
             android:id="@+id/linear_PleaGuilty_Next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
             android:layout_gravity="right"
+            android:layout_margin="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -278,7 +281,7 @@
             <ImageView
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:src="@drawable/next_blue_bg"/>
+                android:src="@drawable/next_blue_bg" />
 
         </LinearLayout>
     </LinearLayout>

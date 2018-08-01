@@ -2,7 +2,6 @@ package com.onlineparkingticket.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,40 +13,50 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.activity.DigitalWalletActivity;
+import com.onlineparkingticket.activity.HomeNavigationDrawer;
 import com.onlineparkingticket.adapter.HomeSearchAdapter;
 import com.onlineparkingticket.commonTextView.EditTextRegular;
-import com.onlineparkingticket.commonTextView.TextViewBlack;
 
 import java.util.ArrayList;
 
-
+@SuppressWarnings("All")
 public class HomeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private RelativeLayout mainserach;
+    private LinearLayout mainserach;
     private EditTextRegular edtSearch;
-    private TextViewBlack txtSearch;
+    private LinearLayout txtSearch;
     private LinearLayout llSearch;
     private EditTextRegular edtsrch;
     private RecyclerView recycleHome;
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
     public static Context mContext;
     private ImageView floating;
 
-
-    // TODO: Rename method, update argument and hook method into UI event
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         mContext = getActivity();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        HomeNavigationDrawer.imNotification.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        HomeNavigationDrawer.imNotification.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -59,15 +68,14 @@ public class HomeFragment extends Fragment {
 
     private void init(View view) {
 
-        mainserach = (RelativeLayout)view.findViewById( R.id.mainserach );
-        edtSearch = (EditTextRegular)view.findViewById( R.id.edt_search );
-        txtSearch = (TextViewBlack)view.findViewById( R.id.txt_search );
-        llSearch = (LinearLayout)view.findViewById( R.id.ll_search );
-        edtsrch = (EditTextRegular)view.findViewById( R.id.edtsrch );
-        recycleHome = (RecyclerView)view.findViewById( R.id.recycle_home );
-        floating = (ImageView)view.findViewById( R.id.floating );
+        mainserach = (LinearLayout) view.findViewById(R.id.mainserach);
+        edtSearch = (EditTextRegular) view.findViewById(R.id.edt_search);
+        txtSearch = (LinearLayout) view.findViewById(R.id.txt_search);
+        llSearch = (LinearLayout) view.findViewById(R.id.ll_search);
+        edtsrch = (EditTextRegular) view.findViewById(R.id.edtsrch);
+        recycleHome = (RecyclerView) view.findViewById(R.id.recycle_home);
+        floating = (ImageView) view.findViewById(R.id.floating);
     }
-
 
 
     private void setClickEvent() {
@@ -92,8 +100,7 @@ public class HomeFragment extends Fragment {
         floating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                startActivity(new Intent(mContext, DigitalWalletActivity.class));
             }
         });
     }

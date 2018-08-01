@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class EditTextBlack extends EditText {
     public EditTextBlack(Context context, AttributeSet attrs, int defStyle) {

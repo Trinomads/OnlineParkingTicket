@@ -1,18 +1,8 @@
 package com.onlineparkingticket;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
-
-import com.onlineparkingticket.activity.DigitalWalletActivity;
-import com.onlineparkingticket.activity.NotificationActivity;
-import com.onlineparkingticket.activity.PleaActivity;
-import com.onlineparkingticket.fragment.FragmentPendingTicket;
-import com.onlineparkingticket.fragment.FragmentResolvedTicket;
-import com.onlineparkingticket.fragment.FragmentSettings;
 
 @SuppressWarnings("All")
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tvClick = (TextView) findViewById(R.id.tv_Main_Click);
+        /*TextView tvClick = (TextView) findViewById(R.id.tv_Main_Click);
         tvClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 replaceFragment(new FragmentSettings());
             }
-        });
+        });*/
     }
 
     public void replaceFragment(Fragment fragment) {

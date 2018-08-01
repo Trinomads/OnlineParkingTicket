@@ -1,7 +1,34 @@
 package com.onlineparkingticket.httpmanager;
 
 
+import com.onlineparkingticket.model.LoginModel;
+import com.onlineparkingticket.model.OTPModel;
+import com.onlineparkingticket.model.SignupModel;
+
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
+
 public interface Webservices {
+
+    @FormUrlEncoded
+    @POST("auth/create")
+    Call<OTPModel> getOTP(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("user/create")
+    Call<SignupModel> SignUp(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("auth/login")
+    Call<LoginModel> loginUser(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("ticket/listing")
+    Call<LoginModel> resolvedList(@FieldMap Map<String, String> params);
 
     /*@Multipart
     @POST("editUserProfile")
@@ -11,8 +38,7 @@ public interface Webservices {
                                     @Part("user_location") RequestBody user_location,
                                     @Part("first_key") RequestBody first_key,
                                     @Part("user_desc") RequestBody user_desc);
-    @POST("SignIn")
-    Call<LoginBase> SignIn(@Body JsonObject jsonBody);
+
 
     @POST("listLocation")
     Call<LocationBase> listLocation(@Body JsonObject jsonBody);

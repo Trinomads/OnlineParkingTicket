@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,14 +14,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.commonTextView.TextViewBlack;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -37,7 +32,6 @@ import okhttp3.OkHttpClient;
 
 @SuppressWarnings("ALL")
 public class BaseActivity extends AppCompatActivity {
-
 
 
     public ImageView image_back_header;
@@ -78,8 +72,8 @@ public class BaseActivity extends AppCompatActivity {
         try {
 
             String _DEVICE = android.os.Build.DEVICE;
-            String _MODEL="";
-            _MODEL   = android.os.Build.MODEL;
+            String _MODEL = "";
+            _MODEL = android.os.Build.MODEL;
             client = new OkHttpClient();
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -101,7 +95,7 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public boolean accept(File pathname) {
                 //Check if filename is "cpu", followed by a single digit number
-                if(Pattern.matches("cpu[0-9]+", pathname.getName())) {
+                if (Pattern.matches("cpu[0-9]+", pathname.getName())) {
                     return true;
                 }
                 return false;
@@ -115,7 +109,7 @@ public class BaseActivity extends AppCompatActivity {
             File[] files = dir.listFiles(new CpuFilter());
             //Return the number of cores (virtual CPU devices)
             return files.length;
-        } catch(Exception e) {
+        } catch (Exception e) {
             //Default to return 1 core
             return 1;
         }
@@ -928,7 +922,7 @@ public class BaseActivity extends AppCompatActivity {
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
             SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd");
-            return  inputFormat.parse(fromDate);
+            return inputFormat.parse(fromDate);
         } catch (Exception e) {
             Log.e("DatingApp", "Error converting to date : " + e.toString());
         }
@@ -944,7 +938,7 @@ public class BaseActivity extends AppCompatActivity {
         final String timeFormatString = "h:mm aa";
         final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
         final long HOURS = 60 * 60 * 60;
-        if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE) ) {
+        if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE)) {
             return true;
         }
         return false;

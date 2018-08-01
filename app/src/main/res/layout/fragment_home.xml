@@ -2,96 +2,120 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/bg_screen"
     android:orientation="vertical"
-    android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment">
 
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/mainserach"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainserach">
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
         <com.onlineparkingticket.commonTextView.EditTextRegular
+            android:id="@+id/edt_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txt_search"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@android:color/transparent"
+            android:hint="@string/searchbyplate"
+            android:padding="@dimen/_7sdp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/_12sdp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/txt_search"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/btn_gradient"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/search_white" />
+
+            <com.onlineparkingticket.commonTextView.TextViewBlack
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/_7sdp"
+                android:text="@string/search"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.onlineparkingticket.commonTextView.EditTextRegular
+            android:id="@+id/edtsrch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@android:color/transparent"
+            android:drawableRight="@drawable/search_blue"
             android:hint="@string/searchbyplate"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:backgroundTint="@color/black"
+            android:padding="@dimen/_7sdp"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/_12sdp"
-            android:layout_above="@+id/txt_search"
             android:textColorHint="@color/gray"
-            android:id="@+id/edt_search"
-            android:gravity="center"/>
+            android:textSize="@dimen/_12sdp" />
 
-        <com.onlineparkingticket.commonTextView.TextViewBlack
-            android:id="@+id/txt_search"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_gradient"
-            android:text="@string/search"
-            android:padding="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_centerInParent="true"
-            android:drawablePadding="@dimen/_12sdp"
-            android:layout_gravity="center"
-            android:drawableLeft="@drawable/search_blue"
-            android:textAlignment="center"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_13sdp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:typeface="normal" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:id="@+id/ll_search"
-        android:visibility="gone"
-
-        >
-
-            <com.onlineparkingticket.commonTextView.EditTextRegular
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:hint="@string/searchbyplate"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:backgroundTint="@color/black"
-                android:textColor="@color/text_color"
-                android:drawableRight="@drawable/search_blue"
-                android:textSize="@dimen/_12sdp"
-                android:id="@+id/edtsrch"
-                android:textColorHint="@color/gray"
-                android:gravity="center"/>
-
+            android:background="@color/black" />
 
         <android.support.v7.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_10sdp"
-          android:id="@+id/recycle_home">
+            android:id="@+id/recycle_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp" />
 
-      </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:background="@drawable/floating_button"
-        android:layout_height="wrap_content"
         android:id="@+id/floating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/_10sdp"/>
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/floating_button" />
+
 </RelativeLayout>

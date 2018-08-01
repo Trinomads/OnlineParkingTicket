@@ -57,15 +57,14 @@ public class FixitFragment extends Fragment {
 
     private void init(View view) {
 
-        mainserach = (RelativeLayout)view.findViewById( R.id.mainserach );
-        edtSearch = (EditTextRegular)view.findViewById( R.id.edt_search );
-        txtSearch = (TextViewBlack)view.findViewById( R.id.txt_search );
-        llSearch = (LinearLayout)view.findViewById( R.id.ll_search );
-        edtsrch = (EditTextRegular)view.findViewById( R.id.edtsrch );
-        recycleHome = (RecyclerView)view.findViewById( R.id.recycle_home );
-        floating = (ImageView)view.findViewById( R.id.floating );
+        mainserach = (RelativeLayout) view.findViewById(R.id.mainserach);
+        edtSearch = (EditTextRegular) view.findViewById(R.id.edt_search);
+        txtSearch = (TextViewBlack) view.findViewById(R.id.txt_search);
+        llSearch = (LinearLayout) view.findViewById(R.id.ll_search);
+        edtsrch = (EditTextRegular) view.findViewById(R.id.edtsrch);
+        recycleHome = (RecyclerView) view.findViewById(R.id.recycle_home);
+        floating = (ImageView) view.findViewById(R.id.floating);
     }
-
 
 
     private void setClickEvent() {

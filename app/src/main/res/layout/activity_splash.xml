@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:background="@color/bg_screen"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="@dimen/_70sdp"
@@ -12,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_above="@+id/txt_appname"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo" />
 
     <com.onlineparkingticket.commonTextView.TextViewBold
         android:layout_width="match_parent"
@@ -24,6 +23,6 @@
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary" />
 
 </RelativeLayout>

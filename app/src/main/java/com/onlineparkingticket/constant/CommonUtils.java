@@ -41,7 +41,7 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+@SuppressWarnings("All")
 public class CommonUtils {
 
     public static ProgressDialog progressDialog;
@@ -50,26 +50,21 @@ public class CommonUtils {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
+
     public static void forceHideKeyboard(AppCompatActivity activity, EditText editText) {
         try {
-            if (activity.getCurrentFocus() == null
-                    || !(activity.getCurrentFocus() instanceof EditText)) {
+            if (activity.getCurrentFocus() == null || !(activity.getCurrentFocus() instanceof EditText)) {
                 editText.requestFocus();
             }
-            InputMethodManager imm = (InputMethodManager) activity
-                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-            activity.getWindow().setSoftInputMode(
-                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
     public static void setSingleImageUser(Context mContext, String path, ImageView imImage) {
-
-
         /*Picasso.with(mContext)
                 .load(path)
                 .placeholder(R.drawable.image_user)
@@ -79,16 +74,13 @@ public class CommonUtils {
 
     public static void OpenHideKeyboard(AppCompatActivity activity, EditText editText) {
         try {
-            if (activity.getCurrentFocus() == null
-                    || !(activity.getCurrentFocus() instanceof EditText)) {
+            if (activity.getCurrentFocus() == null || !(activity.getCurrentFocus() instanceof EditText)) {
                 editText.requestFocus();
             }
 
-            InputMethodManager imm = (InputMethodManager) activity
-                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -140,16 +132,17 @@ public class CommonUtils {
             outPutTime.setTimeZone(TimeZone.getTimeZone("UTC"));
 
             return outPutTime.format(date);
-        } catch (Exception e ) {
+        } catch (Exception e) {
 
         }
         return "";
     }
-    public static String convertLocalTimeToUTC( String p_localDateTime) throws Exception{
 
-        String lv_dateFormateInUTC="";//Will hold the final converted date
+    public static String convertLocalTimeToUTC(String p_localDateTime) throws Exception {
+
+        String lv_dateFormateInUTC = "";//Will hold the final converted date
         Date lv_localDate = null;
-        String lv_localTimeZone ="";
+        String lv_localTimeZone = "";
         SimpleDateFormat lv_formatter;
         SimpleDateFormat lv_parser;
         lv_parser = new SimpleDateFormat("HH:mm");
@@ -160,18 +153,18 @@ public class CommonUtils {
         lv_formatter = new SimpleDateFormat("'T'HH:mm:ss.SSS'Z'");
         lv_formatter.setTimeZone(TimeZone.getTimeZone(lv_localTimeZone));
 
-        System.out.println("convertLocalTimeToUTC: "+": "+" The Date in the local time zone " + lv_formatter.format(lv_localDate));
+        System.out.println("convertLocalTimeToUTC: " + ": " + " The Date in the local time zone " + lv_formatter.format(lv_localDate));
 
 //Convert the date from the local timezone to UTC timezone
         lv_formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
         lv_dateFormateInUTC = lv_formatter.format(lv_localDate);
-        System.out.println("convertLocalTimeToUTC: "+": "+" The Date in the UTC time zone " + lv_dateFormateInUTC);
+        System.out.println("convertLocalTimeToUTC: " + ": " + " The Date in the UTC time zone " + lv_dateFormateInUTC);
 
 
         return lv_dateFormateInUTC;
     }
-    public  static void showNoInternetSnackBar(View layout, View.OnClickListener clickListener)
-    {
+
+    public static void showNoInternetSnackBar(View layout, View.OnClickListener clickListener) {
         Snackbar snackbar = Snackbar
                 .make(layout, "No internet connection!", Snackbar.LENGTH_SHORT)
                 .setAction("RETRY", clickListener);
@@ -187,7 +180,6 @@ public class CommonUtils {
             pattern = Pattern.compile(EMAIL_PATTERN);
             matcher = pattern.matcher(email);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return matcher.matches();
@@ -204,6 +196,7 @@ public class CommonUtils {
         return matcher.matches();
 
     }
+
     public static boolean isPasswordValid(String psw) {
         Matcher matcher = null;
         try {
@@ -212,29 +205,31 @@ public class CommonUtils {
             pattern = Pattern.compile(PSW_PATTERN);
             matcher = pattern.matcher(psw);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return matcher.matches();
     }
 
-    //=======================
 
     public static boolean isTextAvailable(String text) {
         return !(text == null || text.equals("") || text.equals("null"));
-
-
     }
 
-    public static void commonToast(Activity activity, String text) {
+    public static String isTextAvailableWithReturnData(String text, String returnData) {
+        if (text == null || text.equals("") || text.equals("null")) {
+            return returnData;
+        } else {
+            return text;
+        }
+    }
+
+    public static void commonToast(Context activity, String text) {
         if (CommonUtils.isTextAvailable(text)) {
             Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
-    public  static   String  gettime(String date) {
+    public static String gettime(String date) {
 
         SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date newDate = null;
@@ -254,6 +249,7 @@ public class CommonUtils {
     public static void SetText(Activity activity, String text, TextView textView) {
         textView.setText(text);
     }
+
     public static void showDialog(Context context, String msg) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(msg);
@@ -262,6 +258,7 @@ public class CommonUtils {
             progressDialog.show();
         }
     }
+
     // Dismiss Progrss Dialog
     public static void dismissProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing())
@@ -314,14 +311,15 @@ public class CommonUtils {
         return "";
 
     }
+
     // for  Url is valid or not
     public static boolean isValidUrl(String string) {
 
         boolean b = Patterns.WEB_URL.matcher(string).matches();
         return b;
     }
+
     public static Date convertStringToDate(String date) {
-        // TODO Auto-generated method stub
         SimpleDateFormat f = new SimpleDateFormat("dd MMM yyyy hh:mm a");
         Date d = null;
         try {
@@ -332,6 +330,7 @@ public class CommonUtils {
 
         return d;
     }
+
     //
     public static void finishFragmentOrActivity(View v, Activity activity, FragmentManager fragmentManager) {
 
@@ -341,17 +340,19 @@ public class CommonUtils {
             activity.finish();
         }
     }
+
     public static String roundToOneDigit(float paramFloat) {
         return String.format("%.2f%n", paramFloat);
     }
+
     public static String roundToTwoDigit(Double paramDouble) {
         DecimalFormat df = new DecimalFormat("#.00");
 
-        String strValue=df.format(paramDouble);
+        String strValue = df.format(paramDouble);
 
-       // String doubleValue= String.valueOf(Double.valueOf(strValue));
+        // String doubleValue= String.valueOf(Double.valueOf(strValue));
 
-        Log.e("ad","roundToTwoDigit ="+strValue);
+        Log.e("ad", "roundToTwoDigit =" + strValue);
 
         return strValue;
     }
@@ -383,71 +384,71 @@ public class CommonUtils {
         return encodedString;
     }
 
-    public static String BitMapToString(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp=Base64.encodeToString(b, Base64.DEFAULT);
+    public static String BitMapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
     }
-    public static Bitmap StringToBitMap(String encodedString){
+
+    public static Bitmap StringToBitMap(String encodedString) {
         try {
-            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
-            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             return bitmap;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.getMessage();
             return null;
         }
     }
-    public  static Bitmap pathTOBitmap(String path)
-    {
-        File imgFile = new  File(path);
 
-        if(imgFile.exists()){
+    public static Bitmap pathTOBitmap(String path) {
+        File imgFile = new File(path);
+
+        if (imgFile.exists()) {
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             return myBitmap;
         }
         return null;
     }
 
-    public static String convertDateFormat(String time)
-    {
+    public static String convertDateFormat(String time) {
         //2017-09-22
-        String mTime="";
+        String mTime = "";
 
         try {
             final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             final Date dateObj = sdf.parse(time);
             System.out.println(dateObj);
-            mTime=new SimpleDateFormat("dd MMM").format(dateObj);
-
+            mTime = new SimpleDateFormat("dd MMM").format(dateObj);
 
 
         } catch (final ParseException e) {
             e.printStackTrace();
         }
-        return  mTime;
+        return mTime;
     }
-    public static String convertTimeFormat(String time)
-    {
+
+    public static String convertTimeFormat(String time) {
         //2017-09-22 10:50:59
-        String mTime="";
-        String mTimeTwo="";
+        String mTime = "";
+        String mTimeTwo = "";
         try {
             final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             final Date dateObj = sdf.parse(time);
             System.out.println(dateObj);
-            mTime=new SimpleDateFormat("hh:mm a").format(dateObj);
+            mTime = new SimpleDateFormat("hh:mm a").format(dateObj);
 
-           // mTimeTwo=mTime.replace("AM", "am").replace("PM","pm");
+            // mTimeTwo=mTime.replace("AM", "am").replace("PM","pm");
             //oldstr.replace("AM", "am").replace("PM","pm");
 
         } catch (final ParseException e) {
             e.printStackTrace();
         }
-        return  mTimeTwo;
+        return mTimeTwo;
     }
+
     public static String utcToLocalTime(String server_date) {
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -468,6 +469,7 @@ public class CommonUtils {
 
         return formattedDate;
     }
+
     public static String utcToLocalDate(String server_date) {
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -488,7 +490,7 @@ public class CommonUtils {
 
 
             //formattedDate.replace("am", "AM");
-           // formattedDate.replace("pm", "PM");
+            // formattedDate.replace("pm", "PM");
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -496,11 +498,12 @@ public class CommonUtils {
 
         return formattedDate;
     }
+
     public static String utcToLocalDateTwo(String server_date) {
-       // SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+        // SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); //2017-11-07 10:11:08 utcCreatedDateTime
 
-       // SimpleDateFormat formatted_df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+        // SimpleDateFormat formatted_df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
         SimpleDateFormat formatted_df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -535,12 +538,12 @@ public class CommonUtils {
             return "";
         }
 
-        long timeInMilliseconds=0;
+        long timeInMilliseconds = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         try {
 
             Date mDate = sdf.parse(givenDateString);
-              timeInMilliseconds = mDate.getTime();
+            timeInMilliseconds = mDate.getTime();
             System.out.println("Date in milli :: " + timeInMilliseconds);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -548,12 +551,12 @@ public class CommonUtils {
 
         //API.log("Day Ago "+dayago);
         String result = "now";
-      SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String todayDate = formatter.format(new Date());
         Calendar calendar = Calendar.getInstance();
 
-        long dayagolong =  timeInMilliseconds;
+        long dayagolong = timeInMilliseconds;
         calendar.setTimeInMillis(dayagolong);
         String agoformater = formatter.format(calendar.getTime());
 
@@ -604,8 +607,7 @@ public class CommonUtils {
                 if (elapsedDays <= 29) {
                     //return String.valueOf(elapsedDays) + "d ago";
                     return CommonUtils.convertDateFormat(givenDateString);
-                }
-               else  {
+                } else {
                     SimpleDateFormat formatterYear = new SimpleDateFormat("MM/dd/yyyy");
                     Calendar calendarYear = Calendar.getInstance();
                     calendarYear.setTimeInMillis(dayagolong);
@@ -651,7 +653,6 @@ public class CommonUtils {
                 if (elapsedDays > 360 && elapsedDays <= 720) {
                     return "1 year ago";
                 }*/
-
 
 
             }

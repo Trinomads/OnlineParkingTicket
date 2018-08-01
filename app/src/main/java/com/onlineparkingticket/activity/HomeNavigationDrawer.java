@@ -15,58 +15,36 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.onlineparkingticket.fragment.HomeFragment;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.commonTextView.TextViewBlack;
+import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.fragment.FragmentPendingTicket;
+import com.onlineparkingticket.fragment.FragmentProfile;
+import com.onlineparkingticket.fragment.FragmentResolvedTicket;
+import com.onlineparkingticket.fragment.FragmentSettings;
+import com.onlineparkingticket.fragment.HomeFragment;
 
 import static com.onlineparkingticket.constant.AppGlobal.toast;
 
-
+@SuppressWarnings("All")
 public class HomeNavigationDrawer extends BaseActivity {
-    public static ImageView drawerImg, userImage;
+    public static ImageView drawerImg, userImage, imNotification;
     public static TextViewBlack drawerName, drawerEmail, mainTitle;
     public static HomeNavigationDrawer mainActivity;
     public static ProgressBar pDialog;
+    public static LinearLayout lvPayNow;
 
     long lastBackPressTime = 0;
-    String mainActivityComeFrom = "";
     private LinearLayout linearResolvedtickets;
     private LinearLayout linearPendingtickets;
     private LinearLayout linearSetting;
     private LinearLayout linearProfile;
     private LinearLayout linearLogout;
-    private DrawerLayout drawerLayout;
+    public static DrawerLayout drawerLayout;
     private ImageView imEditProfile;
     private Toolbar toolbar;
 
     LinearLayout lvHome;
-
-/*
-    public static void setUserData() {
-        drawerName.setText("" + AppGlobal.getStringPreference(mainActivity, WsConstant.SP_LOGIN_NAME));
-        drawerEmail.setText("" + AppGlobal.getStringPreference(mainActivity, WsConstant.SP_LOGIN_EMAIL));
-
-        if (!AppGlobal.getStringPreference(mainActivity, WsConstant.SP_LOGIN_PROFILE_PIC).equalsIgnoreCase("")) {
-            Glide.with(mainActivity)
-                    .load(AppGlobal.getStringPreference(mainActivity, WsConstant.SP_LOGIN_PROFILE_PIC))
-                    .listener(new RequestListener<String, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            pDialog.setVisibility(View.GONE);
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            pDialog.setVisibility(View.GONE);
-                            return false;
-                        }
-                    })
-                    .into(userImage);
-        } else {
-            pDialog.setVisibility(View.GONE);
-        }
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,22 +52,18 @@ public class HomeNavigationDrawer extends BaseActivity {
         setContentView(R.layout.activity_main);
         mainActivity = HomeNavigationDrawer.this;
 
-        Bundle bundle = getIntent().getExtras();
-
-        if (bundle != null) {
-            mainActivityComeFrom = bundle.getString("forVerifyAccount");
-        }
-
         init();
         setClickEvent();
         callFragment(new HomeFragment(), getString(R.string.home));
     }
 
     private void init() {
-
         mainTitle = (TextViewBlack) findViewById(R.id.titleActionbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        imNotification = (ImageView) findViewById(R.id.image_HomeDrawer_Notification);
+        lvPayNow = (LinearLayout) findViewById(R.id.linear_Home_Paynow);
 
         pDialog = (ProgressBar) findViewById(R.id.progressBar_Main);
 
@@ -100,17 +74,37 @@ public class HomeNavigationDrawer extends BaseActivity {
         userImage = (ImageView) findViewById(R.id.user_image);
 
         lvHome = (LinearLayout) findViewById(R.id.linear_Home_Home);
-        linearResolvedtickets = (LinearLayout)findViewById( R.id.linear_resolvedtickets );
-        linearPendingtickets = (LinearLayout)findViewById( R.id.linear_pendingtickets );
-        linearSetting = (LinearLayout)findViewById( R.id.linear_setting );
-        linearProfile = (LinearLayout)findViewById( R.id.linear_profile );
-        linearLogout = (LinearLayout)findViewById( R.id.linear_logout );
+        linearResolvedtickets = (LinearLayout) findViewById(R.id.linear_resolvedtickets);
+        linearPendingtickets = (LinearLayout) findViewById(R.id.linear_pendingtickets);
+        linearSetting = (LinearLayout) findViewById(R.id.linear_setting);
+        linearProfile = (LinearLayout) findViewById(R.id.linear_profile);
+        linearLogout = (LinearLayout) findViewById(R.id.linear_logout);
         setClickEvent();
     }
 
+    public static void resetData() {
+        imNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.startActivity(new Intent(mainActivity, NotificationActivity.class));
+            }
+        });
+
+        drawerImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(Gravity.START);
+            }
+        });
+    }
+
     private void setClickEvent() {
-
-
+        imNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mainActivity, NotificationActivity.class));
+            }
+        });
 
         lvHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,12 +113,45 @@ public class HomeNavigationDrawer extends BaseActivity {
             }
         });
 
-
-
         drawerImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(Gravity.START);
+            }
+        });
+
+        linearResolvedtickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFragment(new FragmentResolvedTicket(), getString(R.string.Resolvedtickets));
+            }
+        });
+
+        linearPendingtickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFragment(new FragmentPendingTicket(), getString(R.string.pendingtickets));
+            }
+        });
+
+        linearSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFragment(new FragmentSettings(), getString(R.string.setting));
+            }
+        });
+
+        linearProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFragment(new FragmentProfile(), getString(R.string.Profile));
+            }
+        });
+
+        linearLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppGlobal.logoutApp(mainActivity);
             }
         });
     }

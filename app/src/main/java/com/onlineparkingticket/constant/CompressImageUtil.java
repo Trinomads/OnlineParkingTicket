@@ -15,7 +15,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 
-
 import com.onlineparkingticket.R;
 
 import java.io.File;
