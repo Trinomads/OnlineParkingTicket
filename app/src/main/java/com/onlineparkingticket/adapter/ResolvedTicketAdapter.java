@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.allInterface.OnLoadMoreListener;
+import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.model.TicketListingModel;
 
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
     private final int VIEW_PROG = 0;
     private final RecyclerView rvTrending;
 
-    private ArrayList<String> commentList;
+    private ArrayList<TicketListingModel.Ticket> commentList;
 
     private int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
@@ -35,7 +37,7 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
     boolean paidTag;
 
 
-    public ResolvedTicketAdapter(Context mContext, ArrayList<String> commentList, RecyclerView rvTrending, boolean paidTag) {
+    public ResolvedTicketAdapter(Context mContext, final ArrayList<TicketListingModel.Ticket> commentList, RecyclerView rvTrending) {
         this.commentList = commentList;
         this.mContext = mContext;
         this.flag = flag;
@@ -46,7 +48,6 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
 
             final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) rvTrending.getLayoutManager();
 
-
             rvTrending.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -55,10 +56,10 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
                     totalItemCount = linearLayoutManager.getItemCount();
                     lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
                     if (!loading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-                        // End has been reached
-                        // Do something
-                        if (onLoadMoreListener != null) {
-                            onLoadMoreListener.onLoadMore();
+                        if (commentList.size() > 9) {
+                            if (onLoadMoreListener != null) {
+                                onLoadMoreListener.onLoadMore();
+                            }
                         }
                         loading = true;
                     }
@@ -89,11 +90,13 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof ViewHolder) {
 
-            if (paidTag) {
-                ((ViewHolder) holder).tvPaid.setText(mContext.getString(R.string.paid));
-            } else {
-                ((ViewHolder) holder).tvPaid.setText(mContext.getString(R.string.unpaid));
-            }
+            TicketListingModel.Ticket mData = commentList.get(position);
+            ((ViewHolder) holder).tvPaid.setText(AppGlobal.isTextAvailableWithData(mData.getStatus(), ""));
+
+            ((ViewHolder) holder).tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + mData.getPrice(), "0"));
+            ((ViewHolder) holder).tvDate.setText(AppGlobal.getDateFromServer(AppGlobal.isTextAvailableWithData(mData.getDate(), "")));
+            ((ViewHolder) holder).tvPlate.setText("Plate No : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
+            ((ViewHolder) holder).tvViolationNo.setText("Violation No : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
 
         } else {
             ((ProgressViewHolder) holder).pbLoadMore.setIndeterminate(true);
@@ -121,11 +124,11 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvName, tvDate, tvPlate, tvViolationNo, tvPaid;
+        TextView tvPrice, tvDate, tvPlate, tvViolationNo, tvPaid;
 
         public ViewHolder(View v) {
             super(v);
-            tvName = (TextView) v.findViewById(R.id.item_CommonListTicket_Name);
+            tvPrice = (TextView) v.findViewById(R.id.item_CommonListTicket_Price);
             tvDate = (TextView) v.findViewById(R.id.item_CommonListTicket_Date);
             tvPlate = (TextView) v.findViewById(R.id.item_CommonListTicket_Plate);
             tvViolationNo = (TextView) v.findViewById(R.id.item_CommonListTicket_ViolationNo);
@@ -141,5 +144,4 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
             pbLoadMore = (ProgressBar) v.findViewById(R.id.pbLoadMore);
         }
     }
-
 }

@@ -34,6 +34,7 @@
                 android:paddingRight="@dimen/_10sdp">
 
                 <com.onlineparkingticket.commonTextView.TextViewBold
+                    android:id="@+id/tv_UserProfile_Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -42,20 +43,22 @@
                     android:textSize="@dimen/_14sdp" />
 
                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                    android:id="@+id/tv_UserProfile_Mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/call"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:text="+012 3456 7890"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_10sdp" />
 
                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                    android:id="@+id/tv_UserProfile_Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="abc@gmail.com"
+                    android:text=""
                     android:drawableLeft="@drawable/mail"
                     android:drawablePadding="@dimen/_5sdp"
                     android:textColor="@color/text_color"
@@ -71,10 +74,11 @@
                 android:paddingRight="@dimen/_10sdp">
 
                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                    android:id="@+id/tv_UserProfile_PlateNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="COL000000"
+                    android:text=""
                     android:gravity="center_vertical"
                     android:drawableLeft="@drawable/number_plate"
                     android:drawablePadding="@dimen/_5sdp"
@@ -82,12 +86,13 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                    android:id="@+id/tv_UserProfile_Location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/pin"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:text="Prahladnagat, Tes, Ahmedabad"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_10sdp" />
 
@@ -135,9 +140,10 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <com.onlineparkingticket.commonTextView.TextViewBold
+                        android:id="@+id/tv_UserProfile_Ticket_Paid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
                         android:layout_marginLeft="@dimen/_minus15sdp"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_15sdp" />
@@ -162,10 +168,11 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <com.onlineparkingticket.commonTextView.TextViewBold
+                        android:id="@+id/tv_UserProfile_Ticket_UnPaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_minus20sdp"
-                        android:text="10"
+                        android:text="0"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_15sdp" />
 
@@ -189,10 +196,11 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <com.onlineparkingticket.commonTextView.TextViewBold
+                        android:id="@+id/tv_UserProfile_Ticket_Total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_minus15sdp"
-                        android:text="10"
+                        android:text="0"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_15sdp" />
 

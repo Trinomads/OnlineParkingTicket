@@ -19,13 +19,18 @@
             android:padding="@dimen/_10sdp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:id="@+id/image_EditProfile_DP"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/icon_user_placeholder" />
 
             <LinearLayout
+                android:id="@+id/linear_EditProfile_DP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -46,10 +51,11 @@
         </LinearLayout>
 
         <com.onlineparkingticket.commonTextView.EditTextBold
+            android:id="@+id/ed_EditProfile_Name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
             android:background="@drawable/textarea"
-            android:hint="John"
+            android:hint="@string/name"
             android:imeOptions="actionNext"
             android:inputType="textPersonName"
             android:paddingBottom="@dimen/_10sdp"
@@ -57,50 +63,17 @@
             android:paddingRight="@dimen/_30sdp"
             android:paddingTop="@dimen/_10sdp"
             android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
+            android:textColorHint="@color/hint_color"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
             android:typeface="normal" />
 
         <com.onlineparkingticket.commonTextView.EditTextBold
+            android:id="@+id/ed_EditProfile_Mobile"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
             android:background="@drawable/textarea"
-            android:hint="+012 3456 7890"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="normal"
-            android:typeface="normal" />
-
-        <com.onlineparkingticket.commonTextView.EditTextBold
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/textarea"
-            android:hint="abc@gmail.com"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="normal"
-            android:typeface="normal" />
-
-        <com.onlineparkingticket.commonTextView.EditTextBold
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/textarea"
-            android:hint="Prahladnagar, Ahmedabad"
+            android:hint="@string/mobile_no"
             android:imeOptions="actionNext"
             android:inputType="numberDecimal"
             android:paddingBottom="@dimen/_10sdp"
@@ -108,18 +81,55 @@
             android:paddingRight="@dimen/_30sdp"
             android:paddingTop="@dimen/_10sdp"
             android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
+            android:textColorHint="@color/hint_color"
             android:textSize="@dimen/_12sdp"
             android:textStyle="normal"
             android:typeface="normal" />
 
         <com.onlineparkingticket.commonTextView.EditTextBold
+            android:id="@+id/ed_EditProfile_Email"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
             android:background="@drawable/textarea"
-            android:hint="Col 11XXXX"
+            android:hint="@string/email"
             android:imeOptions="actionNext"
-            android:inputType="textMultiLine"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_30sdp"
+            android:paddingRight="@dimen/_30sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="normal"
+            android:typeface="normal" />
+
+        <com.onlineparkingticket.commonTextView.EditTextBold
+            android:id="@+id/ed_EditProfile_Address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:background="@drawable/textarea"
+            android:hint="@string/address"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_30sdp"
+            android:paddingRight="@dimen/_30sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="normal"
+            android:typeface="normal" />
+
+        <com.onlineparkingticket.commonTextView.EditTextBold
+            android:id="@+id/ed_EditProfile_PlateNo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:background="@drawable/textarea"
+            android:hint="@string/license_plate"
+            android:imeOptions="actionDone"
+            android:inputType="text"
             android:maxLines="3"
             android:paddingBottom="@dimen/_10sdp"
             android:paddingLeft="@dimen/_30sdp"
@@ -127,7 +137,7 @@
             android:paddingTop="@dimen/_10sdp"
             android:singleLine="false"
             android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
+            android:textColorHint="@color/hint_color"
             android:textSize="@dimen/_12sdp"
             android:textStyle="normal"
             android:typeface="normal" />

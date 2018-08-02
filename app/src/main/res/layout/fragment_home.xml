@@ -101,11 +101,27 @@
             android:layout_marginRight="@dimen/_20sdp"
             android:background="@color/black" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_10sdp" />
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipeToRefresh_Home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycle_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
+                    tools:listitem="@layout/item_resolved_ticket" />
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

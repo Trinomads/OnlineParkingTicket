@@ -351,8 +351,6 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 popupDialog.dismiss();
-
-                //TODO Close button action
             }
         });
 

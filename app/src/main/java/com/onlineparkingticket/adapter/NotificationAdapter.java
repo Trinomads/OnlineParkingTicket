@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.allInterface.OnLoadMoreListener;
+import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.model.NotificationModel;
 
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ public class NotificationAdapter extends RecyclerView.Adapter {
     private final int VIEW_PROG = 0;
     private final RecyclerView rvTrending;
 
-    private ArrayList<String> commentList;
+    private ArrayList<NotificationModel.Notification> commentList;
 
     private int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
@@ -32,7 +34,7 @@ public class NotificationAdapter extends RecyclerView.Adapter {
     private Context mContext;
 
 
-    public NotificationAdapter(Context mContext, ArrayList<String> commentList, RecyclerView rvTrending) {
+    public NotificationAdapter(Context mContext, final ArrayList<NotificationModel.Notification> commentList, RecyclerView rvTrending) {
         this.commentList = commentList;
         this.mContext = mContext;
         this.rvTrending = rvTrending;
@@ -52,8 +54,10 @@ public class NotificationAdapter extends RecyclerView.Adapter {
                     if (!loading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                         // End has been reached
                         // Do something
-                        if (onLoadMoreListener != null) {
-                            onLoadMoreListener.onLoadMore();
+                        if (commentList.size() > 9) {
+                            if (onLoadMoreListener != null) {
+                                onLoadMoreListener.onLoadMore();
+                            }
                         }
                         loading = true;
                     }
@@ -84,6 +88,11 @@ public class NotificationAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof ViewHolder) {
 
+            NotificationModel.Notification mData = commentList.get(position);
+
+            ((ViewHolder) holder).tvPlate.setText(AppGlobal.isTextAvailableWithData(mData.getMessage(), ""));
+            ((ViewHolder) holder).tvDate.setText(AppGlobal.getTimeAgoFromDate(mData.getCreatedAt()));
+            ((ViewHolder) holder).tvViolationNo.setText(AppGlobal.isTextAvailableWithData(mData.getMessage(), ""));
         } else {
             ((ProgressViewHolder) holder).pbLoadMore.setIndeterminate(true);
         }

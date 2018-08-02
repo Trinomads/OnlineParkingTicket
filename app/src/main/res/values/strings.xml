@@ -9,6 +9,9 @@
     <string name="notification">Notification</string>
     <string name="push_notification">Push Notification</string>
 
+    <string name="mobile_no">Mobile No</string>
+    <string name="no_tickets">No Tickets Available</string>
+    <string name="no_notification">No Notification Available</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -105,7 +108,11 @@
     <string name="registernow">Register Now</string>
     <string name="forgetpassword">Forgot Password?</string>
 
+    <string name="Camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="cancel">Cancel</string>
 
+    <string name="msg_plz_enter_address">Please enter address.</string>
     <string name="msg_plz_enter_mobile">Please enter mobile no.</string>
     <string name="msg_plz_enter_opt">Please enter OTP code.</string>
     <string name="msg_plz_enter_valid_opt">Please enter valid OTP code.</string>

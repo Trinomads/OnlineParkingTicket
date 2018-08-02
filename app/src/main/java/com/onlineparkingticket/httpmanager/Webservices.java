@@ -1,9 +1,14 @@
 package com.onlineparkingticket.httpmanager;
 
 
+import com.onlineparkingticket.model.EditUserDetailsModel;
 import com.onlineparkingticket.model.LoginModel;
+import com.onlineparkingticket.model.NotificationModel;
 import com.onlineparkingticket.model.OTPModel;
 import com.onlineparkingticket.model.SignupModel;
+import com.onlineparkingticket.model.TicketDetailsModel;
+import com.onlineparkingticket.model.TicketListingModel;
+import com.onlineparkingticket.model.UserDetailsModel;
 
 import java.util.Map;
 
@@ -28,7 +33,23 @@ public interface Webservices {
 
     @FormUrlEncoded
     @POST("ticket/listing")
-    Call<LoginModel> resolvedList(@FieldMap Map<String, String> params);
+    Call<TicketListingModel> resolvedList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("user/view")
+    Call<UserDetailsModel> getUserDetails(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("user/update")
+    Call<EditUserDetailsModel> editUserDetails(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("ticket/view")
+    Call<TicketDetailsModel> getTicketDetails(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("notification/listing")
+    Call<NotificationModel> getNotifications(@FieldMap Map<String, String> params);
 
     /*@Multipart
     @POST("editUserProfile")
@@ -37,37 +58,6 @@ public interface Webservices {
                                     @Part("user_name") RequestBody user_name,
                                     @Part("user_location") RequestBody user_location,
                                     @Part("first_key") RequestBody first_key,
-                                    @Part("user_desc") RequestBody user_desc);
-
-
-    @POST("listLocation")
-    Call<LocationBase> listLocation(@Body JsonObject jsonBody);
-
-    @POST("listCategory")
-    Call<CategoryBase> listCategory(@Body JsonObject jsonBody);
-
-    @POST("listListing")
-    Call<CategorydetailBase> listListing(@Body JsonObject jsonBody);
-
-
-    @POST("listingDetails")
-    Call<ListdetailBase> listingDetails(@Body JsonObject jsonBody);
-
-
-    @POST("userProfile")
-    Call<LoginBase> userProfile(@Body JsonObject jsonBody);
-
-    @POST("bookmark")
-    Call<LoginBase> bookmark(@Body JsonObject jsonBody);
-
-    @POST("pushnotification_flag")
-    Call<LoginBase> pushnotification_flag(@Body JsonObject jsonBody);
-
-
-    @POST("staticPage")
-    Call<StaticPageBase> staticPage(@Body JsonObject jsonBody);
-
-    @POST("contactUs")
-    Call<LoginBase> contactUs(@Body JsonObject jsonBody);*/
+                                    @Part("user_desc") RequestBody user_desc);*/
 }
 

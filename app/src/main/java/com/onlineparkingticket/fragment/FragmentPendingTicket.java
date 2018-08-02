@@ -2,29 +2,51 @@ package com.onlineparkingticket.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.activity.HomeNavigationDrawer;
+import com.onlineparkingticket.activity.ViolationDetailsActivity;
 import com.onlineparkingticket.adapter.PendingTicketAdapter;
+import com.onlineparkingticket.allInterface.OnItemClick;
+import com.onlineparkingticket.allInterface.OnLoadMoreListener;
+import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.constant.CommonUtils;
+import com.onlineparkingticket.constant.WsConstant;
+import com.onlineparkingticket.httpmanager.ApiHandlerToken;
+import com.onlineparkingticket.model.TicketListingModel;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 @SuppressWarnings("All")
-public class FragmentPendingTicket extends Fragment {
+public class FragmentPendingTicket extends Fragment implements OnItemClick{
     public static Context mContext;
-
-    RecyclerView rvList;
-
+    private RecyclerView rvList;
+    private TextView tvNoTicket;
+    private SwipeRefreshLayout refreshLayout;
+    private ArrayList<TicketListingModel.Ticket> listTicket = new ArrayList<>();
+    private PendingTicketAdapter adapter;
+    int pageNo = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,40 +58,40 @@ public class FragmentPendingTicket extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        HomeNavigationDrawer.imNotification.setVisibility(View.GONE);
-        HomeNavigationDrawer.lvPayNow.setVisibility(View.VISIBLE);
+        HomeNavigationDrawer.imNotification.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         HomeNavigationDrawer.imNotification.setVisibility(View.INVISIBLE);
-        HomeNavigationDrawer.lvPayNow.setVisibility(View.GONE);
-        HomeNavigationDrawer.imNotification.setImageResource(R.drawable.notification);
         HomeNavigationDrawer.resetData();
+        adapter = null;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+        getPaidListing(false, pageNo);
     }
-
-    ArrayList<String> listTicket;
 
     private void init(View view) {
         rvList = (RecyclerView) view.findViewById(R.id.rv_Common);
         rvList.setLayoutManager(new LinearLayoutManager(mContext));
 
-        listTicket = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            listTicket.add("");
-        }
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeToRefresh_Common);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                pageNo = 0;
+                getPaidListing(false, pageNo);
+            }
+        });
 
-        PendingTicketAdapter adapter = new PendingTicketAdapter(getActivity(), listTicket, rvList, false, false);
-        rvList.setAdapter(adapter);
+        tvNoTicket = (TextView) view.findViewById(R.id.tv_CommonList_NoTickets);
 
-        HomeNavigationDrawer.lvPayNow.setOnClickListener(new View.OnClickListener() {
+        /*HomeNavigationDrawer.lvPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PendingTicketAdapter adapter = new PendingTicketAdapter(getActivity(), listTicket, rvList, false, true);
@@ -79,13 +101,108 @@ public class FragmentPendingTicket extends Fragment {
                 HomeNavigationDrawer.imNotification.setVisibility(View.VISIBLE);
                 HomeNavigationDrawer.imNotification.setImageResource(R.drawable.pay);
             }
-        });
-        HomeNavigationDrawer.imNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Pay now ", Toast.LENGTH_SHORT).show();
-            }
-        });
+        });*/
     }
 
+    public void setRefreshAdapter() {
+        if (adapter != null) {
+            adapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+                @Override
+                public void onLoadMore() {
+                    pageNo = pageNo + 1;
+                    getPaidListing(false, pageNo);
+                }
+            });
+        }
+    }
+
+    public void getPaidListing(boolean loader, final int pageNO) {
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+
+            if (loader) {
+                AppGlobal.showProgressDialog(mContext);
+            }
+
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("user", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
+            params.put("status", "UNPAID");
+            params.put("pageNo", "" + pageNO);
+            params.put("perPage", "20");
+
+            new ApiHandlerToken(mContext).getApiService().resolvedList(params).enqueue(new Callback<TicketListingModel>() {
+                @Override
+                public void onResponse(Call<TicketListingModel> call, Response<TicketListingModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    if (refreshLayout.isRefreshing()) {
+                        refreshLayout.setRefreshing(false);
+                    }
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+
+                                if (pageNO == 0) {
+                                    listTicket = new ArrayList<>();
+                                    adapter = null;
+                                }
+
+                                if (response.body().getData().getTickets().size() > 0) {
+
+                                    listTicket.addAll(response.body().getData().getTickets());
+
+                                    if (adapter == null) {
+                                        adapter = new PendingTicketAdapter(getActivity(), listTicket, rvList, FragmentPendingTicket.this);
+                                        rvList.setAdapter(adapter);
+                                    } else {
+                                        adapter.notifyDataSetChanged();
+                                    }
+
+                                    setRefreshAdapter();
+
+                                    rvList.setVisibility(View.VISIBLE);
+                                    tvNoTicket.setVisibility(View.GONE);
+                                } else {
+                                    if (pageNo == 0) {
+                                        rvList.setVisibility(View.GONE);
+                                        tvNoTicket.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                                if (adapter != null) {
+                                    adapter.setLoaded();
+                                }
+                            } else {
+                                if (pageNo == 0) {
+                                    rvList.setVisibility(View.GONE);
+                                    tvNoTicket.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TicketListingModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                    if (refreshLayout.isRefreshing()) {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }
+            });
+        } else {
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
+    }
+
+    @Override
+    public void onItemClickPosition(int position) {
+        Intent intent = new Intent(mContext, ViolationDetailsActivity.class);
+        intent.putExtra("itemId", listTicket.get(position).getId());
+        mContext.startActivity(intent);
+    }
 }

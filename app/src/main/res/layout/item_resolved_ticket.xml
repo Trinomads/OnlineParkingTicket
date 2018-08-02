@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/linear_ItemCommonTicket_Main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -31,12 +32,12 @@
                 android:layout_height="wrap_content">
 
                 <com.onlineparkingticket.commonTextView.TextViewBold
-                    android:id="@+id/item_CommonListTicket_Name"
+                    android:id="@+id/item_CommonListTicket_Price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/_2sdp"
-                    android:text="Test"
+                    android:padding="@dimen/_1sdp"
+                    android:text="$ 0"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_11sdp" />
 
@@ -44,8 +45,8 @@
                     android:id="@+id/item_CommonListTicket_Date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_2sdp"
-                    android:text="Jun 12, 2018"
+                    android:padding="@dimen/_1sdp"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_11sdp" />
 
@@ -60,8 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/_2sdp"
-                    android:text="Plate No : 1010"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Plate No : "
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_11sdp" />
 
@@ -76,8 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/_2sdp"
-                    android:text="Violation No : 12542"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Violation No : "
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_11sdp" />
 
@@ -85,7 +86,7 @@
                     android:id="@+id/item_CommonListTicket_Paid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_2sdp"
+                    android:padding="@dimen/_1sdp"
                     android:text="@string/paid"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_12sdp" />

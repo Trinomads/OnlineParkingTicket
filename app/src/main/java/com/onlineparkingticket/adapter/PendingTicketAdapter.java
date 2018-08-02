@@ -8,11 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.allInterface.OnItemClick;
 import com.onlineparkingticket.allInterface.OnLoadMoreListener;
+import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.model.TicketListingModel;
 
 import java.util.ArrayList;
 
@@ -24,30 +28,27 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
     private final int VIEW_PROG = 0;
     private final RecyclerView rvTrending;
 
-    private ArrayList<String> commentList;
+    private ArrayList<TicketListingModel.Ticket> commentList;
 
     private int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
+    private OnItemClick listener;
     private Context mContext;
     String flag = "0";
     TextView textView;
-    boolean paidTag, chkSelect;
 
-
-    public PendingTicketAdapter(Context mContext, ArrayList<String> commentList, RecyclerView rvTrending, boolean paidTag, boolean chkSelect) {
+    public PendingTicketAdapter(Context mContext, final ArrayList<TicketListingModel.Ticket> commentList, RecyclerView rvTrending, OnItemClick listener) {
         this.commentList = commentList;
         this.mContext = mContext;
         this.flag = flag;
         this.rvTrending = rvTrending;
-        this.paidTag = paidTag;
-        this.chkSelect = chkSelect;
+        this.listener = listener;
 
         if (rvTrending.getLayoutManager() instanceof LinearLayoutManager) {
 
             final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) rvTrending.getLayoutManager();
-
 
             rvTrending.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -59,8 +60,10 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
                     if (!loading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                         // End has been reached
                         // Do something
-                        if (onLoadMoreListener != null) {
-                            onLoadMoreListener.onLoadMore();
+                        if (commentList.size() > 19) {
+                            if (onLoadMoreListener != null) {
+                                onLoadMoreListener.onLoadMore();
+                            }
                         }
                         loading = true;
                     }
@@ -90,18 +93,22 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof ViewHolder) {
+            TicketListingModel.Ticket mData = commentList.get(position);
+            ((ViewHolder) holder).tvPaid.setText(AppGlobal.isTextAvailableWithData(mData.getStatus(), ""));
 
-            if (paidTag) {
-                ((ViewHolder) holder).tvPaid.setText(mContext.getString(R.string.paid));
-            } else {
-                ((ViewHolder) holder).tvPaid.setText(mContext.getString(R.string.unpaid));
-            }
+            ((ViewHolder) holder).tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + mData.getPrice(), "0"));
+            ((ViewHolder) holder).tvDate.setText(AppGlobal.getDateFromServer(AppGlobal.isTextAvailableWithData(mData.getDate(), "")));
+            ((ViewHolder) holder).tvPlate.setText("Plate No : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
+            ((ViewHolder) holder).tvViolationNo.setText("Violation No : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
 
-            if (chkSelect) {
-                ((ViewHolder) holder).chkSelect.setVisibility(View.VISIBLE);
-            } else {
-                ((ViewHolder) holder).chkSelect.setVisibility(View.GONE);
-            }
+            ((ViewHolder) holder).lvMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        listener.onItemClickPosition(position);
+                    }
+                }
+            });
 
         } else {
             ((ProgressViewHolder) holder).pbLoadMore.setIndeterminate(true);
@@ -129,14 +136,17 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvName, tvDate, tvPlate, tvViolationNo, tvPaid;
+        TextView tvPrice, tvDate, tvPlate, tvViolationNo, tvPaid;
         CheckBox chkSelect;
+        LinearLayout lvMain;
 
         public ViewHolder(View v) {
             super(v);
+            lvMain = (LinearLayout) v.findViewById(R.id.linear_ItemCommonTicket_Main);
+
             chkSelect = (CheckBox) v.findViewById(R.id.checkbox_ItemCommonList_Select);
 
-            tvName = (TextView) v.findViewById(R.id.item_CommonListTicket_Name);
+            tvPrice = (TextView) v.findViewById(R.id.item_CommonListTicket_Price);
             tvDate = (TextView) v.findViewById(R.id.item_CommonListTicket_Date);
             tvPlate = (TextView) v.findViewById(R.id.item_CommonListTicket_Plate);
             tvViolationNo = (TextView) v.findViewById(R.id.item_CommonListTicket_ViolationNo);

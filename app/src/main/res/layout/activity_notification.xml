@@ -35,6 +35,10 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeToRefresh_Notification"
             android:layout_width="match_parent"
@@ -50,6 +54,20 @@
                 tools:listitem="@layout/item_notification" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
+
+            <com.onlineparkingticket.commonTextView.TextViewBold
+                android:id="@+id/tv_Notification_NoTickets"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:text="@string/no_notification"
+                android:padding="@dimen/_7sdp"
+                android:visibility="gone"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_13sdp" />
+
+        </RelativeLayout>
 
 
     </LinearLayout>
