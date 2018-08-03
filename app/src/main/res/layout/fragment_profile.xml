@@ -21,6 +21,7 @@
             android:padding="@dimen/_10sdp">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_Profile_UserImage"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/icon_user_placeholder" />

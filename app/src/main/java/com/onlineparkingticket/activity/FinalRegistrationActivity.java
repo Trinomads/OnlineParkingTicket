@@ -86,7 +86,7 @@ public class FinalRegistrationActivity extends BaseActivity {
             Map<String, String> params = new HashMap<String, String>();
             params.put("name", stName);
             params.put("email", stEmail);
-            params.put("license", stLicense);
+            params.put("platno", stLicense);
             params.put("mobileno", stMobile);
             params.put("password", stPassword);
             params.put("address", stPassword);

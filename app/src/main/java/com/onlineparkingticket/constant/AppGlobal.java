@@ -25,16 +25,24 @@ import android.util.TypedValue;
 import android.view.ViewStub;
 import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.onlineparkingticket.BuildConfig;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.activity.WelcomeActivity;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -306,6 +314,27 @@ public class AppGlobal {
      * @param key
      * @return
      */
+
+
+    static public boolean setArrayListPreference(Context c, ArrayList<String> value, String key) {
+        Gson gson = new Gson();
+        String json = gson.toJson(value);
+
+        SharedPreferences settings = c.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(key, json);
+        return editor.commit();
+    }
+
+    static public ArrayList<String> getArrayListPreference(Context c, String key) {
+        SharedPreferences settings = c.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String value = settings.getString(key, "");
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        return gson.fromJson(value, type);
+    }
+
     static public boolean setStringPreference(Context c, String value, String key) {
         SharedPreferences settings = c.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
@@ -822,11 +851,16 @@ public class AppGlobal {
         if (!AppGlobal.getStringPreference(mainActivity, WsConstant.SP_REMEMBER).equalsIgnoreCase("1")) {
             AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_EMAIL);
         }
+
+        ArrayList<String> listArray = new ArrayList<>();
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_TOKEN);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_ID);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_NAME);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_MOBILE);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_ADDRESS);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_LICENCE_PLAT);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_LICENCE_PLAT);
+        AppGlobal.setArrayListPreference(mainActivity, listArray, WsConstant.SP_IMAGES);
 
         Intent intent = new Intent(mainActivity, WelcomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -981,4 +1015,20 @@ public class AppGlobal {
         }
         return result;
     }
+
+
+
+    public static void loadUserImage(Context mContext, String path, ImageView imImage) {
+        Picasso.with(mContext)
+                .load(path)
+                .placeholder(R.drawable.icon_user_placeholder)
+                .error(R.drawable.icon_user_placeholder)
+                .skipMemoryCache()
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .fit()
+                .centerCrop()
+                .into(imImage);
+    }
+
 }

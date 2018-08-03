@@ -23,7 +23,7 @@ public class RegistrationActivity extends BaseActivity {
     private EditTextBold edtDriving;
     private LinearLayout linearPleaGuiltyNext;
     public static RegistrationActivity activity;
-    String stMobile = "", redirect = "", stToken = "";
+    String stMobile = "", stToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,6 @@ public class RegistrationActivity extends BaseActivity {
         Intent intent = getIntent();
         if (intent != null) {
             stMobile = intent.getStringExtra("mobileNo");
-            redirect = intent.getStringExtra("redirect");
             stToken = intent.getStringExtra("userToken");
         }
 

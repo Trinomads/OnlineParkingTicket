@@ -3,7 +3,7 @@ package com.onlineparkingticket.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class OTPModel {
+public class MobileVerifyModel {
     @SerializedName("message")
     @Expose
     private String message;
@@ -59,10 +59,10 @@ public class OTPModel {
         private Boolean hasregistered;
         @SerializedName("resetpasswordtoken")
         @Expose
-        private String resetpasswordtoken;
+        private String resetpasswordtoken;/*
         @SerializedName("resetpasswordexpires")
         @Expose
-        private Integer resetpasswordexpires;
+        private Integer resetpasswordexpires;*/
         @SerializedName("frgtpasswordtoken")
         @Expose
         private String frgtpasswordtoken;
@@ -112,13 +112,13 @@ public class OTPModel {
             this.resetpasswordtoken = resetpasswordtoken;
         }
 
-        public Integer getResetpasswordexpires() {
+       /* public Integer getResetpasswordexpires() {
             return resetpasswordexpires;
         }
 
         public void setResetpasswordexpires(Integer resetpasswordexpires) {
             this.resetpasswordexpires = resetpasswordexpires;
-        }
+        }*/
 
         public String getFrgtpasswordtoken() {
             return frgtpasswordtoken;

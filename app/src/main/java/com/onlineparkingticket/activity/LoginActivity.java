@@ -79,9 +79,6 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View v) {
                 if (isValidField()) {
                     loginUser();
-                    /*Intent i = new Intent(activity, HomeNavigationDrawer.class);
-                    startActivity(i);
-                    finish();*/
                 }
             }
         });
@@ -90,7 +87,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(activity, MobileActivity.class);
-                i.putExtra("activty", "SIGN UP");
+                i.putExtra("activty", getString(R.string.signup));
                 i.putExtra("redirect", "0");
                 startActivity(i);
                 finish();
@@ -101,7 +98,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(activity, MobileActivity.class);
-                i.putExtra("activty", "Forgot Password?");
+                i.putExtra("activty", getString(R.string.title_forgetpassword));
                 i.putExtra("redirect", "1");
                 startActivity(i);
                 finish();
@@ -162,6 +159,8 @@ public class LoginActivity extends BaseActivity {
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getEmail(), WsConstant.SP_EMAIL);
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getMobileno(), WsConstant.SP_MOBILE);
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getAddress(), WsConstant.SP_ADDRESS);
+                                AppGlobal.setStringPreference(activity, response.body().getUser().getPlatno(), WsConstant.SP_LICENCE_PLAT);
+                                AppGlobal.setArrayListPreference(activity, response.body().getUser().getImages(), WsConstant.SP_LICENCE_PLAT);
 
                                 Intent intent = new Intent(activity, HomeNavigationDrawer.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

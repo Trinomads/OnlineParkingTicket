@@ -3,6 +3,8 @@ package com.onlineparkingticket.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class EditUserDetailsModel {
     @SerializedName("message")
     @Expose
@@ -37,11 +39,21 @@ public class EditUserDetailsModel {
     public void setData(Data data) {
         this.data = data;
     }
+
     public class Data {
 
+        @SerializedName("images")
+        @Expose
+        private ArrayList<String> images;
+        @SerializedName("image")
+        @Expose
+        private String image;
         @SerializedName("access")
         @Expose
         private String access;
+        @SerializedName("platno")
+        @Expose
+        private String platno;
         @SerializedName("_id")
         @Expose
         private String id;
@@ -69,6 +81,22 @@ public class EditUserDetailsModel {
         @SerializedName("__v")
         @Expose
         private Integer v;
+
+        public ArrayList<String> getImages() {
+            return images;
+        }
+
+        public void setImages(ArrayList<String> images) {
+            this.images = images;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
 
         public String getAccess() {
             return access;
@@ -150,5 +178,12 @@ public class EditUserDetailsModel {
             this.v = v;
         }
 
+        public String getPlatno() {
+            return platno;
+        }
+
+        public void setPlatno(String platno) {
+            this.platno = platno;
+        }
     }
 }

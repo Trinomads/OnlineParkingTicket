@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,20 @@ import com.onlineparkingticket.constant.CompressImageUtil;
 import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.httpmanager.ApiHandlerToken;
 import com.onlineparkingticket.model.EditUserDetailsModel;
+import com.onlineparkingticket.model.SaveImageModel;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -97,8 +105,17 @@ public class FragmentEditProfile extends Fragment {
         edMobile.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_MOBILE), ""));
         edEmail.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_EMAIL), ""));
         edAddress.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_ADDRESS), ""));
+        edPlate.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
 
         lvEditDP = (LinearLayout) view.findViewById(R.id.linear_EditProfile_DP);
+
+        setImages();
+    }
+
+    public void setImages() {
+        if (AppGlobal.getArrayListPreference(mContext, WsConstant.SP_IMAGES) != null && AppGlobal.getArrayListPreference(mContext, WsConstant.SP_IMAGES).size() > 0) {
+            AppGlobal.loadUserImage(mContext, AppGlobal.getArrayListPreference(mContext, WsConstant.SP_IMAGES).get(0), imDP);
+        }
     }
 
     private void setClickEvent() {
@@ -106,7 +123,7 @@ public class FragmentEditProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isValidField()) {
-                    editUserDetails();
+                    editUserDetails("");
                 }
             }
         });
@@ -150,7 +167,7 @@ public class FragmentEditProfile extends Fragment {
             return true;
     }
 
-    public void editUserDetails() {
+    public void editUserDetails(String imageLink) {
         if (CommonUtils.isConnectingToInternet(mContext)) {
             AppGlobal.showProgressDialog(mContext);
 
@@ -159,8 +176,15 @@ public class FragmentEditProfile extends Fragment {
             params.put("name", edName.getText().toString());
             params.put("mobileno", edMobile.getText().toString());
             params.put("email", edEmail.getText().toString());
-            params.put("plate", edPlate.getText().toString());
+            params.put("platno", edPlate.getText().toString());
             params.put("address", edAddress.getText().toString());
+
+            if (!imageLink.equalsIgnoreCase("")) {
+                String[] data = {imageLink};
+                JSONArray json = new JSONArray(Arrays.asList(data));
+                Gson gson = new Gson();
+                params.put("images", json.toString());
+            }
 
             new ApiHandlerToken(mContext).getApiService().editUserDetails(params).enqueue(new Callback<EditUserDetailsModel>() {
                 @Override
@@ -179,9 +203,10 @@ public class FragmentEditProfile extends Fragment {
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getEmail(), WsConstant.SP_EMAIL);
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getMobileno(), WsConstant.SP_MOBILE);
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getAddress(), WsConstant.SP_ADDRESS);
+                                AppGlobal.setStringPreference(mContext, response.body().getData().getPlatno(), WsConstant.SP_LICENCE_PLAT);
+                                AppGlobal.setArrayListPreference(mContext, response.body().getData().getImages(), WsConstant.SP_IMAGES);
 
                                 getActivity().onBackPressed();
-
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());
                             }
@@ -306,6 +331,9 @@ public class FragmentEditProfile extends Fragment {
                         bitmapImagePathFront = compressUtil.getBitmap();
 
                         AppGlobal.showLog(mContext, "FilePath : " + selectedImagePathFront);
+                        if (!selectedImagePathFront.equalsIgnoreCase("")) {
+                            uploadUserProfile();
+                        }
                     }
                 } catch (Exception e) {
 
@@ -326,7 +354,7 @@ public class FragmentEditProfile extends Fragment {
 
                 AppGlobal.showLog(mContext, "FilePath : " + selectedImagePathFront);
                 if (!selectedImagePathFront.equalsIgnoreCase("")) {
-                    //editProfileImageeditProfileImage();
+                    uploadUserProfile();
                 }
             }
         }
@@ -344,5 +372,59 @@ public class FragmentEditProfile extends Fragment {
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
+    }
+
+    MultipartBody.Part body;
+    public void uploadUserProfile() {
+
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+            AppGlobal.showProgressDialog(mContext);
+
+            File file = new File(selectedImagePathFront);
+            MultipartBody.Part body = null;
+
+            if (!file.exists()) {
+                Toast.makeText(mContext, getString(R.string.msg_plz_select_file), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+            new ApiHandlerToken(mContext).getApiService().editUserProfile(body).enqueue(new Callback<SaveImageModel>() {
+                @Override
+                public void onResponse(Call<SaveImageModel> call, Response<SaveImageModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
+
+                                editUserDetails(response.body().getData().getNewimgpath());
+                            } else {
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SaveImageModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            Log.e("this", "error" + "no internet");
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
+
     }
 }

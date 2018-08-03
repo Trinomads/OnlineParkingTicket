@@ -60,4 +60,10 @@ dependencies {
 
     //Signature
     implementation 'com.williamww:silky-signature:0.1.0'
+
+    //Country code libs
+    implementation 'com.hbb20:ccp:2.2.2'
+
+    //OTP View
+    implementation 'com.github.irvingryan:verifycodeview:1.1.0'
 }

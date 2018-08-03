@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.commonTextView.TextViewBlack;
 import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.fragment.FragmentPendingTicket;
 import com.onlineparkingticket.fragment.FragmentProfile;
 import com.onlineparkingticket.fragment.FragmentResolvedTicket;
@@ -70,6 +71,7 @@ public class HomeNavigationDrawer extends BaseActivity {
         // toolbar.setNavigationIcon(R.drawable.dr_icon);
         drawerName = (TextViewBlack) findViewById(R.id.activity_main_drawer_name);
 
+
         drawerImg = (ImageView) findViewById(R.id.drawerImg);
         userImage = (ImageView) findViewById(R.id.user_image);
 
@@ -80,6 +82,15 @@ public class HomeNavigationDrawer extends BaseActivity {
         linearProfile = (LinearLayout) findViewById(R.id.linear_profile);
         linearLogout = (LinearLayout) findViewById(R.id.linear_logout);
         setClickEvent();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        drawerName.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mainActivity, WsConstant.SP_NAME), ""));
+        if (AppGlobal.getArrayListPreference(mainActivity, WsConstant.SP_IMAGES) != null && AppGlobal.getArrayListPreference(mainActivity, WsConstant.SP_IMAGES).size() > 0) {
+            AppGlobal.loadUserImage(mainActivity, AppGlobal.getArrayListPreference(mainActivity, WsConstant.SP_IMAGES).get(0), userImage);
+        }
     }
 
     public static void resetData() {

@@ -50,24 +50,47 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <com.onlineparkingticket.commonTextView.EditTextBold
-                android:id="@+id/edt_mobile"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
+                android:gravity="center_vertical"
                 android:background="@drawable/textarea"
-                android:gravity="center"
-                android:imeOptions="actionDone"
-                android:inputType="numberDecimal"
                 android:paddingBottom="@dimen/_10sdp"
-                android:paddingLeft="@dimen/_30sdp"
-                android:paddingRight="@dimen/_30sdp"
+                android:paddingLeft="@dimen/_25sdp"
+                android:paddingRight="@dimen/_25sdp"
                 android:paddingTop="@dimen/_10sdp"
-                android:textAlignment="viewStart"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_color"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold"
-                android:typeface="normal" />
+                android:orientation="horizontal">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/cpp_CountryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccpDialog_keyboardAutoPopup="false"
+                    app:ccp_defaultNameCode="IN"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_autoFormatNumber="true"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccpDialog_textColor="@color/white"
+                    app:ccp_textSize="@dimen/_13sdp" />
+
+                <com.onlineparkingticket.commonTextView.EditTextBold
+                    android:id="@+id/edt_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/_7sdp"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

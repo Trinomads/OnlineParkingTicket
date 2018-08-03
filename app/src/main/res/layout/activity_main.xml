@@ -24,8 +24,7 @@
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:paddingBottom="@dimen/_12sdp"
-                android:paddingRight="@dimen/_12sdp"
-                android:paddingTop="@dimen/_12sdp"
+                android:padding="@dimen/_12sdp"
                 android:src="@drawable/hamburger" />
 
             <com.onlineparkingticket.commonTextView.TextViewBlack
@@ -45,9 +44,8 @@
                 android:id="@+id/image_HomeDrawer_Notification"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:padding="10sp"
-                android:src="@drawable/notification"
-                android:visibility="invisible" />
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/notification" />
 
             <LinearLayout
                 android:id="@+id/linear_Home_Paynow"
@@ -90,8 +88,8 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
         android:background="@color/white"
+        android:layout_gravity="start"
         android:fitsSystemWindows="true">
 
         <!--android:layout_gravity="start"-->
@@ -131,6 +129,7 @@
                             android:id="@+id/progressBar_Main"
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
+                            android:visibility="gone"
                             android:layout_centerInParent="true" />
 
                     </RelativeLayout>
@@ -140,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingLeft="@dimen/_10sdp">
+                        android:paddingLeft="@dimen/_15sdp">
 
                         <com.onlineparkingticket.commonTextView.TextViewBlack
                             android:id="@+id/activity_main_drawer_name"
@@ -155,6 +154,11 @@
 
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -176,7 +180,7 @@
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_4sdp"
                             android:src="@drawable/home"
-                            android:tint="@color/black" />
+                            android:tint="@color/text_color" />
 
                         <com.onlineparkingticket.commonTextView.TextViewRegular
                             android:layout_width="match_parent"
@@ -205,7 +209,7 @@
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_4sdp"
                             android:src="@drawable/resolved_ticket"
-                            android:tint="@color/black" />
+                            android:tint="@color/text_color" />
 
                         <com.onlineparkingticket.commonTextView.TextViewRegular
                             android:layout_width="match_parent"
@@ -234,15 +238,15 @@
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_4sdp"
                             android:src="@drawable/pending_ticket"
-                            android:tint="@color/black" />
+                            android:tint="@color/text_color" />
 
-                        <TextView
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_5sdp"
                             android:text="@string/pendingtickets"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_color"
                             android:textSize="@dimen/_14sdp" />
 
                     </LinearLayout>
@@ -263,15 +267,15 @@
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_4sdp"
                             android:src="@drawable/profile"
-                            android:tint="@color/black" />
+                            android:tint="@color/text_color" />
 
-                        <TextView
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_5sdp"
                             android:text="@string/Profile"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_color"
                             android:textSize="@dimen/_14sdp" />
 
                     </LinearLayout>
@@ -291,15 +295,15 @@
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_4sdp"
                             android:src="@drawable/settings"
-                            android:tint="@color/black" />
+                            android:tint="@color/text_color" />
 
-                        <TextView
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_5sdp"
                             android:text="@string/setting"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_color"
                             android:textSize="@dimen/_14sdp" />
 
                     </LinearLayout>
@@ -320,15 +324,15 @@
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_4sdp"
                             android:src="@drawable/logout"
-                            android:tint="@color/black" />
+                            android:tint="@color/text_color" />
 
-                        <TextView
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:padding="@dimen/_5sdp"
                             android:text="@string/logout"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_color"
                             android:textSize="@dimen/_14sdp" />
 
                     </LinearLayout>
@@ -337,9 +341,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/_4sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:alpha="0.2"
                     android:background="@color/black" />
 
             </LinearLayout>

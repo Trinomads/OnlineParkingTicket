@@ -92,15 +92,18 @@
                             android:orientation="vertical">
 
                             <RelativeLayout
+                                android:id="@+id/relative_DigitalWalletDetails_DL"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
+                                    android:id="@+id/image_DigitalWalletDetails_DL"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true" />
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:id="@+id/tv_DigitalWalletDetails_DL"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true"
@@ -131,15 +134,18 @@
                             android:orientation="vertical">
 
                             <RelativeLayout
+                                android:id="@+id/relative_DigitalWalletDetails_VP"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
+                                    android:id="@+id/image_DigitalWalletDetails_VP"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true" />
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:id="@+id/tv_DigitalWalletDetails_VP"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true"
@@ -179,15 +185,18 @@
                             android:orientation="vertical">
 
                             <RelativeLayout
+                                android:id="@+id/relative_DigitalWalletDetails_RV"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
+                                    android:id="@+id/image_DigitalWalletDetails_RV"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true" />
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:id="@+id/tv_DigitalWalletDetails_RV"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true"
@@ -219,15 +228,18 @@
                             android:orientation="vertical">
 
                             <RelativeLayout
+                                android:id="@+id/relative_DigitalWalletDetails_IP"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
+                                    android:id="@+id/image_DigitalWalletDetails_IP"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true" />
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:id="@+id/tv_DigitalWalletDetails_IP"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true"

@@ -29,7 +29,10 @@ public class WelcomeActivity extends BaseActivity {
         txtCreateaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(activity, MobileActivity.class));
+                Intent i = new Intent(activity, MobileActivity.class);
+                i.putExtra("activty", getString(R.string.signup));
+                i.putExtra("redirect", "0");
+                startActivity(i);
             }
         });
 

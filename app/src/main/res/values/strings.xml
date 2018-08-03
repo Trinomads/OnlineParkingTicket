@@ -8,6 +8,7 @@
     <string name="digital_wallet">Digital Wallet</string>
     <string name="notification">Notification</string>
     <string name="push_notification">Push Notification</string>
+    <string name="title_forgetpassword">Forgot Password</string>
 
     <string name="mobile_no">Mobile No</string>
     <string name="no_tickets">No Tickets Available</string>
@@ -112,6 +113,7 @@
     <string name="gallery">Gallery</string>
     <string name="cancel">Cancel</string>
 
+    <string name="msg_plz_select_file">Please select another image.</string>
     <string name="msg_plz_enter_address">Please enter address.</string>
     <string name="msg_plz_enter_mobile">Please enter mobile no.</string>
     <string name="msg_plz_enter_opt">Please enter OTP code.</string>

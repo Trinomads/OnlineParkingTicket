@@ -9,4 +9,6 @@ public class WsConstant {
     public static final String SP_EMAIL = "sp_email";
     public static final String SP_MOBILE = "sp_mobile";
     public static final String SP_ADDRESS = "sp_address";
+    public static final String SP_LICENCE_PLAT = "sp_license_plat";
+    public static final String SP_IMAGES = "sp_images";
 }
