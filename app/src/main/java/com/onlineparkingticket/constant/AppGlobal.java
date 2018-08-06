@@ -859,7 +859,6 @@ public class AppGlobal {
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_MOBILE);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_ADDRESS);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_LICENCE_PLAT);
-        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_LICENCE_PLAT);
         AppGlobal.setArrayListPreference(mainActivity, listArray, WsConstant.SP_IMAGES);
 
         Intent intent = new Intent(mainActivity, WelcomeActivity.class);
@@ -1016,8 +1015,6 @@ public class AppGlobal {
         return result;
     }
 
-
-
     public static void loadUserImage(Context mContext, String path, ImageView imImage) {
         Picasso.with(mContext)
                 .load(path)
@@ -1026,8 +1023,6 @@ public class AppGlobal {
                 .skipMemoryCache()
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .networkPolicy(NetworkPolicy.NO_CACHE)
-                .fit()
-                .centerCrop()
                 .into(imImage);
     }
 

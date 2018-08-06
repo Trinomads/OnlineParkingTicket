@@ -32,15 +32,15 @@ public class FinalRegistrationActivity extends BaseActivity {
     private TextViewBold txtPrivacypolicy;
     private TextViewBlack txtGetstarted;
 
-    public static FinalRegistrationActivity activity;
+    public static FinalRegistrationActivity mContext;
     public String stMobile = "", stName = "", stEmail = "", stLicense = "", stPassword = "", stToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_registration);
-        activity = this;
-        init(activity);
+        mContext = this;
+        init(mContext);
         setHeaderWithBack(getResources().getString(R.string.signup), true, false);
 
         Intent intent = getIntent();
@@ -76,12 +76,30 @@ public class FinalRegistrationActivity extends BaseActivity {
                 finish();*/
             }
         });
+
+        txtPrivacypolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, StaticPageActivity.class);
+                intent.putExtra("title", getString(R.string.privacy_policy));
+                startActivity(intent);
+            }
+        });
+
+        txtTandc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, StaticPageActivity.class);
+                intent.putExtra("title", getString(R.string.terms_of_service));
+                startActivity(intent);
+            }
+        });
     }
 
     public void signUpUser() {
 
-        if (CommonUtils.isConnectingToInternet(activity)) {
-            AppGlobal.showProgressDialog(activity);
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+            AppGlobal.showProgressDialog(mContext);
 
             Map<String, String> params = new HashMap<String, String>();
             params.put("name", stName);
@@ -98,35 +116,35 @@ public class FinalRegistrationActivity extends BaseActivity {
                     AppGlobal.hideProgressDialog();
                     try {
                         JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
-                        AppGlobal.showLog(activity, "Response : " + jsonObj.getJSONObject("body").toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
 
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
-                                CommonUtils.commonToast(activity, response.body().getMessage());
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
 
-                                Intent intent = new Intent(activity, LoginActivity.class);
+                                Intent intent = new Intent(mContext, LoginActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
                             } else {
-                                CommonUtils.commonToast(activity, response.body().getMessage());
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        AppGlobal.showLog(activity, "Error : " + e.toString());
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<SignupModel> call, Throwable t) {
-                    AppGlobal.showLog(activity, "Error : " + t.toString());
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
                     AppGlobal.hideProgressDialog();
                 }
             });
 
         } else {
-            CommonUtils.commonToast(activity, getResources().getString(R.string.no_internet_exist));
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
         }
     }
 }

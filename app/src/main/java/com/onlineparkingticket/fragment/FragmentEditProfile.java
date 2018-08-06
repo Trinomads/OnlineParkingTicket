@@ -206,6 +206,8 @@ public class FragmentEditProfile extends Fragment {
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getPlatno(), WsConstant.SP_LICENCE_PLAT);
                                 AppGlobal.setArrayListPreference(mContext, response.body().getData().getImages(), WsConstant.SP_IMAGES);
 
+                                HomeNavigationDrawer.callProfileData();
+
                                 getActivity().onBackPressed();
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());

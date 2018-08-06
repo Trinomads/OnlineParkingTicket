@@ -75,6 +75,8 @@ public class HomeNavigationDrawer extends BaseActivity {
         drawerImg = (ImageView) findViewById(R.id.drawerImg);
         userImage = (ImageView) findViewById(R.id.user_image);
 
+        callProfileData();
+
         lvHome = (LinearLayout) findViewById(R.id.linear_Home_Home);
         linearResolvedtickets = (LinearLayout) findViewById(R.id.linear_resolvedtickets);
         linearPendingtickets = (LinearLayout) findViewById(R.id.linear_pendingtickets);
@@ -84,9 +86,7 @@ public class HomeNavigationDrawer extends BaseActivity {
         setClickEvent();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    public static void callProfileData() {
         drawerName.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mainActivity, WsConstant.SP_NAME), ""));
         if (AppGlobal.getArrayListPreference(mainActivity, WsConstant.SP_IMAGES) != null && AppGlobal.getArrayListPreference(mainActivity, WsConstant.SP_IMAGES).size() > 0) {
             AppGlobal.loadUserImage(mainActivity, AppGlobal.getArrayListPreference(mainActivity, WsConstant.SP_IMAGES).get(0), userImage);

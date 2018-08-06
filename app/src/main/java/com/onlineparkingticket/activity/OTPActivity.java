@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.onlineparkingticket.R;
@@ -114,6 +115,12 @@ public class OTPActivity extends BaseActivity {
         linearPleaGuiltyNext = (LinearLayout) findViewById(R.id.linear_PleaGuilty_Next);
 
         tvResendOTP = (TextView) findViewById(R.id.tv_OTPScreen_Resend);
+        tvResendOTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(OTPActivity.this, "Resend", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void verifyOTPSignup() {

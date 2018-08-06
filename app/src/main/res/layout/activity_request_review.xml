@@ -28,305 +28,334 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/_10sdp"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_5sdp">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.onlineparkingticket.commonTextView.TextViewRegular
-                            android:id="@+id/item_CommonListTicket_Date"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/_2sdp"
-                            android:text="@string/nameco"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
+                            android:orientation="vertical"
+                            android:padding="@dimen/_5sdp">
 
-                        <com.onlineparkingticket.commonTextView.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_2sdp"
-                            android:text="John Doe"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="@string/nameco"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <com.onlineparkingticket.commonTextView.TextViewBold
+                                    android:id="@+id/tv_RequestReview_Name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="John Doe"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="@string/date"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <com.onlineparkingticket.commonTextView.TextViewBold
+                                    android:id="@+id/tv_RequestReview_Date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="@string/datetime"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="@string/emaill"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <com.onlineparkingticket.commonTextView.TextViewBold
+                                    android:id="@+id/tv_RequestReview_Email"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="@string/emaillis"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="Phone :"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <com.onlineparkingticket.commonTextView.TextViewBold
+                                    android:id="@+id/tv_RequestReview_Mobile"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="123456789"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="Address :"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <com.onlineparkingticket.commonTextView.TextViewBold
+                                    android:id="@+id/tv_RequestReview_Address"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="Ahmedabad"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.onlineparkingticket.commonTextView.TextViewRegular
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="Violation No :"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <com.onlineparkingticket.commonTextView.TextViewBold
+                                    android:id="@+id/tv_RequestReview_ViolationNo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="12542"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/_11sdp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/text_color" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
 
-                        <com.onlineparkingticket.commonTextView.TextViewRegular
-                            android:id="@+id/item_CommonListTicket_Plate"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/_2sdp"
-                            android:text="@string/date"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
+                            android:layout_height="wrap_content">
 
-                        <com.onlineparkingticket.commonTextView.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_2sdp"
-                            android:text="@string/datetime"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
+                            <com.onlineparkingticket.commonTextView.TextViewRegular
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/_2sdp"
+                                android:text="Message"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/_11sdp" />
+
+                            <ImageView
+                                android:id="@+id/image_RequestReview_Msg"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:padding="@dimen/_3sdp"
+                                android:src="@drawable/edit"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.onlineparkingticket.commonTextView.EditTextBold
+                                android:id="@+id/tv_RequestReview_Message"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:enabled="false"
+                                android:imeOptions="actionDone"
+                                android:padding="@dimen/_2sdp"
+                                android:background="@android:color/transparent"
+                                android:maxLines="3"
+                                android:singleLine="false"
+                                android:text=""
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/_11sdp" />
+
+                        </LinearLayout>
+
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/text_color" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
 
-                        <com.onlineparkingticket.commonTextView.TextViewRegular
-
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/_2sdp"
-                            android:text="@string/emaill"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
+                            android:layout_height="wrap_content">
 
-                        <com.onlineparkingticket.commonTextView.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_2sdp"
-                            android:text="@string/emaillis"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
+                            <com.onlineparkingticket.commonTextView.TextViewRegular
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableRight="@drawable/edit"
+                                android:padding="@dimen/_2sdp"
+                                android:text="Evidence Added"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/_11sdp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.onlineparkingticket.commonTextView.TextViewBold
+                                android:id="@+id/tv_RequestReview_Evidence"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/_2sdp"
+                                android:text="I did not intend to submit any evidence images."
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/_11sdp" />
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
-                    <LinearLayout
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView_RequestReview"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <com.onlineparkingticket.commonTextView.TextViewRegular
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/_2sdp"
-                            android:text="Phone :"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
-
-                        <com.onlineparkingticket.commonTextView.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_2sdp"
-                            android:text="123456789"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <com.onlineparkingticket.commonTextView.TextViewRegular
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/_2sdp"
-                            android:text="Address :"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
-
-                        <com.onlineparkingticket.commonTextView.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_2sdp"
-                            android:text="Ahmedabad"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <com.onlineparkingticket.commonTextView.TextViewRegular
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/_2sdp"
-                            android:text="Violation No :"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
-
-                        <com.onlineparkingticket.commonTextView.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_2sdp"
-                            android:text="12542"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/_11sdp" />
-                    </LinearLayout>
-
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:nestedScrollingEnabled="false" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/text_color" />
+        </android.support.v4.widget.NestedScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingTop="@dimen/_10sdp">
 
-            <LinearLayout
+            <CheckBox
+                android:id="@+id/checkbox_ItemCommonList_Select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_check_box" />
+
+            <com.onlineparkingticket.commonTextView.TextViewRegular
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.onlineparkingticket.commonTextView.TextViewRegular
-                        android:id="@+id/item_violation_Date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/edit"
-                        android:padding="@dimen/_2sdp"
-                        android:text="Message"
-                        android:textColor="@color/text_color"
-                        android:textSize="@dimen/_11sdp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.onlineparkingticket.commonTextView.TextViewBold
-                        android:id="@+id/item_violation_Plate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="@dimen/_2sdp"
-                        android:text="I did not do it."
-                        android:textColor="@color/text_color"
-                        android:textSize="@dimen/_11sdp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/text_color" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.onlineparkingticket.commonTextView.TextViewRegular
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/edit"
-                        android:padding="@dimen/_2sdp"
-                        android:text="Evidence Added"
-                        android:textColor="@color/text_color"
-                        android:textSize="@dimen/_11sdp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.onlineparkingticket.commonTextView.TextViewBold
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="@dimen/_2sdp"
-                        android:text="I did not intend to submit any evidence images."
-                        android:textColor="@color/text_color"
-                        android:textSize="@dimen/_11sdp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:orientation="horizontal"
-                android:padding="@dimen/_15sdp">
-
-                <CheckBox
-                    android:id="@+id/checkbox_ItemCommonList_Select"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/custom_check_box" />
-
-                <com.onlineparkingticket.commonTextView.TextViewRegular
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:gravity="center_vertical"
-                    android:singleLine="false"
-                    android:text="@string/check_box_read"
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/text_color"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-
-            </LinearLayout>
-
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:singleLine="false"
+                android:text="@string/check_box_read"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/linear_RequestReview_Next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -344,6 +373,7 @@
                 android:src="@drawable/next_blue_bg" />
 
         </LinearLayout>
+
     </LinearLayout>
 
 

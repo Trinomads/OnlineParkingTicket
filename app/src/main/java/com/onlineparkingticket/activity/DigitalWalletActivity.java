@@ -1,5 +1,6 @@
 package com.onlineparkingticket.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +9,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.constant.AppGlobal;
+import com.onlineparkingticket.constant.WsConstant;
 
 @SuppressWarnings("All")
 public class DigitalWalletActivity extends BaseActivity {
 
-    public static Context mContext;
+    public static Activity mContext;
     private LinearLayout lvNext;
     private EditText edDrivingLicense, edPlate, edVIN, edInsurance, edAddress, edState, edZip;
 
@@ -37,6 +40,8 @@ public class DigitalWalletActivity extends BaseActivity {
         edAddress = (EditText) findViewById(R.id.ed_DigitalWallet_Address);
         edState = (EditText) findViewById(R.id.ed_DigitalWallet_State);
         edZip = (EditText) findViewById(R.id.ed_DigitalWallet_Zip);
+
+        edDrivingLicense.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
 
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override

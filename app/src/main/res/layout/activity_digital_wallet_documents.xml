@@ -100,7 +100,8 @@
                                     android:id="@+id/image_DigitalWalletDetails_DL"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_centerInParent="true" />
+                                    android:layout_centerInParent="true"
+                                    android:scaleType="centerCrop" />
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
                                     android:id="@+id/tv_DigitalWalletDetails_DL"
@@ -142,7 +143,8 @@
                                     android:id="@+id/image_DigitalWalletDetails_VP"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_centerInParent="true" />
+                                    android:layout_centerInParent="true"
+                                    android:scaleType="centerCrop" />
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
                                     android:id="@+id/tv_DigitalWalletDetails_VP"
@@ -193,7 +195,8 @@
                                     android:id="@+id/image_DigitalWalletDetails_RV"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_centerInParent="true" />
+                                    android:layout_centerInParent="true"
+                                    android:scaleType="centerCrop"/>
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
                                     android:id="@+id/tv_DigitalWalletDetails_RV"
@@ -236,7 +239,8 @@
                                     android:id="@+id/image_DigitalWalletDetails_IP"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_centerInParent="true" />
+                                    android:layout_centerInParent="true"
+                                    android:scaleType="centerCrop" />
 
                                 <com.onlineparkingticket.commonTextView.TextViewRegular
                                     android:id="@+id/tv_DigitalWalletDetails_IP"

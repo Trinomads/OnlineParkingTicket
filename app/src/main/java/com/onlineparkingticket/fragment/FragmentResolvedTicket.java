@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.activity.HomeNavigationDrawer;
 import com.onlineparkingticket.adapter.ResolvedTicketAdapter;
 import com.onlineparkingticket.allInterface.OnLoadMoreListener;
 import com.onlineparkingticket.constant.AppGlobal;
@@ -60,6 +61,7 @@ public class FragmentResolvedTicket extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        HomeNavigationDrawer.mainTitle.setText(getString(R.string.Resolvedtickets));
         init(view);
         getPaidListing(true, pageNo);
     }

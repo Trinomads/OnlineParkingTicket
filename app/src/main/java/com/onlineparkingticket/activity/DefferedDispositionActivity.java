@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.constant.CommonUtils;
 
 @SuppressWarnings("All")
 public class DefferedDispositionActivity extends BaseActivity {
@@ -45,9 +46,38 @@ public class DefferedDispositionActivity extends BaseActivity {
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogRequestDate();
+//                if (isValidField()) {
+                    dialogRequestDate();
+//                }
             }
         });
+    }
+
+    private boolean isValidField() {
+
+        if (!CommonUtils.isTextAvailable(edName.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_name));
+            return false;
+        } else if (!CommonUtils.isTextAvailable(edEmail.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_email));
+            return false;
+        } else if (!CommonUtils.isEmailValid(edEmail.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_valid_email));
+            return false;
+        } else if (!CommonUtils.isTextAvailable(edDrivingLicense.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_license));
+            return false;
+        } else if (!CommonUtils.isTextAvailable(edVioNo.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_vio_no));
+            return false;
+        } else if (!CommonUtils.isTextAvailable(edVioDesc.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_vio_desc));
+            return false;
+        } else if (!CommonUtils.isTextAvailable(edTicketCharge.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_ticket_charge));
+            return false;
+        } else
+            return true;
     }
 
     public void dialogRequestDate() {

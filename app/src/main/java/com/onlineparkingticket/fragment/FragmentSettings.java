@@ -16,6 +16,7 @@ import android.widget.ToggleButton;
 
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.activity.ChangePasswordActivity;
+import com.onlineparkingticket.activity.HomeNavigationDrawer;
 import com.onlineparkingticket.activity.StaticPageActivity;
 
 @SuppressWarnings("All")
@@ -34,6 +35,7 @@ public class FragmentSettings extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        HomeNavigationDrawer.mainTitle.setText(getString(R.string.setting));
         init(view);
         setClickEvent();
     }

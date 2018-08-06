@@ -70,7 +70,7 @@
                     android:paddingRight="@dimen/_30sdp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color"
-                    android:textColorHint="@color/text_color"
+                    android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
                     android:typeface="normal" />
@@ -100,7 +100,7 @@
                     android:paddingRight="@dimen/_30sdp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color"
-                    android:textColorHint="@color/text_color"
+                    android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="normal"
                     android:typeface="normal" />
@@ -130,7 +130,7 @@
                     android:paddingRight="@dimen/_30sdp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color"
-                    android:textColorHint="@color/text_color"
+                    android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="normal"
                     android:typeface="normal" />
@@ -192,7 +192,7 @@
                     android:paddingRight="@dimen/_30sdp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color"
-                    android:textColorHint="@color/text_color"
+                    android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="normal"
                     android:typeface="normal" />
@@ -222,7 +222,7 @@
                     android:paddingRight="@dimen/_30sdp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color"
-                    android:textColorHint="@color/text_color"
+                    android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="normal"
                     android:typeface="normal" />

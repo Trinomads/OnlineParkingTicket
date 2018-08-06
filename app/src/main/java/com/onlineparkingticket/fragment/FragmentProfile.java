@@ -49,6 +49,7 @@ public class FragmentProfile extends Fragment {
         super.onResume();
         HomeNavigationDrawer.imNotification.setVisibility(View.VISIBLE);
         HomeNavigationDrawer.imNotification.setImageResource(R.drawable.edit_white);
+        HomeNavigationDrawer.mainTitle.setText(getString(R.string.Profile));
         getUserDetails();
     }
 
@@ -147,6 +148,8 @@ public class FragmentProfile extends Fragment {
                                 }
 
                                 setImages();
+
+                                HomeNavigationDrawer.callProfileData();
 
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());

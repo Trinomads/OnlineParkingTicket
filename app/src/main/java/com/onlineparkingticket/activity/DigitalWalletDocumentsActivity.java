@@ -73,6 +73,9 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
         lvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (DigitalWalletActivity.mContext != null) {
+                    DigitalWalletActivity.mContext.finish();
+                }
                 DigitalWalletDocumentsActivity.this.finish();
             }
         });

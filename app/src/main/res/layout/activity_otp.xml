@@ -106,7 +106,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/resendnow"
-                    android:textColor="@color/colorPrimary"
+                    android:padding="@dimen/_5sdp"
+                    android:background="?selectableItemBackground"
+                    android:textColor="@color/clickable_text"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
 

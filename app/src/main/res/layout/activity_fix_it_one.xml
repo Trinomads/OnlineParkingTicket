@@ -58,6 +58,7 @@
                     android:orientation="vertical">
 
                     <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:id="@+id/tv_FixItOne_Desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -85,7 +86,7 @@
                 android:padding="@dimen/_15sdp">
 
                 <CheckBox
-                    android:id="@+id/checkbox_ItemCommonList_Select"
+                    android:id="@+id/checkbox_FixItOne_Select"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@drawable/custom_check_box" />

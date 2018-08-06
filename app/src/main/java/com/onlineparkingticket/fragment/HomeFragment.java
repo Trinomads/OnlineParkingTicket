@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.onlineparkingticket.R;
@@ -52,7 +53,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
     private LinearLayout llSearch;
     private EditTextRegular edtsrch;
     private RecyclerView rvList;
-
+    private TextView tvTotalTickets;
     private String mParam1;
     private String mParam2;
     public static Context mContext;
@@ -75,6 +76,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
     public void onResume() {
         super.onResume();
         HomeNavigationDrawer.imNotification.setVisibility(View.VISIBLE);
+        HomeNavigationDrawer.mainTitle.setText(getString(R.string.home));
     }
 
     @Override
@@ -101,6 +103,8 @@ public class HomeFragment extends Fragment implements OnItemClick {
         llSearch = (LinearLayout) view.findViewById(R.id.ll_search);
         edtsrch = (EditTextRegular) view.findViewById(R.id.edtsrch);
         floating = (ImageView) view.findViewById(R.id.floating);
+
+        tvTotalTickets = (TextView) view.findViewById(R.id.tv_Home_TotalTickets);
 
         rvList = (RecyclerView) view.findViewById(R.id.recycle_home);
         rvList.setLayoutManager(new LinearLayoutManager(mContext));
@@ -174,6 +178,8 @@ public class HomeFragment extends Fragment implements OnItemClick {
                                     listTicket = new ArrayList<>();
                                     adapter = null;
                                 }
+
+                                tvTotalTickets.setText(String.valueOf(response.body().getData().getTotalRecords()));
 
                                 if (response.body().getData().getTickets().size() > 0) {
 

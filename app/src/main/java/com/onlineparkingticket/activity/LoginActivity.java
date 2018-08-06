@@ -160,7 +160,7 @@ public class LoginActivity extends BaseActivity {
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getMobileno(), WsConstant.SP_MOBILE);
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getAddress(), WsConstant.SP_ADDRESS);
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getPlatno(), WsConstant.SP_LICENCE_PLAT);
-                                AppGlobal.setArrayListPreference(activity, response.body().getUser().getImages(), WsConstant.SP_LICENCE_PLAT);
+                                AppGlobal.setArrayListPreference(activity, response.body().getUser().getImages(), WsConstant.SP_IMAGES);
 
                                 Intent intent = new Intent(activity, HomeNavigationDrawer.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

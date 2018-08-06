@@ -76,8 +76,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:orientation="vertical">
 
         <com.onlineparkingticket.commonTextView.EditTextRegular
             android:id="@+id/edtsrch"
@@ -93,6 +93,41 @@
             android:textColor="@color/text_color"
             android:textColorHint="@color/gray"
             android:textSize="@dimen/_12sdp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:orientation="horizontal">
+
+            <com.onlineparkingticket.commonTextView.TextViewBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/_5sdp"
+                android:text="New Added Tickets"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_11sdp" />
+
+            <com.onlineparkingticket.commonTextView.TextViewBold
+                android:id="@+id/tv_Home_TotalTickets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:text="0"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_11sdp" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

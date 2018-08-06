@@ -1,6 +1,7 @@
 package com.onlineparkingticket.activity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -64,6 +65,7 @@ public class PleaGuiltyActivity extends BaseActivity {
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bitmap bitmap = mSignaturePad.getSignatureBitmap();
                 Toast.makeText(PleaGuiltyActivity.this, getString(R.string.payment_screen), Toast.LENGTH_SHORT).show();
             }
         });

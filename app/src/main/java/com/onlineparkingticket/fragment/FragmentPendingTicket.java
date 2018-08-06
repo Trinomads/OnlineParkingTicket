@@ -59,6 +59,7 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
     public void onResume() {
         super.onResume();
         HomeNavigationDrawer.imNotification.setVisibility(View.VISIBLE);
+        HomeNavigationDrawer.mainTitle.setText(getString(R.string.pendingtickets));
     }
 
     @Override
@@ -73,7 +74,7 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        getPaidListing(false, pageNo);
+        getPaidListing(true, pageNo);
     }
 
     private void init(View view) {
