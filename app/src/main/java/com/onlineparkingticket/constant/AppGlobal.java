@@ -849,16 +849,18 @@ public class AppGlobal {
     public static void logoutApp(Activity mainActivity) {
 
         if (!AppGlobal.getStringPreference(mainActivity, WsConstant.SP_REMEMBER).equalsIgnoreCase("1")) {
-            AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_EMAIL);
+            AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_PHONE);
         }
 
         ArrayList<String> listArray = new ArrayList<>();
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_TOKEN);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_ID);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_NAME);
-        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_MOBILE);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_EMAIL);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_ADDRESS);
         AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_LICENCE_PLAT);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_MOBILE);
+        AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_COUNTRY_CODE);
         AppGlobal.setArrayListPreference(mainActivity, listArray, WsConstant.SP_IMAGES);
 
         Intent intent = new Intent(mainActivity, WelcomeActivity.class);

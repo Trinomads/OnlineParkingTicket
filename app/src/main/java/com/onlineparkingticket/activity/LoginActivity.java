@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.hbb20.CountryCodePicker;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.commonTextView.EditTextRegular;
 import com.onlineparkingticket.commonTextView.TextViewBlack;
@@ -33,12 +34,13 @@ public class LoginActivity extends BaseActivity {
 
     private ImageView imgLogo;
     private TextViewBold txtAppname;
-    private EditTextRegular edtEmail;
+    private EditTextRegular edtMobile;
     private EditTextRegular edtPassword;
     private CheckBox chkPassword;
     private TextViewBlack txtLogin;
     private TextViewRegular txtRegisternow;
     private TextViewRegular txtForgedtPassword;
+    private CountryCodePicker ccpCountryCode;
 
     public static LoginActivity activity;
 
@@ -59,7 +61,7 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (AppGlobal.getStringPreference(activity, WsConstant.SP_REMEMBER).equalsIgnoreCase("1")) {
-            edtEmail.setText(CommonUtils.isTextAvailableWithReturnData(AppGlobal.getStringPreference(activity, WsConstant.SP_EMAIL), ""));
+            edtMobile.setText(CommonUtils.isTextAvailableWithReturnData(AppGlobal.getStringPreference(activity, WsConstant.SP_MOBILE), ""));
             chkPassword.setChecked(true);
         }
 
@@ -108,13 +110,13 @@ public class LoginActivity extends BaseActivity {
 
     private boolean isValidField() {
 
-        if (!CommonUtils.isTextAvailable(edtEmail.getText().toString().trim())) {
-            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_email));
+        if (!CommonUtils.isTextAvailable(edtMobile.getText().toString().trim())) {
+            CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_mobile));
             return false;
-        } else if (!CommonUtils.isEmailValid(edtEmail.getText().toString().trim())) {
+        }/* else if (!CommonUtils.isEmailValid(edtMobile.getText().toString().trim())) {
             CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_valid_email));
             return false;
-        } else if (!CommonUtils.isTextAvailable(edtPassword.getText().toString().trim())) {
+        } */else if (!CommonUtils.isTextAvailable(edtPassword.getText().toString().trim())) {
             CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_password));
             return false;
         } else
@@ -125,12 +127,13 @@ public class LoginActivity extends BaseActivity {
     private void findViews() {
         imgLogo = (ImageView) findViewById(R.id.img_logo);
         txtAppname = (TextViewBold) findViewById(R.id.txt_appname);
-        edtEmail = (EditTextRegular) findViewById(R.id.edt_email);
+        edtMobile = (EditTextRegular) findViewById(R.id.edt_email);
         edtPassword = (EditTextRegular) findViewById(R.id.edt_password);
         chkPassword = (CheckBox) findViewById(R.id.chk_password);
         txtLogin = (TextViewBlack) findViewById(R.id.txt_login);
         txtRegisternow = (TextViewRegular) findViewById(R.id.txt_registernow);
         txtForgedtPassword = (TextViewRegular) findViewById(R.id.txt_forgetpassword);
+        ccpCountryCode = (CountryCodePicker) findViewById(R.id.cpp_Login_CountryCode);
     }
 
     public void loginUser() {
@@ -138,7 +141,7 @@ public class LoginActivity extends BaseActivity {
             AppGlobal.showProgressDialog(activity);
 
             Map<String, String> params = new HashMap<String, String>();
-            params.put("email", edtEmail.getText().toString().trim());
+            params.put("mobileno", "+" + ccpCountryCode.getSelectedCountryCode() + "" +edtMobile.getText().toString().trim());
             params.put("password", edtPassword.getText().toString().trim());
 
             ApiHandler.getApiService().loginUser(params).enqueue(new Callback<LoginModel>() {
@@ -160,6 +163,8 @@ public class LoginActivity extends BaseActivity {
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getMobileno(), WsConstant.SP_MOBILE);
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getAddress(), WsConstant.SP_ADDRESS);
                                 AppGlobal.setStringPreference(activity, response.body().getUser().getPlatno(), WsConstant.SP_LICENCE_PLAT);
+                                AppGlobal.setStringPreference(activity, response.body().getUser().getCountrycode(), WsConstant.SP_COUNTRY_CODE);
+                                AppGlobal.setStringPreference(activity, response.body().getUser().getPhoneno(), WsConstant.SP_PHONE);
                                 AppGlobal.setArrayListPreference(activity, response.body().getUser().getImages(), WsConstant.SP_IMAGES);
 
                                 Intent intent = new Intent(activity, HomeNavigationDrawer.class);

@@ -33,7 +33,7 @@ public class FinalRegistrationActivity extends BaseActivity {
     private TextViewBlack txtGetstarted;
 
     public static FinalRegistrationActivity mContext;
-    public String stMobile = "", stName = "", stEmail = "", stLicense = "", stPassword = "", stToken = "";
+    public String stMobile = "", stName = "", stEmail = "", stLicense = "", stPassword = "", stToken = "", stCountryCode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class FinalRegistrationActivity extends BaseActivity {
             stLicense = intent.getStringExtra("drivingLicense");
             stPassword = intent.getStringExtra("password");
             stToken = intent.getStringExtra("userToken");
+            stCountryCode = intent.getStringExtra("stCountryCode");
         }
 
         findViews();
@@ -101,14 +102,18 @@ public class FinalRegistrationActivity extends BaseActivity {
         if (CommonUtils.isConnectingToInternet(mContext)) {
             AppGlobal.showProgressDialog(mContext);
 
+            String country = getApplicationContext().getResources().getConfiguration().locale.getDisplayCountry();
+
             Map<String, String> params = new HashMap<String, String>();
             params.put("name", stName);
             params.put("email", stEmail);
             params.put("platno", stLicense);
-            params.put("mobileno", stMobile);
+            params.put("mobileno", stCountryCode + "" + stMobile);
             params.put("password", stPassword);
-            params.put("address", stPassword);
+            params.put("address", country);
             params.put("token", stToken);
+            params.put("countrycode", stCountryCode);
+            params.put("phoneno", stMobile);
 
             ApiHandler.getApiService().SignUp(params).enqueue(new Callback<SignupModel>() {
                 @Override

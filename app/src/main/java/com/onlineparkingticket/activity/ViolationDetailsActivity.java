@@ -100,11 +100,11 @@ public class ViolationDetailsActivity extends BaseActivity {
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
                                 tvDate.setText(AppGlobal.getDateFromServer(response.body().getData().getDate()));
-                                tvPlateNo.setText("Plate No : " + AppGlobal.isTextAvailableWithData(response.body().getData().getStatus(), ""));
+                                tvPlateNo.setText("Plate No : " + AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getPlatno(), ""));
                                 tvViolationNo.setText("Violation No : " + AppGlobal.isTextAvailableWithData(response.body().getData().getViolationno(), ""));
                                 tvViolationDesc.setText("Description");
                                 tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + response.body().getData().getPrice(), "0"));
-                                tvUserName.setText(AppGlobal.getStringPreference(mContext, WsConstant.SP_NAME));
+                                tvUserName.setText(AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getName(), ""));
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());
                             }

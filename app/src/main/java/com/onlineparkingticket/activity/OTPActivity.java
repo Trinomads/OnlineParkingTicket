@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.onlineparkingticket.R;
@@ -16,7 +15,9 @@ import com.onlineparkingticket.commonTextView.EditTextBold;
 import com.onlineparkingticket.constant.AppGlobal;
 import com.onlineparkingticket.constant.CommonUtils;
 import com.onlineparkingticket.httpmanager.ApiHandler;
+import com.onlineparkingticket.model.ForgotPasswordModel;
 import com.onlineparkingticket.model.MobileVerifyModel;
+import com.onlineparkingticket.model.OTPModel;
 import com.onlineparkingticket.model.VerifyForgotPasswordModel;
 
 import org.json.JSONObject;
@@ -64,6 +65,8 @@ public class OTPActivity extends BaseActivity {
 
             if (redirect.equalsIgnoreCase("1")) {
                 stResetToken = b.getString("resetToken");
+                stMobile = b.getString("mobileNo");
+                stCountryCode = b.getString("countryCode");
             }
 
             setHeaderWithBack(activty, true, false);
@@ -118,9 +121,103 @@ public class OTPActivity extends BaseActivity {
         tvResendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(OTPActivity.this, "Resend", Toast.LENGTH_SHORT).show();
+                if (redirect.equalsIgnoreCase("0")) {
+                    //Signup
+                    sendOTPRegister();
+                } else {
+                    //ForgotPassword
+                    sendOTPForgotPassword();
+                }
             }
         });
+    }
+
+    public void sendOTPRegister() {
+
+        if (CommonUtils.isConnectingToInternet(activity)) {
+            AppGlobal.showProgressDialog(activity);
+
+            Map<String, String> params = new HashMap<String, String>();
+
+            params.put("phone_number", stCountryCode + "" + stMobile);
+            params.put("country_code", stCountryCode);
+            params.put("via", "sms");
+
+            ApiHandler.getApiService().getOTP(params).enqueue(new Callback<OTPModel>() {
+                @Override
+                public void onResponse(Call<OTPModel> call, Response<OTPModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(activity, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+                               CommonUtils.commonToast(activity, getString(R.string.resen_otp_sent));
+                            } else {
+                                CommonUtils.commonToast(activity, response.body().getMessage());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(activity, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<OTPModel> call, Throwable t) {
+                    AppGlobal.showLog(activity, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            CommonUtils.commonToast(activity, getResources().getString(R.string.no_internet_exist));
+        }
+    }
+
+    public void sendOTPForgotPassword() {
+
+        if (CommonUtils.isConnectingToInternet(activity)) {
+            AppGlobal.showProgressDialog(activity);
+
+            Map<String, String> params = new HashMap<String, String>();
+
+            params.put("phone_number", stMobile);
+            params.put("country_code", stCountryCode);
+//            params.put("via", "sms");
+
+            ApiHandler.getApiService().getOTPForgotPassword(params).enqueue(new Callback<ForgotPasswordModel>() {
+                @Override
+                public void onResponse(Call<ForgotPasswordModel> call, Response<ForgotPasswordModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(activity, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+                                CommonUtils.commonToast(activity, getString(R.string.resen_otp_sent));
+                            } else {
+                                CommonUtils.commonToast(activity, response.body().getMessage());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(activity, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ForgotPasswordModel> call, Throwable t) {
+                    AppGlobal.showLog(activity, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            CommonUtils.commonToast(activity, getResources().getString(R.string.no_internet_exist));
+        }
     }
 
     public void verifyOTPSignup() {
@@ -152,7 +249,7 @@ public class OTPActivity extends BaseActivity {
 
                                 } else {
                                     Intent i = new Intent(activity, RegistrationActivity.class);
-                                    i.putExtra("mobileNo", stCountryCode + "" + stMobile);
+                                    i.putExtra("mobileNo", stMobile);
                                     i.putExtra("countryCode", stCountryCode);
                                     i.putExtra("userToken", response.body().getData().getResetpasswordtoken());
                                     startActivity(i);

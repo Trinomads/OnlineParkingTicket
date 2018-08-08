@@ -21,6 +21,7 @@
             android:orientation="vertical">
 
             <com.onlineparkingticket.commonTextView.TextViewBold
+                android:id="@+id/tv_DialogThankYou_Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -35,6 +36,7 @@
                 android:background="@color/black" />
 
             <com.onlineparkingticket.commonTextView.TextViewRegular
+                android:id="@+id/tv_DialogThankYou_Msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20sdp"
@@ -42,6 +44,7 @@
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_20sdp"
                 android:paddingRight="@dimen/_20sdp"
+                android:gravity="center"
                 android:paddingTop="@dimen/_10sdp"
                 android:text="@string/thank_you_desc"
                 android:textColor="@color/text_color"

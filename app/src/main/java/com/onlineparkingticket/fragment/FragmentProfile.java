@@ -81,11 +81,7 @@ public class FragmentProfile extends Fragment {
 
         imUserImage = (ImageView) view.findViewById(R.id.image_Profile_UserImage);
 
-        tvName.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_NAME), ""));
-        tvMobile.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_MOBILE), ""));
-        tvEmail.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_EMAIL), ""));
-        tvLocation.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_ADDRESS), ""));
-        tvPlate.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
+
 
         setImages();
     }
@@ -94,6 +90,14 @@ public class FragmentProfile extends Fragment {
         if (AppGlobal.getArrayListPreference(mContext, WsConstant.SP_IMAGES) != null && AppGlobal.getArrayListPreference(mContext, WsConstant.SP_IMAGES).size() > 0) {
             AppGlobal.loadUserImage(mContext, AppGlobal.getArrayListPreference(mContext, WsConstant.SP_IMAGES).get(0), imUserImage);
         }
+
+        String mobileNo = AppGlobal.getStringPreference(mContext, WsConstant.SP_COUNTRY_CODE) + AppGlobal.getStringPreference(mContext, WsConstant.SP_PHONE);
+
+        tvName.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_NAME), ""));
+        tvMobile.setText(mobileNo);
+        tvEmail.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_EMAIL), ""));
+        tvLocation.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_ADDRESS), ""));
+        tvPlate.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
     }
 
     private void setClickEvent() {
@@ -131,11 +135,8 @@ public class FragmentProfile extends Fragment {
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getUser().getAddress(), WsConstant.SP_ADDRESS);
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getUser().getPlatno(), WsConstant.SP_LICENCE_PLAT);
                                 AppGlobal.setArrayListPreference(mContext, response.body().getData().getUser().getImages(), WsConstant.SP_IMAGES);
-
-                                tvName.setText(AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getName(), ""));
-                                tvMobile.setText(AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getMobileno(), ""));
-                                tvEmail.setText(AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getEmail(), ""));
-                                tvLocation.setText(AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getAddress(), ""));
+                                AppGlobal.setStringPreference(mContext, response.body().getData().getUser().getCountrycode(), WsConstant.SP_COUNTRY_CODE);
+                                AppGlobal.setStringPreference(mContext, response.body().getData().getUser().getPhoneno(), WsConstant.SP_PHONE);
 
                                 tvPaid.setText(AppGlobal.isTextAvailableWithData("" + response.body().getData().getPaidTickets(), ""));
                                 tvUnPaid.setText(AppGlobal.isTextAvailableWithData("" + response.body().getData().getUnpaidTickets(), ""));

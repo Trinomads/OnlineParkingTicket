@@ -18,9 +18,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,8 +31,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.hbb20.CountryCodePicker;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.activity.HomeNavigationDrawer;
+import com.onlineparkingticket.activity.LoginActivity;
 import com.onlineparkingticket.constant.AppGlobal;
 import com.onlineparkingticket.constant.CommonUtils;
 import com.onlineparkingticket.constant.CompressImageUtil;
@@ -60,6 +65,7 @@ public class FragmentEditProfile extends Fragment {
     private EditText edName, edMobile, edEmail, edPlate, edAddress;
     private LinearLayout lvEditDP;
     private ImageView imDP;
+    private CountryCodePicker ccpCountryCode;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -101,8 +107,10 @@ public class FragmentEditProfile extends Fragment {
 
         imDP = (ImageView) view.findViewById(R.id.image_EditProfile_DP);
 
+        ccpCountryCode = (CountryCodePicker) view.findViewById(R.id.cpp_EditProfile_CountryCode);
+
         edName.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_NAME), ""));
-        edMobile.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_MOBILE), ""));
+        edMobile.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_PHONE), ""));
         edEmail.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_EMAIL), ""));
         edAddress.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_ADDRESS), ""));
         edPlate.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
@@ -174,7 +182,7 @@ public class FragmentEditProfile extends Fragment {
             Map<String, String> params = new HashMap<String, String>();
             params.put("_id", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
             params.put("name", edName.getText().toString());
-            params.put("mobileno", edMobile.getText().toString());
+            params.put("mobileno", "+" + ccpCountryCode.getSelectedCountryCode() + "" +  edMobile.getText().toString());
             params.put("email", edEmail.getText().toString());
             params.put("platno", edPlate.getText().toString());
             params.put("address", edAddress.getText().toString());
@@ -196,7 +204,7 @@ public class FragmentEditProfile extends Fragment {
 
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
-                                CommonUtils.commonToast(mContext, response.body().getMessage());
+//                                CommonUtils.commonToast(mContext, response.body().getMessage());
 
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getId(), WsConstant.SP_ID);
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getName(), WsConstant.SP_NAME);
@@ -204,11 +212,13 @@ public class FragmentEditProfile extends Fragment {
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getMobileno(), WsConstant.SP_MOBILE);
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getAddress(), WsConstant.SP_ADDRESS);
                                 AppGlobal.setStringPreference(mContext, response.body().getData().getPlatno(), WsConstant.SP_LICENCE_PLAT);
+                                AppGlobal.setStringPreference(mContext, response.body().getData().getCountrycode(), WsConstant.SP_COUNTRY_CODE);
+                                AppGlobal.setStringPreference(mContext, response.body().getData().getPhoneno(), WsConstant.SP_PHONE);
                                 AppGlobal.setArrayListPreference(mContext, response.body().getData().getImages(), WsConstant.SP_IMAGES);
 
                                 HomeNavigationDrawer.callProfileData();
 
-                                getActivity().onBackPressed();
+                                dialogRequestDate();
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());
                             }
@@ -403,7 +413,7 @@ public class FragmentEditProfile extends Fragment {
 
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
-                                CommonUtils.commonToast(mContext, response.body().getMessage());
+//                                CommonUtils.commonToast(mContext, response.body().getMessage());
 
                                 editUserDetails(response.body().getData().getNewimgpath());
                             } else {
@@ -428,5 +438,43 @@ public class FragmentEditProfile extends Fragment {
             CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
         }
 
+    }
+
+    public void dialogRequestDate() {
+        final Dialog dialog = new Dialog(mContext);
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+
+        View vi = getLayoutInflater().inflate(R.layout.dialog_thank_you, null, false);
+        dialog.setContentView(vi);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = dialog.getWindow();
+
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.gravity = Gravity.CENTER;
+        window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        window.setAttributes(lp);
+
+        TextView tvTitle = (TextView) dialog.findViewById(R.id.tv_DialogThankYou_Title);
+        tvTitle.setText(getString(R.string.sav_success));
+
+        TextView tvMsg = (TextView) dialog.findViewById(R.id.tv_DialogThankYou_Msg);
+        tvMsg.setText(getString(R.string.profile_change_success));
+
+        TextView tvDone = (TextView) dialog.findViewById(R.id.tv_Dialog_ThankYou_Done);
+        tvDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                getActivity().onBackPressed();
+            }
+        });
+
+        dialog.show();
     }
 }

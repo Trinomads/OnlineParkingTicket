@@ -40,8 +40,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="John Main"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17sdp" />
 
                 <com.onlineparkingticket.commonTextView.TextViewRegular
                     android:id="@+id/tv_UserProfile_Mobile"
@@ -73,6 +73,16 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp">
+
+                <com.onlineparkingticket.commonTextView.TextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:layout_marginTop="@dimen/_minus15sdp"
+                    android:text="John Main"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_15sdp" />
 
                 <com.onlineparkingticket.commonTextView.TextViewRegular
                     android:id="@+id/tv_UserProfile_PlateNo"
@@ -162,7 +172,7 @@
                     <com.onlineparkingticket.commonTextView.TextViewRegular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/paid_mini"
+                        android:drawableLeft="@drawable/unpaid_mini"
                         android:drawablePadding="@dimen/_5sdp"
                         android:text="@string/unpaid_small"
                         android:textColor="@color/text_color"
@@ -190,7 +200,7 @@
                     <com.onlineparkingticket.commonTextView.TextViewRegular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/paid_mini"
+                        android:drawableLeft="@drawable/total_mini"
                         android:drawablePadding="@dimen/_5sdp"
                         android:text="@string/total_small"
                         android:textColor="@color/text_color"

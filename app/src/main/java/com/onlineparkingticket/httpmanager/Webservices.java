@@ -1,6 +1,7 @@
 package com.onlineparkingticket.httpmanager;
 
 
+import com.onlineparkingticket.model.ChangePasswordModel;
 import com.onlineparkingticket.model.EditUserDetailsModel;
 import com.onlineparkingticket.model.ForgotPasswordModel;
 import com.onlineparkingticket.model.LoginModel;
@@ -41,6 +42,10 @@ public interface Webservices {
     @FormUrlEncoded
     @POST("auth/login")
     Call<LoginModel> loginUser(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("user/change-password")
+    Call<ChangePasswordModel> changePassword(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("ticket/listing")

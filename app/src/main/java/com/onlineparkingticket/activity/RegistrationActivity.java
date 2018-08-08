@@ -23,7 +23,7 @@ public class RegistrationActivity extends BaseActivity {
     private EditTextBold edtDriving;
     private LinearLayout linearPleaGuiltyNext;
     public static RegistrationActivity activity;
-    String stMobile = "", stToken = "";
+    String stMobile = "", stToken = "", stCountryCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class RegistrationActivity extends BaseActivity {
         if (intent != null) {
             stMobile = intent.getStringExtra("mobileNo");
             stToken = intent.getStringExtra("userToken");
+            stCountryCode = intent.getStringExtra("countryCode");
         }
 
 
@@ -57,6 +58,7 @@ public class RegistrationActivity extends BaseActivity {
                     intent.putExtra("email", edtEmail.getText().toString());
                     intent.putExtra("drivingLicense", edtDriving.getText().toString());
                     intent.putExtra("userToken", stToken);
+                    intent.putExtra("stCountryCode", stCountryCode);
                     startActivity(intent);
                 }
 

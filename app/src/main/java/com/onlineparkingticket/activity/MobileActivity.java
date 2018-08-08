@@ -161,7 +161,7 @@ public class MobileActivity extends BaseActivity {
 
             Map<String, String> params = new HashMap<String, String>();
 
-            params.put("phone_number", countryCode + "" + edtMobile.getText().toString());
+            params.put("phone_number", edtMobile.getText().toString());
             params.put("country_code", countryCode);
 //            params.put("via", "sms");
 

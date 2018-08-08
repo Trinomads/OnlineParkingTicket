@@ -98,8 +98,8 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
 
             ((ViewHolder) holder).tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + mData.getPrice(), "0"));
             ((ViewHolder) holder).tvDate.setText(AppGlobal.getDateFromServer(AppGlobal.isTextAvailableWithData(mData.getDate(), "")));
-            ((ViewHolder) holder).tvPlate.setText("Plate No : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
-            ((ViewHolder) holder).tvViolationNo.setText("Violation No : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
+            ((ViewHolder) holder).tvPlate.setText("Plate Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
+            ((ViewHolder) holder).tvViolationNo.setText("Violation Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
 
             ((ViewHolder) holder).lvMain.setOnClickListener(new View.OnClickListener() {
                 @Override

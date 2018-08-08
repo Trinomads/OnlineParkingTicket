@@ -78,7 +78,6 @@
                     android:id="@+id/edt_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:padding="@dimen/_7sdp"
                     android:background="@android:color/transparent"
                     android:imeOptions="actionDone"

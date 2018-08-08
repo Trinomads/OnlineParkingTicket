@@ -68,23 +68,47 @@
             android:textStyle="bold"
             android:typeface="normal" />
 
-        <com.onlineparkingticket.commonTextView.EditTextBold
-            android:id="@+id/ed_EditProfile_Mobile"
+        <LinearLayout
+            android:id="@+id/linear_login_mobile"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
+            android:layout_below="@+id/txt_appname"
             android:background="@drawable/textarea"
-            android:hint="@string/mobile_no"
-            android:imeOptions="actionNext"
-            android:inputType="numberDecimal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/hint_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="normal"
-            android:typeface="normal" />
+            android:paddingLeft="@dimen/_25sdp"
+            android:paddingRight="@dimen/_25sdp"
+            android:paddingTop="@dimen/_10sdp">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/cpp_EditProfile_CountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccpDialog_keyboardAutoPopup="false"
+                app:ccpDialog_textColor="@color/white"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_autoFormatNumber="true"
+                app:ccp_defaultNameCode="IN"
+                app:ccp_showFlag="false"
+                app:ccp_showNameCode="false"
+                app:ccp_textSize="@dimen/_13sdp" />
+
+            <com.onlineparkingticket.commonTextView.EditTextBold
+                android:id="@+id/ed_EditProfile_Mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:padding="@dimen/_7sdp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+        </LinearLayout>
 
         <com.onlineparkingticket.commonTextView.EditTextBold
             android:id="@+id/ed_EditProfile_Email"

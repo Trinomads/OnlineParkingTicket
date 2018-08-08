@@ -70,6 +70,28 @@ public class SignupModel {
         @SerializedName("__v")
         @Expose
         private Integer v;
+        @SerializedName("countrycode")
+        @Expose
+        private String countrycode;
+        @SerializedName("phoneno")
+        @Expose
+        private String phoneno;
+
+        public String getCountrycode() {
+            return countrycode;
+        }
+
+        public void setCountrycode(String countrycode) {
+            this.countrycode = countrycode;
+        }
+
+        public String getPhoneno() {
+            return phoneno;
+        }
+
+        public void setPhoneno(String phoneno) {
+            this.phoneno = phoneno;
+        }
 
         public String getAccess() {
             return access;

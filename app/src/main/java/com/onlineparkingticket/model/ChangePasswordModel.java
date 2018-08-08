@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class UserDetailsModel {
+public class ChangePasswordModel {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("user")
+    @Expose
+    private User user;
     @SerializedName("success")
     @Expose
     private Boolean success;
-    @SerializedName("data")
-    @Expose
-    private Data data;
 
     public String getMessage() {
         return message;
@@ -22,6 +22,14 @@ public class UserDetailsModel {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Boolean getSuccess() {
@@ -32,51 +40,6 @@ public class UserDetailsModel {
         this.success = success;
     }
 
-    public Data getData() {
-        return data;
-    }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
-    public class Data {
-
-        @SerializedName("user")
-        @Expose
-        private User user;
-        @SerializedName("unpaidTickets")
-        @Expose
-        private Integer unpaidTickets;
-        @SerializedName("paidTickets")
-        @Expose
-        private Integer paidTickets;
-
-        public User getUser() {
-            return user;
-        }
-
-        public void setUser(User user) {
-            this.user = user;
-        }
-
-        public Integer getUnpaidTickets() {
-            return unpaidTickets;
-        }
-
-        public void setUnpaidTickets(Integer unpaidTickets) {
-            this.unpaidTickets = unpaidTickets;
-        }
-
-        public Integer getPaidTickets() {
-            return paidTickets;
-        }
-
-        public void setPaidTickets(Integer paidTickets) {
-            this.paidTickets = paidTickets;
-        }
-
-    }
 
     public class User {
 
@@ -95,21 +58,21 @@ public class UserDetailsModel {
         @SerializedName("_id")
         @Expose
         private String id;
+        @SerializedName("address")
+        @Expose
+        private String address;
         @SerializedName("name")
         @Expose
         private String name;
         @SerializedName("email")
         @Expose
         private String email;
-        @SerializedName("mobileno")
-        @Expose
-        private String mobileno;
-        @SerializedName("address")
-        @Expose
-        private String address;
         @SerializedName("password")
         @Expose
         private String password;
+        @SerializedName("mobileno")
+        @Expose
+        private String mobileno;
         @SerializedName("updatedAt")
         @Expose
         private String updatedAt;
@@ -119,28 +82,6 @@ public class UserDetailsModel {
         @SerializedName("__v")
         @Expose
         private Integer v;
-        @SerializedName("countrycode")
-        @Expose
-        private String countrycode;
-        @SerializedName("phoneno")
-        @Expose
-        private String phoneno;
-
-        public String getCountrycode() {
-            return countrycode;
-        }
-
-        public void setCountrycode(String countrycode) {
-            this.countrycode = countrycode;
-        }
-
-        public String getPhoneno() {
-            return phoneno;
-        }
-
-        public void setPhoneno(String phoneno) {
-            this.phoneno = phoneno;
-        }
 
         public ArrayList<String> getImages() {
             return images;
@@ -166,12 +107,28 @@ public class UserDetailsModel {
             this.access = access;
         }
 
+        public String getPlatno() {
+            return platno;
+        }
+
+        public void setPlatno(String platno) {
+            this.platno = platno;
+        }
+
         public String getId() {
             return id;
         }
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
         }
 
         public String getName() {
@@ -190,28 +147,20 @@ public class UserDetailsModel {
             this.email = email;
         }
 
-        public String getMobileno() {
-            return mobileno;
-        }
-
-        public void setMobileno(String mobileno) {
-            this.mobileno = mobileno;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
         public String getPassword() {
             return password;
         }
 
         public void setPassword(String password) {
             this.password = password;
+        }
+
+        public String getMobileno() {
+            return mobileno;
+        }
+
+        public void setMobileno(String mobileno) {
+            this.mobileno = mobileno;
         }
 
         public String getUpdatedAt() {
@@ -238,12 +187,5 @@ public class UserDetailsModel {
             this.v = v;
         }
 
-        public String getPlatno() {
-            return platno;
-        }
-
-        public void setPlatno(String platno) {
-            this.platno = platno;
-        }
     }
 }

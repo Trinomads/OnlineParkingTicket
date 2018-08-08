@@ -105,12 +105,12 @@ public class TicketListingModel {
         @SerializedName("status")
         @Expose
         private String status;
+        @SerializedName("type")
+        @Expose
+        private String type;
         @SerializedName("_id")
         @Expose
         private String id;
-        @SerializedName("user")
-        @Expose
-        private User user;
         @SerializedName("price")
         @Expose
         private Integer price;
@@ -120,6 +120,27 @@ public class TicketListingModel {
         @SerializedName("violationno")
         @Expose
         private String violationno;
+        @SerializedName("plateno")
+        @Expose
+        private String plateno;
+        @SerializedName("speed")
+        @Expose
+        private String speed;
+        @SerializedName("zone")
+        @Expose
+        private String zone;
+        @SerializedName("user")
+        @Expose
+        private User user;
+        @SerializedName("fixit")
+        @Expose
+        private Fixit fixit;
+        @SerializedName("guilty")
+        @Expose
+        private Guilty guilty;
+        @SerializedName("nocontest")
+        @Expose
+        private Nocontest nocontest;
         @SerializedName("updatedAt")
         @Expose
         private String updatedAt;
@@ -138,20 +159,20 @@ public class TicketListingModel {
             this.status = status;
         }
 
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
         public String getId() {
             return id;
         }
 
         public void setId(String id) {
             this.id = id;
-        }
-
-        public User getUser() {
-            return user;
-        }
-
-        public void setUser(User user) {
-            this.user = user;
         }
 
         public Integer getPrice() {
@@ -176,6 +197,62 @@ public class TicketListingModel {
 
         public void setViolationno(String violationno) {
             this.violationno = violationno;
+        }
+
+        public String getPlateno() {
+            return plateno;
+        }
+
+        public void setPlateno(String plateno) {
+            this.plateno = plateno;
+        }
+
+        public String getSpeed() {
+            return speed;
+        }
+
+        public void setSpeed(String speed) {
+            this.speed = speed;
+        }
+
+        public String getZone() {
+            return zone;
+        }
+
+        public void setZone(String zone) {
+            this.zone = zone;
+        }
+
+        public User getUser() {
+            return user;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+
+        public Fixit getFixit() {
+            return fixit;
+        }
+
+        public void setFixit(Fixit fixit) {
+            this.fixit = fixit;
+        }
+
+        public Guilty getGuilty() {
+            return guilty;
+        }
+
+        public void setGuilty(Guilty guilty) {
+            this.guilty = guilty;
+        }
+
+        public Nocontest getNocontest() {
+            return nocontest;
+        }
+
+        public void setNocontest(Nocontest nocontest) {
+            this.nocontest = nocontest;
         }
 
         public String getUpdatedAt() {
@@ -206,9 +283,18 @@ public class TicketListingModel {
 
     public class User {
 
+        @SerializedName("images")
+        @Expose
+        private ArrayList<String> images;
+        @SerializedName("image")
+        @Expose
+        private String image;
         @SerializedName("access")
         @Expose
         private String access;
+        @SerializedName("platno")
+        @Expose
+        private String platno;
         @SerializedName("_id")
         @Expose
         private String id;
@@ -227,6 +313,12 @@ public class TicketListingModel {
         @SerializedName("password")
         @Expose
         private String password;
+        @SerializedName("countrycode")
+        @Expose
+        private String countrycode;
+        @SerializedName("phoneno")
+        @Expose
+        private String phoneno;
         @SerializedName("updatedAt")
         @Expose
         private String updatedAt;
@@ -237,12 +329,36 @@ public class TicketListingModel {
         @Expose
         private Integer v;
 
+        public ArrayList<String> getImages() {
+            return images;
+        }
+
+        public void setImages(ArrayList<String> images) {
+            this.images = images;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
         public String getAccess() {
             return access;
         }
 
         public void setAccess(String access) {
             this.access = access;
+        }
+
+        public String getPlatno() {
+            return platno;
+        }
+
+        public void setPlatno(String platno) {
+            this.platno = platno;
         }
 
         public String getId() {
@@ -293,6 +409,22 @@ public class TicketListingModel {
             this.password = password;
         }
 
+        public String getCountrycode() {
+            return countrycode;
+        }
+
+        public void setCountrycode(String countrycode) {
+            this.countrycode = countrycode;
+        }
+
+        public String getPhoneno() {
+            return phoneno;
+        }
+
+        public void setPhoneno(String phoneno) {
+            this.phoneno = phoneno;
+        }
+
         public String getUpdatedAt() {
             return updatedAt;
         }
@@ -315,6 +447,142 @@ public class TicketListingModel {
 
         public void setV(Integer v) {
             this.v = v;
+        }
+
+    }
+
+    public class Fixit {
+
+        @SerializedName("images")
+        @Expose
+        private ArrayList<String> images;
+        @SerializedName("_id")
+        @Expose
+        private String id;
+        @SerializedName("updatedAt")
+        @Expose
+        private String updatedAt;
+        @SerializedName("createdAt")
+        @Expose
+        private String createdAt;
+
+        public ArrayList<String> getImages() {
+            return images;
+        }
+
+        public void setImages(ArrayList<String> images) {
+            this.images = images;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getUpdatedAt() {
+            return updatedAt;
+        }
+
+        public void setUpdatedAt(String updatedAt) {
+            this.updatedAt = updatedAt;
+        }
+
+        public String getCreatedAt() {
+            return createdAt;
+        }
+
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+        }
+
+    }
+
+    public class Guilty {
+
+        @SerializedName("_id")
+        @Expose
+        private String id;
+        @SerializedName("updatedAt")
+        @Expose
+        private String updatedAt;
+        @SerializedName("createdAt")
+        @Expose
+        private String createdAt;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getUpdatedAt() {
+            return updatedAt;
+        }
+
+        public void setUpdatedAt(String updatedAt) {
+            this.updatedAt = updatedAt;
+        }
+
+        public String getCreatedAt() {
+            return createdAt;
+        }
+
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+        }
+
+    }
+
+    public class Nocontest {
+
+        @SerializedName("type")
+        @Expose
+        private String type;
+        @SerializedName("_id")
+        @Expose
+        private String id;
+        @SerializedName("updatedAt")
+        @Expose
+        private String updatedAt;
+        @SerializedName("createdAt")
+        @Expose
+        private String createdAt;
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getUpdatedAt() {
+            return updatedAt;
+        }
+
+        public void setUpdatedAt(String updatedAt) {
+            this.updatedAt = updatedAt;
+        }
+
+        public String getCreatedAt() {
+            return createdAt;
+        }
+
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
         }
 
     }

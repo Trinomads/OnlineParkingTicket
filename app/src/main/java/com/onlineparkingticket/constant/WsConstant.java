@@ -11,4 +11,6 @@ public class WsConstant {
     public static final String SP_ADDRESS = "sp_address";
     public static final String SP_LICENCE_PLAT = "sp_license_plat";
     public static final String SP_IMAGES = "sp_images";
+    public static final String SP_COUNTRY_CODE = "sp_country_code";
+    public static final String SP_PHONE = "sp_phone";
 }

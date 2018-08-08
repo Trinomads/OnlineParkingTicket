@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_screen"
     android:orientation="vertical">
 
@@ -31,7 +31,50 @@
             android:textSize="@dimen/_25sdp"
             android:textStyle="bold" />
 
-        <com.onlineparkingticket.commonTextView.EditTextRegular
+
+        <LinearLayout
+            android:id="@+id/linear_login_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_below="@+id/txt_appname"
+            android:background="@drawable/textarea"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_25sdp"
+            android:paddingRight="@dimen/_25sdp"
+            android:paddingTop="@dimen/_10sdp">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/cpp_Login_CountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccpDialog_keyboardAutoPopup="false"
+                app:ccpDialog_textColor="@color/white"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_autoFormatNumber="true"
+                app:ccp_defaultNameCode="IN"
+                app:ccp_showFlag="false"
+                app:ccp_showNameCode="false"
+                app:ccp_textSize="@dimen/_13sdp" />
+
+            <com.onlineparkingticket.commonTextView.EditTextRegular
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:padding="@dimen/_7sdp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+        </LinearLayout>
+
+        <!--<com.onlineparkingticket.commonTextView.EditTextRegular
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
@@ -39,7 +82,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_weight="1"
             android:background="@drawable/textarea"
-            android:hint="@string/email"
+            android:hint="@string/mobile_no"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:paddingBottom="@dimen/_10sdp"
@@ -50,34 +93,34 @@
             android:textColorHint="@color/text_color"
             android:textSize="@dimen/_13sdp"
             android:textStyle="normal"
-            android:typeface="normal" />
+            android:typeface="normal" />-->
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/inputLayout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_login_mobile"
             app:hintEnabled="false"
-            android:layout_below="@+id/edt_email"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/text_color">
 
-        <com.onlineparkingticket.commonTextView.EditTextRegular
-            android:id="@+id/edt_password"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/textarea"
-            android:hint="@string/password"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
-            android:textSize="@dimen/_13sdp"
-            android:textStyle="normal"
-            android:typeface="normal" />
+            <com.onlineparkingticket.commonTextView.EditTextRegular
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/textarea"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="normal"
+                android:typeface="normal" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -89,8 +132,8 @@
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_5sdp"
             android:button="@drawable/custom_check_box"
+            android:paddingLeft="@dimen/_5sdp"
             android:text="@string/rememberme"
             android:textColor="@color/text_color" />
 
@@ -101,7 +144,7 @@
             android:layout_below="@+id/chk_password"
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_weight="1"
             android:background="@drawable/button_bg"
             android:gravity="center"

@@ -1,10 +1,16 @@
 package com.onlineparkingticket.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.onlineparkingticket.R;
@@ -58,6 +64,7 @@ public class ConfirmPasswordActivity extends BaseActivity {
                 stEmail = b.getString("email");
                 stLicense = b.getString("drivingLicense");
                 stToken = b.getString("userToken");
+                stCountryCode = b.getString("stCountryCode");
             }
 
             if (redirect.equalsIgnoreCase("1")) {
@@ -84,7 +91,7 @@ public class ConfirmPasswordActivity extends BaseActivity {
         linearPleaGuiltyNext = (LinearLayout) findViewById(R.id.linear_PleaGuilty_Next);
 
         if (redirect.equalsIgnoreCase("1")) {
-            txt_password.setText(getResources().getString(R.string.newpassword));
+            txt_password.setText(getResources().getString(R.string.createnewpassword));
         }
     }
 
@@ -103,12 +110,12 @@ public class ConfirmPasswordActivity extends BaseActivity {
                         intent.putExtra("drivingLicense", stLicense);
                         intent.putExtra("password", edtPassword.getText().toString());
                         intent.putExtra("userToken", stToken);
+                        intent.putExtra("stCountryCode", stCountryCode);
                         startActivity(intent);
                     }
                 }
             }
         });
-
     }
 
     private boolean isValidField() {
@@ -116,8 +123,14 @@ public class ConfirmPasswordActivity extends BaseActivity {
         if (!CommonUtils.isTextAvailable(edtPassword.getText().toString().trim())) {
             CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_password));
             return false;
+        } else if (edtPassword.length() < 8) {
+            CommonUtils.commonToast(this, getString(R.string.msg_validate_password));
+            return false;
         } else if (!CommonUtils.isTextAvailable(edtCpassword.getText().toString().trim())) {
             CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_confirm_password));
+            return false;
+        } else if (edtCpassword.length() < 8) {
+            CommonUtils.commonToast(this, getString(R.string.msg_validate_cnf_password));
             return false;
         } else if (!edtPassword.getText().toString().equalsIgnoreCase(edtCpassword.getText().toString())) {
             CommonUtils.commonToast(this, getString(R.string.validate_password));
@@ -149,12 +162,9 @@ public class ConfirmPasswordActivity extends BaseActivity {
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
 
-                                CommonUtils.commonToast(activity, response.body().getMessage());
+//                                CommonUtils.commonToast(activity, response.body().getMessage());
 
-                                Intent intent = new Intent(activity, LoginActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                                finish();
+                                dialogRequestDate();
 
                             } else {
                                 CommonUtils.commonToast(activity, response.body().getMessage());
@@ -176,6 +186,45 @@ public class ConfirmPasswordActivity extends BaseActivity {
         } else {
             CommonUtils.commonToast(activity, getResources().getString(R.string.no_internet_exist));
         }
+    }
+
+    public void dialogRequestDate() {
+        final Dialog dialog = new Dialog(activity);
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+
+        View vi = getLayoutInflater().inflate(R.layout.dialog_thank_you, null, false);
+        dialog.setContentView(vi);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = dialog.getWindow();
+
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.gravity = Gravity.CENTER;
+        window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        window.setAttributes(lp);
+
+        TextView tvMsg = (TextView) dialog.findViewById(R.id.tv_DialogThankYou_Msg);
+        tvMsg.setText(getString(R.string.forgot_success));
+
+        TextView tvDone = (TextView) dialog.findViewById(R.id.tv_Dialog_ThankYou_Done);
+        tvDone.setText(getString(R.string.login));
+        tvDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Intent intent = new Intent(activity, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        dialog.show();
     }
 
 }
