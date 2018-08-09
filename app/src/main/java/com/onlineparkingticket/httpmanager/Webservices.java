@@ -2,6 +2,7 @@ package com.onlineparkingticket.httpmanager;
 
 
 import com.onlineparkingticket.model.ChangePasswordModel;
+import com.onlineparkingticket.model.DigitalWalletModel;
 import com.onlineparkingticket.model.EditUserDetailsModel;
 import com.onlineparkingticket.model.ForgotPasswordModel;
 import com.onlineparkingticket.model.LoginModel;
@@ -82,5 +83,9 @@ public interface Webservices {
     @Multipart
     @POST("user/save-images-single")
     Call<SaveImageModel> editUserProfile(@Part MultipartBody.Part image);
+
+    @FormUrlEncoded
+    @POST("wallet/create")
+    Call<DigitalWalletModel> createDigitalWallet(@FieldMap Map<String, String> params);
 }
 

@@ -45,7 +45,7 @@
 
     <string name="title_name">Name</string>
     <string name="title_email">Email</string>
-    <string name="title_driving_license">Driving License</string>
+    <string name="title_driving_license">Driving Licence</string>
     <string name="title_vio_no">Violation Number</string>
     <string name="title_vio_desc">Violation Description</string>
     <string name="title_ticket_charge">Ticket Charge</string>
@@ -53,7 +53,7 @@
     <string name="thank_you">Thank You</string>
     <string name="thank_you_desc">Your form has beed submitted. A Notification will be sent once the court has revised the document.</string>
 
-    <string name="license_plate">License Plate #</string>
+    <string name="license_plate">Licence Plate #</string>
     <string name="registration_vin">Registration / VIN</string>
     <string name="insurance">Insurance #</string>
     <string name="address">Address</string>
@@ -61,7 +61,7 @@
     <string name="zip">Zip</string>
 
 
-    <string name="image_DL">Driving\nLicense</string>
+    <string name="image_DL">Driving\nLicence</string>
     <string name="image_VP">Vehicle\nPlate</string>
     <string name="image_RV">Registration /\nVIN</string>
     <string name="image_IP">Insurance\nPaper</string>
@@ -114,10 +114,16 @@
     <string name="gallery">Gallery</string>
     <string name="cancel">Cancel</string>
 
+    <string name="msg_plz_enter_license">Please enter Licence no.</string>
+    <string name="msg_plz_enter_plat">Please enter plate no.</string>
+    <string name="msg_plz_enter_vin">Please enter Registration / VIN</string>
+    <string name="msg_plz_enter_insurance">Please enter insurance</string>
+    <string name="msg_plz_enter_state">Please enter state</string>
+    <string name="msg_plz_enter_zip">Please enter zip code</string>
+
     <string name="msg_validate_password">Password must be minimum 8 characters.</string>
     <string name="msg_validate_new_password">New Password must be minimum 8 characters.</string>
     <string name="msg_validate_cnf_password">Confirm Password must be minimum 8 characters.</string>
-    <string name="msg_plz_enter_license">Please enter license no.</string>
     <string name="msg_plz_enter_vio_no">Please enter violation no.</string>
     <string name="msg_plz_enter_vio_desc">Please enter violation desc.</string>
     <string name="msg_plz_enter_ticket_charge">Please enter ticket charge.</string>
