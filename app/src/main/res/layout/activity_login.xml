@@ -126,7 +126,7 @@
 
         <CheckBox
             android:id="@+id/chk_password"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/inputLayout_password"
             android:layout_marginLeft="@dimen/_30sdp"
