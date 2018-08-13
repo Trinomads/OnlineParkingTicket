@@ -2,7 +2,6 @@ package com.onlineparkingticket.fragment;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,12 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.activity.HomeNavigationDrawer;
-import com.onlineparkingticket.activity.ViolationDetailsActivity;
 import com.onlineparkingticket.adapter.PendingTicketAdapter;
 import com.onlineparkingticket.allInterface.OnItemClick;
 import com.onlineparkingticket.allInterface.OnLoadMoreListener;
@@ -43,10 +43,13 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
     public static Context mContext;
     private RecyclerView rvList;
     private TextView tvNoTicket;
+    private ImageView imSearch;
+    private EditText edSearch;
     private SwipeRefreshLayout refreshLayout;
     private ArrayList<TicketListingModel.Ticket> listTicket = new ArrayList<>();
     private PendingTicketAdapter adapter;
     int pageNo = 0;
+    String stSearch = "";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,23 +77,36 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        getPaidListing(true, pageNo);
+        getPaidListing(true, pageNo, stSearch);
     }
 
     private void init(View view) {
         rvList = (RecyclerView) view.findViewById(R.id.rv_Common);
         rvList.setLayoutManager(new LinearLayoutManager(mContext));
 
+
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeToRefresh_Common);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 pageNo = 0;
-                getPaidListing(false, pageNo);
+                getPaidListing(false, pageNo, stSearch);
             }
         });
 
         tvNoTicket = (TextView) view.findViewById(R.id.tv_CommonList_NoTickets);
+
+        edSearch = (EditText) view.findViewById(R.id.ed_Common_SearchEdit);
+        imSearch = (ImageView) view.findViewById(R.id.image_Common_Search);
+
+        imSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stSearch = edSearch.getText().toString().trim();
+                pageNo = 0;
+                getPaidListing(false, pageNo, stSearch);
+            }
+        });
 
         /*HomeNavigationDrawer.lvPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,13 +127,13 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
                 @Override
                 public void onLoadMore() {
                     pageNo = pageNo + 1;
-                    getPaidListing(false, pageNo);
+                    getPaidListing(false, pageNo, stSearch);
                 }
             });
         }
     }
 
-    public void getPaidListing(boolean loader, final int pageNO) {
+    public void getPaidListing(boolean loader, final int pageNO, String searchKey) {
         if (CommonUtils.isConnectingToInternet(mContext)) {
 
             if (loader) {
@@ -129,6 +145,7 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
             params.put("status", "UNPAID");
             params.put("pageNo", "" + pageNO);
             params.put("perPage", "20");
+            params.put("q", searchKey);
 
             new ApiHandlerToken(mContext).getApiService().resolvedList(params).enqueue(new Callback<TicketListingModel>() {
                 @Override
@@ -154,7 +171,7 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
                                     listTicket.addAll(response.body().getData().getTickets());
 
                                     if (adapter == null) {
-                                        adapter = new PendingTicketAdapter(getActivity(), listTicket, rvList, FragmentPendingTicket.this);
+                                        adapter = new PendingTicketAdapter(getActivity(), listTicket, rvList, FragmentPendingTicket.this, false);
                                         rvList.setAdapter(adapter);
                                     } else {
                                         adapter.notifyDataSetChanged();
@@ -202,8 +219,8 @@ public class FragmentPendingTicket extends Fragment implements OnItemClick{
 
     @Override
     public void onItemClickPosition(int position) {
-        Intent intent = new Intent(mContext, ViolationDetailsActivity.class);
+        /*Intent intent = new Intent(mContext, ViolationDetailsActivity.class);
         intent.putExtra("itemId", listTicket.get(position).getId());
-        mContext.startActivity(intent);
+        mContext.startActivity(intent);*/
     }
 }

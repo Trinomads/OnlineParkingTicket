@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.onlineparkingticket.R;
@@ -63,6 +64,8 @@ public class HomeFragment extends Fragment implements OnItemClick {
     private ArrayList<TicketListingModel.Ticket> listTicket = new ArrayList<>();
     private PendingTicketAdapter adapter;
     int pageNo = 0;
+    private String SearckKey ="";
+    private ImageView img_search;
 
 
     @Override
@@ -92,7 +95,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
         init(view);
         setClickEvent();
 
-        getPaidListing(true, pageNo);
+        //getPaidListing(true, pageNo);
     }
 
     private void init(View view) {
@@ -103,6 +106,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
         llSearch = (LinearLayout) view.findViewById(R.id.ll_search);
         edtsrch = (EditTextRegular) view.findViewById(R.id.edtsrch);
         floating = (ImageView) view.findViewById(R.id.floating);
+        img_search = (ImageView) view.findViewById(R.id.img_search);
 
         tvTotalTickets = (TextView) view.findViewById(R.id.tv_Home_TotalTickets);
 
@@ -124,8 +128,27 @@ public class HomeFragment extends Fragment implements OnItemClick {
         txtSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*mainserach.setVisibility(View.GONE);
-                llSearch.setVisibility(View.VISIBLE);*/
+                if (!edtSearch.getText().toString().equalsIgnoreCase("")) {
+                    SearckKey = "";
+                    SearckKey = edtSearch.getText().toString().trim();
+                    pageNo = 0;
+                    getPaidListing(true, pageNo);
+                } else {
+                    CommonUtils.commonToast(getActivity(), "Enter Plate number or Violation Number");
+                }
+            }
+        });
+        img_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!edtsrch.getText().toString().equalsIgnoreCase("")) {
+                    SearckKey = "";
+                    SearckKey = edtsrch.getText().toString().trim();
+                    pageNo = 0;
+                    getPaidListing(true, pageNo);
+                } else {
+                    CommonUtils.commonToast(getActivity(), "Enter Plate number or Violation Number");
+                }
             }
         });
 
@@ -159,6 +182,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
             Map<String, String> params = new HashMap<String, String>();
             params.put("user", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
             params.put("status", "UNPAID");
+            params.put("q", SearckKey);
 
             new ApiHandlerToken(mContext).getApiService().resolvedList(params).enqueue(new Callback<TicketListingModel>() {
                 @Override
@@ -170,7 +194,8 @@ public class HomeFragment extends Fragment implements OnItemClick {
                     try {
                         JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
                         AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
-
+                        SearckKey ="";
+                        edtSearch.setText("");
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
 
@@ -186,7 +211,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
                                     listTicket.addAll(response.body().getData().getTickets());
 
                                     if (adapter == null) {
-                                        adapter = new PendingTicketAdapter(getActivity(), listTicket, rvList, HomeFragment.this);
+                                        adapter = new PendingTicketAdapter(getActivity(), listTicket, rvList, HomeFragment.this, true);
                                         rvList.setAdapter(adapter);
                                     } else {
                                         adapter.notifyDataSetChanged();
@@ -200,6 +225,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
                                     if (pageNo == 0) {
                                         mainserach.setVisibility(View.VISIBLE);
                                         llSearch.setVisibility(View.GONE);
+                                        Toast.makeText(getActivity(), "No data found.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -210,6 +236,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
                                 if (pageNo == 0) {
                                     mainserach.setVisibility(View.VISIBLE);
                                     llSearch.setVisibility(View.GONE);
+                                    Toast.makeText(getActivity(), "No data found.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }

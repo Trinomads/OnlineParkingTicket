@@ -33,7 +33,7 @@ public class FinalRegistrationActivity extends BaseActivity {
     private TextViewBlack txtGetstarted;
 
     public static FinalRegistrationActivity mContext;
-    public String stMobile = "", stName = "", stEmail = "", stLicense = "", stPassword = "", stToken = "", stCountryCode = "";
+    public String stMobile = "", stName = "", stEmail = "", stLicense = "", stPassword = "", stToken = "", stCountryCode = "", countryName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class FinalRegistrationActivity extends BaseActivity {
             stPassword = intent.getStringExtra("password");
             stToken = intent.getStringExtra("userToken");
             stCountryCode = intent.getStringExtra("stCountryCode");
+            countryName = intent.getStringExtra("countryName");
         }
 
         findViews();
@@ -102,18 +103,19 @@ public class FinalRegistrationActivity extends BaseActivity {
         if (CommonUtils.isConnectingToInternet(mContext)) {
             AppGlobal.showProgressDialog(mContext);
 
-            String country = getApplicationContext().getResources().getConfiguration().locale.getDisplayCountry();
+//            String country = getApplicationContext().getResources().getConfiguration().locale.getDisplayCountry();
 
             Map<String, String> params = new HashMap<String, String>();
             params.put("name", stName);
             params.put("email", stEmail);
             params.put("platno", stLicense);
-            params.put("mobileno", stCountryCode + "" + stMobile);
+            params.put("mobileno", stMobile);
             params.put("password", stPassword);
-            params.put("address", country);
+            params.put("address", countryName);
             params.put("token", stToken);
             params.put("countrycode", stCountryCode);
             params.put("phoneno", stMobile);
+            AppGlobal.showLog(mContext, mContext.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().SignUp(params).enqueue(new Callback<SignupModel>() {
                 @Override

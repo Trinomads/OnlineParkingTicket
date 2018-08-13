@@ -23,6 +23,8 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:background="@android:color/transparent"
             android:hint="@string/searchbyplate"
             android:padding="@dimen/_7sdp"
@@ -76,23 +78,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_10sdp"
+        android:visibility="gone"
         android:orientation="vertical">
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <com.onlineparkingticket.commonTextView.EditTextRegular
             android:id="@+id/edtsrch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/search_blue"
             android:hint="@string/searchbyplate"
+            android:background="@android:color/transparent"
             android:padding="@dimen/_7sdp"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:layout_marginRight="@dimen/_70sdp"
             android:textColor="@color/text_color"
             android:textColorHint="@color/gray"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_10sdp" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_search"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50sp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/search_blue"/>
+        </RelativeLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

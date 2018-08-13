@@ -116,7 +116,7 @@ public class LoginActivity extends BaseActivity {
         }/* else if (!CommonUtils.isEmailValid(edtMobile.getText().toString().trim())) {
             CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_valid_email));
             return false;
-        } */else if (!CommonUtils.isTextAvailable(edtPassword.getText().toString().trim())) {
+        } */ else if (!CommonUtils.isTextAvailable(edtPassword.getText().toString().trim())) {
             CommonUtils.commonToast(this, getString(R.string.msg_plz_enter_password));
             return false;
         } else
@@ -141,8 +141,9 @@ public class LoginActivity extends BaseActivity {
             AppGlobal.showProgressDialog(activity);
 
             Map<String, String> params = new HashMap<String, String>();
-            params.put("mobileno", "+" + ccpCountryCode.getSelectedCountryCode() + "" +edtMobile.getText().toString().trim());
+            params.put("mobileno", "+" + ccpCountryCode.getSelectedCountryCode() + "" + edtMobile.getText().toString().trim());
             params.put("password", edtPassword.getText().toString().trim());
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().loginUser(params).enqueue(new Callback<LoginModel>() {
                 @Override

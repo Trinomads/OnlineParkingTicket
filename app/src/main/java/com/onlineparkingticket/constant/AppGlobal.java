@@ -13,11 +13,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -33,11 +37,14 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.onlineparkingticket.BuildConfig;
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.activity.PictureActivity;
 import com.onlineparkingticket.activity.WelcomeActivity;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -1028,4 +1035,39 @@ public class AppGlobal {
                 .into(imImage);
     }
 
+    public static void loadImage(Context mContext, String path, ImageView imImage) {
+        Picasso.with(mContext)
+                .load(path)
+                .into(imImage);
+    }
+
+    public static void loadImageFile(Context mContext, String path, ImageView imImage) {
+        File file = new File(path);
+        Picasso.with(mContext)
+                .load(file)
+                .into(imImage);
+    }
+
+
+
+    public static Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public static String getRealPathFromURI(Context mContext, Uri uri) {
+        Cursor cursor = mContext.getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
+
+    public static void openUserBannerAndDP(Context mContext, String url, boolean isFile) {
+        Intent intent = new Intent(mContext, PictureActivity.class);
+        intent.putExtra("mediaURL", url);
+        intent.putExtra("isFile", isFile);
+        mContext.startActivity(intent);
+    }
 }

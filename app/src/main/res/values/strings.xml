@@ -29,7 +29,7 @@
     <string name="confirm_plea_guilty">Are you sure you want to plea guilty</string>
     <string name="confirm_no_contest">Are you sure you want to plea no contest</string>
 
-    <string name="title_plea_guilty">Defendant you are pleaing guilty to violation.</string>
+    <string name="title_plea_guilty">Defendant you are pleaing guilty to Citation.</string>
     <string name="title_plea_guilty_sign">Signature in this section</string>
 
     <string name="request_successfully">Request Successfully</string>
@@ -46,8 +46,8 @@
     <string name="title_name">Name</string>
     <string name="title_email">Email</string>
     <string name="title_driving_license">Driving Licence</string>
-    <string name="title_vio_no">Violation Number</string>
-    <string name="title_vio_desc">Violation Description</string>
+    <string name="title_vio_no">Citation Number</string>
+    <string name="title_vio_desc">Citation Description</string>
     <string name="title_ticket_charge">Ticket Charge</string>
 
     <string name="thank_you">Thank You</string>
@@ -67,7 +67,7 @@
     <string name="image_IP">Insurance\nPaper</string>
     <string name="paid">PAID</string>
     <string name="unpaid">UNPAID</string>
-    <string name="hint_search_ticket">Search by Plate or Violation Number</string>
+    <string name="hint_search_ticket">Search by Plate or Citation Number</string>
     <string name="hint_message">Enter Message</string>
     <string name="change_password">Change Password</string>
     <string name="about_us">About Us</string>
@@ -114,6 +114,11 @@
     <string name="gallery">Gallery</string>
     <string name="cancel">Cancel</string>
 
+    <string name="img_license">Please select driving licence photo</string>
+    <string name="img_plate">Please select vehicle number photo</string>
+    <string name="img_vin">Please select registration or VIN photo</string>
+    <string name="img_insurance">Please select insurance paper photo</string>
+
     <string name="msg_plz_enter_license">Please enter Licence no.</string>
     <string name="msg_plz_enter_plat">Please enter plate no.</string>
     <string name="msg_plz_enter_vin">Please enter Registration / VIN</string>
@@ -124,8 +129,8 @@
     <string name="msg_validate_password">Password must be minimum 8 characters.</string>
     <string name="msg_validate_new_password">New Password must be minimum 8 characters.</string>
     <string name="msg_validate_cnf_password">Confirm Password must be minimum 8 characters.</string>
-    <string name="msg_plz_enter_vio_no">Please enter violation no.</string>
-    <string name="msg_plz_enter_vio_desc">Please enter violation desc.</string>
+    <string name="msg_plz_enter_vio_no">Please enter Citation no.</string>
+    <string name="msg_plz_enter_vio_desc">Please enter Citation desc.</string>
     <string name="msg_plz_enter_ticket_charge">Please enter ticket charge.</string>
     <string name="msg_plz_select_file">Please select another image.</string>
     <string name="msg_plz_enter_address">Please enter address.</string>
@@ -168,15 +173,14 @@
     <string name="pendingtickets">Pending tickets</string>
     <string name="Profile">Profile</string>
     <string name="setting">Settings</string>
-    <string name="searchbyplate">Search by Plate Number/ Violation Number</string>
+    <string name="searchbyplate">Search by Plate Number/ Citation Number</string>
     <string name="search">Search</string>
 
 
     <string name="fixit">Fix it</string>
     <string name="fixit_plea">Fix It Plea</string>
-    <string name="Violation">Violation</string>
-    <string name="ticketcharge">Ticket charge </string>
     <string name="violation">Violation</string>
+    <string name="ticketcharge">Ticket charge </string>
 
 
     <string name="nameco">Name :</string>
@@ -193,5 +197,9 @@
     <string name="profile_change_success">Profile changes successfully done.</string>
     <string name="sav_success">Saved successfully</string>
     <string name="success">Successfull</string>
+    <string name="plea_title">There are three pleas which may be entered before the Court to the charges which will be filed as a result of the issuance of this citation. There are : Guilty, No Contest, Not Guilty <font color="red">Failure to submit to the Court to enter a plea on or before the date show on ticket will result in a separate offense being charges against you, and a warrant being issued for your arrest.</font></string>
+    <string name="plea_guilty_title">A plea of GUILTY means you admit that you committed the act charged and that it is prohibited by law, and that you have no defense of excuse for your act. By Pleading guilty and paying the fine the violation will appear on your driving record.</string>
+    <string name="plea_no_content_title">A plea of NO CONTEST means that you do not contest the carges against you. A pea of no contest cannot be used against you in the event of a subsequent civil suit for damages. Keep case of record without trial. If eligible. complete a Dave* Safety Course or Deferred Disposition (probation) so that If successfully completed. your case as be dismissed.</string>
+    <string name="plea_court_title">If you wish to plead NOT GUILTY and have a Vial. you must submit this form on or before the appearance date posted on your Mice! to arrange a court date. You may have a Mal before a Judge or a Jury and you may represent yourself or lyre a lawyer to represent you. If you choose to rre a lawyer. your lawyer must maKe a written representation to Me court before me appearance date on your Motet. Failure to make a timely appearance may result in the issuance or a warrant for your arrest.</string>
 
 </resources>

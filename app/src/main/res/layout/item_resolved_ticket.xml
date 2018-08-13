@@ -32,12 +32,12 @@
                 android:layout_height="wrap_content">
 
                 <com.onlineparkingticket.commonTextView.TextViewBold
-                    android:id="@+id/item_CommonListTicket_Price"
+                    android:id="@+id/item_CommonListTicket_ViolationNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="@dimen/_1sdp"
-                    android:text="$ 0"
+                    android:text="Citation No : "
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_11sdp" />
 
@@ -46,7 +46,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_1sdp"
-                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_11sdp" />
 
@@ -73,12 +72,12 @@
                 android:layout_height="wrap_content">
 
                 <com.onlineparkingticket.commonTextView.TextViewBold
-                    android:id="@+id/item_CommonListTicket_ViolationNo"
+                    android:id="@+id/item_CommonListTicket_Price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="@dimen/_1sdp"
-                    android:text="Violation No : "
+                    android:text="$ 0"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_11sdp" />
 
@@ -89,7 +88,7 @@
                     android:padding="@dimen/_1sdp"
                     android:text="@string/paid"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
 
             </LinearLayout>
 

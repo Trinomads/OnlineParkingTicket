@@ -34,20 +34,22 @@ import com.google.gson.Gson;
 import com.hbb20.CountryCodePicker;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.activity.HomeNavigationDrawer;
-import com.onlineparkingticket.activity.LoginActivity;
 import com.onlineparkingticket.constant.AppGlobal;
 import com.onlineparkingticket.constant.CommonUtils;
 import com.onlineparkingticket.constant.CompressImageUtil;
 import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.httpmanager.ApiHandlerToken;
+import com.onlineparkingticket.model.DigitalWalletModel;
 import com.onlineparkingticket.model.EditUserDetailsModel;
+import com.onlineparkingticket.model.GetDigitalWalletModel;
 import com.onlineparkingticket.model.SaveImageModel;
+import com.onlineparkingticket.model.WalletImageModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +68,11 @@ public class FragmentEditProfile extends Fragment {
     private LinearLayout lvEditDP;
     private ImageView imDP;
     private CountryCodePicker ccpCountryCode;
+    private ImageView imDL, imVP, imRV, imIP;
+    private ImageView imEditDL, imEditIP;
+    private String imagePathDL = "", imagePathIP = "";
+
+    ArrayList<String> listImages = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,6 +103,21 @@ public class FragmentEditProfile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init(view);
         setClickEvent();
+
+        getDigitalWallet();
+
+        /*Bundle bundle = this.getArguments();
+        listImages = bundle.getStringArrayList("digitalwallet");*/
+
+        /*if (listImages != null && listImages.size() > 0) {
+            AppGlobal.loadImage(getActivity(), listImages.get(0), imDL);
+//            AppGlobal.loadImage(getActivity(), listImages.get(1), imVP);
+//            AppGlobal.loadImage(getActivity(), listImages.get(2), imRV);
+            AppGlobal.loadImage(getActivity(), listImages.get(1), imIP);
+
+            imagesLink[0] = listImages.get(0);
+            imagesLink[1] = listImages.get(1);
+        }*/
     }
 
     private void init(View view) {
@@ -115,6 +137,14 @@ public class FragmentEditProfile extends Fragment {
         edAddress.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_ADDRESS), ""));
         edPlate.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
 
+        imDL = (ImageView) view.findViewById(R.id.image_Profile_DL);
+        imVP = (ImageView) view.findViewById(R.id.image_Profile_VP);
+        imRV = (ImageView) view.findViewById(R.id.image_Profile_RV);
+        imIP = (ImageView) view.findViewById(R.id.image_Profile_IP);
+
+        imEditDL = (ImageView) view.findViewById(R.id.image_Wallet_Cancel_DL);
+        imEditIP = (ImageView) view.findViewById(R.id.image_Wallet_Cancel_IP);
+
         lvEditDP = (LinearLayout) view.findViewById(R.id.linear_EditProfile_DP);
 
         setImages();
@@ -126,12 +156,22 @@ public class FragmentEditProfile extends Fragment {
         }
     }
 
+    String stFromImage = "";
+
     private void setClickEvent() {
         HomeNavigationDrawer.imNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isValidField()) {
-                    editUserDetails("");
+                    if (!imagePathDL.equalsIgnoreCase("") && !imagePathIP.equalsIgnoreCase("")) {
+                        uploadUserProfile(imagePathDL, true);
+                    } else if (!imagePathDL.equalsIgnoreCase("")) {
+                        uploadUserProfile(imagePathDL, false);
+                    } else if (!imagePathIP.equalsIgnoreCase("")) {
+                        uploadUserProfile(imagePathIP, false);
+                    } else {
+                        editUserDetails("");
+                    }
                 }
             }
         });
@@ -143,12 +183,186 @@ public class FragmentEditProfile extends Fragment {
             }
         });
 
+        imDL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (imagePathDL.equalsIgnoreCase("")) {
+                    if (listImages.size() > 0) {
+                        AppGlobal.openUserBannerAndDP(getActivity(), listImages.get(0), false);
+                    }
+                } else {
+                    AppGlobal.openUserBannerAndDP(getActivity(), imagePathDL, true);
+                }
+            }
+        });
+
+        imIP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (imagePathIP.equalsIgnoreCase("")) {
+                    if (listImages.size() > 0) {
+                        AppGlobal.openUserBannerAndDP(getActivity(), listImages.get(1), false);
+                    }
+                } else {
+                    AppGlobal.openUserBannerAndDP(getActivity(), imagePathIP, true);
+                }
+            }
+        });
+
         lvEditDP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showImageDialog1(mContext);
+                stFromImage = "DP";
+                showImageDialog(mContext);
             }
         });
+
+        imEditDL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stFromImage = "DL";
+                showImageDialog(mContext);
+            }
+        });
+
+        imEditIP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stFromImage = "IP";
+                showImageDialog(mContext);
+            }
+        });
+    }
+
+
+    String[] imagesLink = new String[2];
+    int imageUploadCount = 0;
+
+    public void uploadUserProfile(final String path, final boolean twoImage) {
+
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+            AppGlobal.showProgressDialog(mContext);
+
+            File file = new File(path);
+            MultipartBody.Part body = null;
+
+            if (!file.exists()) {
+                Toast.makeText(mContext, getString(R.string.msg_plz_select_file), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+            new ApiHandlerToken(mContext).getApiService().uploadWalletImages(body).enqueue(new Callback<WalletImageModel>() {
+                @Override
+                public void onResponse(Call<WalletImageModel> call, Response<WalletImageModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+
+                                if (twoImage) {
+                                    imagesLink[imageUploadCount] = response.body().getImagepath();
+
+                                    imageUploadCount = imageUploadCount + 1;
+
+                                    if (imageUploadCount < 2) {
+                                        if (imageUploadCount == 1) {
+                                            uploadUserProfile(imagePathIP, true);
+                                        }
+                                    } else {
+                                        createDigitalWallet();
+                                    }
+                                } else {
+                                    if (imagePathDL.equalsIgnoreCase(path)) {
+                                        imagesLink[0] = response.body().getImagepath();
+                                        imagesLink[1] = listImages.get(1);
+                                    } else if (imagePathIP.equalsIgnoreCase(path)) {
+                                        imagesLink[1] = response.body().getImagepath();
+                                        imagesLink[0] = listImages.get(0);
+                                    }
+
+                                    createDigitalWallet();
+                                }
+                            } else {
+
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<WalletImageModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            Log.e("this", "error" + "no internet");
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
+
+    }
+
+    public void createDigitalWallet() {
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+            AppGlobal.showProgressDialog(mContext);
+
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("drivinglicience", dataWallet.getDrivinglicience());
+            params.put("licenceplate", dataWallet.getLicenceplate());
+            params.put("registrationvin", dataWallet.getRegistrationvin());
+            params.put("insurance", dataWallet.getInsurance());
+            params.put("address", dataWallet.getAddress());
+            params.put("state", dataWallet.getState());
+            params.put("city", dataWallet.getCity());
+            params.put("_id", dataWallet.getId());
+
+            JSONArray json = new JSONArray(Arrays.asList(imagesLink));
+            Gson gson = new Gson();
+            params.put("images", json.toString());
+
+            AppGlobal.showLog(getActivity(), "resposen : " + params);
+
+            ApiHandlerToken.getApiService().updateDigitalWallet(params).enqueue(new Callback<DigitalWalletModel>() {
+                @Override
+                public void onResponse(Call<DigitalWalletModel> call, Response<DigitalWalletModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+                                editUserDetails("");
+                            } else {
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DigitalWalletModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
     }
 
     private boolean isValidField() {
@@ -182,7 +396,7 @@ public class FragmentEditProfile extends Fragment {
             Map<String, String> params = new HashMap<String, String>();
             params.put("_id", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
             params.put("name", edName.getText().toString());
-            params.put("mobileno", "+" + ccpCountryCode.getSelectedCountryCode() + "" +  edMobile.getText().toString());
+            params.put("mobileno", "+" + ccpCountryCode.getSelectedCountryCode() + "" + edMobile.getText().toString());
             params.put("email", edEmail.getText().toString());
             params.put("platno", edPlate.getText().toString());
             params.put("address", edAddress.getText().toString());
@@ -246,9 +460,8 @@ public class FragmentEditProfile extends Fragment {
     private int PICK_FROM_GALLARY = 200;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     String selectedImagePathFront = "";
-    Bitmap bitmapImagePathFront = null;
 
-    public void showImageDialog1(final Context mActivity) {
+    public void showImageDialog(final Context mActivity) {
         // custom dialog
 
         popupDialog = new Dialog(mActivity);
@@ -339,54 +552,54 @@ public class FragmentEditProfile extends Fragment {
                         c.close();
 
                         CompressImageUtil compressUtil = new CompressImageUtil(mContext);
-                        selectedImagePathFront = compressUtil.compressImage(selectedImagePathFront, imDP);
-                        bitmapImagePathFront = compressUtil.getBitmap();
+
+                        if (stFromImage.equalsIgnoreCase("DP")) {
+                            selectedImagePathFront = compressUtil.compressImage(selectedImagePathFront, imDP);
+                            if (!selectedImagePathFront.equalsIgnoreCase("")) {
+                                uploadUserProfile();
+                            }
+                        } else if (stFromImage.equalsIgnoreCase("DL")) {
+                            selectedImagePathFront = compressUtil.compressImage(selectedImagePathFront, imDL);
+                            imagePathDL = selectedImagePathFront;
+                        } else if (stFromImage.equalsIgnoreCase("IP")) {
+                            selectedImagePathFront = compressUtil.compressImage(selectedImagePathFront, imIP);
+                            imagePathIP = selectedImagePathFront;
+                        }
+
 
                         AppGlobal.showLog(mContext, "FilePath : " + selectedImagePathFront);
-                        if (!selectedImagePathFront.equalsIgnoreCase("")) {
-                            uploadUserProfile();
-                        }
                     }
                 } catch (Exception e) {
 
                     e.printStackTrace();
-                } finally {
-
                 }
             } else if (requestCode == PICK_FROM_CAMERA) {
-                bitmapImagePathFront = null;
                 selectedImagePathFront = null;
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
 
-                imDP.setImageBitmap(photo);
-
-                Uri imageUri = getImageUri(mContext, photo);
-
-                selectedImagePathFront = getRealPathFromURI(imageUri);
+                Uri imageUri = AppGlobal.getImageUri(mContext, photo);
+                selectedImagePathFront = AppGlobal.getRealPathFromURI(mContext, imageUri);
 
                 AppGlobal.showLog(mContext, "FilePath : " + selectedImagePathFront);
-                if (!selectedImagePathFront.equalsIgnoreCase("")) {
-                    uploadUserProfile();
+
+                if (stFromImage.equalsIgnoreCase("DP")) {
+                    imDP.setImageBitmap(photo);
+                    if (!selectedImagePathFront.equalsIgnoreCase("")) {
+                        uploadUserProfile();
+                    }
+                } else if (stFromImage.equalsIgnoreCase("DL")) {
+                    imDL.setImageBitmap(photo);
+                    imagePathDL = selectedImagePathFront;
+                } else if (stFromImage.equalsIgnoreCase("IP")) {
+                    imIP.setImageBitmap(photo);
+                    imagePathIP = selectedImagePathFront;
                 }
             }
         }
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
-    public String getRealPathFromURI(Uri uri) {
-        Cursor cursor = mContext.getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
-    }
-
     MultipartBody.Part body;
+
     public void uploadUserProfile() {
 
         if (CommonUtils.isConnectingToInternet(mContext)) {
@@ -476,5 +689,64 @@ public class FragmentEditProfile extends Fragment {
         });
 
         dialog.show();
+    }
+
+    GetDigitalWalletModel.Datum dataWallet = null;
+
+    public void getDigitalWallet() {
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("user", AppGlobal.getStringPreference(getActivity(), WsConstant.SP_ID));
+
+            new ApiHandlerToken(getActivity()).getApiService().getDigitalWallet(params).enqueue(new Callback<GetDigitalWalletModel>() {
+                @Override
+                public void onResponse(Call<GetDigitalWalletModel> call, Response<GetDigitalWalletModel> response) {
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+                                listImages = new ArrayList<>();
+
+                                if (response.body().getData().getData().size() > 0) {
+                                    listImages = response.body().getData().getData().get(0).getImages();
+
+                                    dataWallet = response.body().getData().getData().get(0);
+
+                                    AppGlobal.loadImage(getActivity(), listImages.get(0), imDL);
+                                    AppGlobal.loadImage(getActivity(), listImages.get(1), imIP);
+
+                                    imagesLink[0] = listImages.get(0);
+                                    imagesLink[1] = listImages.get(1);
+
+                                    imEditDL.setVisibility(View.VISIBLE);
+                                    imEditIP.setVisibility(View.VISIBLE);
+                                } else {
+                                    imEditDL.setVisibility(View.GONE);
+                                    imEditIP.setVisibility(View.GONE);
+                                }
+
+                            } else {
+                                imEditDL.setVisibility(View.GONE);
+                                imEditIP.setVisibility(View.GONE);
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetDigitalWalletModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
+                }
+            });
+
+        } else {
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
     }
 }

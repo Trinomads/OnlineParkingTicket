@@ -29,9 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_vertical"
                 android:paddingLeft="@dimen/_5sdp"
-                android:paddingRight="@dimen/_5sdp"
-                android:gravity="center_vertical">
+                android:paddingRight="@dimen/_5sdp">
 
                 <ImageView
                     android:layout_width="@dimen/_15sdp"
@@ -178,48 +178,131 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_70sdp"
-                        android:src="@drawable/icon_user_placeholder" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                        <RelativeLayout
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp">
+
+                            <ImageView
+                                android:id="@+id/image_Profile_DL"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_100sdp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/icon_user_placeholder" />
+
+                            <ImageView
+                                android:id="@+id/image_Wallet_Cancel_DL"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                android:layout_marginRight="@dimen/_3sdp"
+                                android:padding="@dimen/_5sdp"
+                                android:background="@drawable/circle_blue"
+                                android:src="@drawable/edit_white"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/icon_user_placeholder" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp">
+
+                            <ImageView
+                                android:id="@+id/image_Profile_IP"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_100sdp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/icon_user_placeholder" />
+
+                            <ImageView
+                                android:id="@+id/image_Wallet_Cancel_IP"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                android:layout_marginRight="@dimen/_3sdp"
+                                android:padding="@dimen/_5sdp"
+                                android:background="@drawable/circle_blue"
+                                android:src="@drawable/edit_white"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_70sdp"
-                        android:src="@drawable/icon_user_placeholder" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                        <RelativeLayout
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp">
+
+                            <ImageView
+                                android:id="@+id/image_Profile_RV"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_100sdp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/icon_user_placeholder" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/icon_user_placeholder" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp">
+
+                            <ImageView
+                                android:id="@+id/image_Profile_VP"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_100sdp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/icon_user_placeholder" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>

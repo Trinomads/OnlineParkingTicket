@@ -42,6 +42,7 @@ public class OTPActivity extends BaseActivity {
     private String stMobile = "";
     private String stCountryCode = "";
     private String stResetToken = "";
+    private String countryName = "";
     private TextView tvResendOTP;
 
     @Override
@@ -61,6 +62,7 @@ public class OTPActivity extends BaseActivity {
             if (b.containsKey("mobileNo")) {
                 stMobile = b.getString("mobileNo");
                 stCountryCode = b.getString("countryCode");
+                countryName = b.getString("countryName");
             }
 
             if (redirect.equalsIgnoreCase("1")) {
@@ -142,6 +144,7 @@ public class OTPActivity extends BaseActivity {
             params.put("phone_number", stCountryCode + "" + stMobile);
             params.put("country_code", stCountryCode);
             params.put("via", "sms");
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().getOTP(params).enqueue(new Callback<OTPModel>() {
                 @Override
@@ -185,6 +188,7 @@ public class OTPActivity extends BaseActivity {
 
             params.put("phone_number", stMobile);
             params.put("country_code", stCountryCode);
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 //            params.put("via", "sms");
 
             ApiHandler.getApiService().getOTPForgotPassword(params).enqueue(new Callback<ForgotPasswordModel>() {
@@ -227,8 +231,9 @@ public class OTPActivity extends BaseActivity {
 
             Map<String, String> params = new HashMap<String, String>();
             params.put("country_code", stCountryCode);
-            params.put("phone_number", stCountryCode + "" + stMobile);
+            params.put("phone_number", stMobile);
             params.put("token", edtOtp.getText().toString().trim());
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().verifyOTP(params).enqueue(new Callback<MobileVerifyModel>() {
                 @Override
@@ -252,6 +257,7 @@ public class OTPActivity extends BaseActivity {
                                     i.putExtra("mobileNo", stMobile);
                                     i.putExtra("countryCode", stCountryCode);
                                     i.putExtra("userToken", response.body().getData().getResetpasswordtoken());
+                                    i.putExtra("countryName", countryName);
                                     startActivity(i);
                                 }
 
@@ -284,9 +290,10 @@ public class OTPActivity extends BaseActivity {
 
             Map<String, String> params = new HashMap<String, String>();
             params.put("country_code", stCountryCode);
-            params.put("phone_number", stCountryCode + "" + stMobile);
+            params.put("phone_number", stMobile);
             params.put("token", edtOtp.getText().toString().trim());
             params.put("reset_token", stResetToken);
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().verifyOTPForgotPassword(params).enqueue(new Callback<VerifyForgotPasswordModel>() {
                 @Override

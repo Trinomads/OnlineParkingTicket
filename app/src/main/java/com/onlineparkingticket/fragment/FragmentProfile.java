@@ -19,10 +19,12 @@ import com.onlineparkingticket.constant.AppGlobal;
 import com.onlineparkingticket.constant.CommonUtils;
 import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.httpmanager.ApiHandlerToken;
+import com.onlineparkingticket.model.GetDigitalWalletModel;
 import com.onlineparkingticket.model.UserDetailsModel;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +38,7 @@ public class FragmentProfile extends Fragment {
 
     private TextView tvName, tvMobile, tvEmail, tvPlate, tvLocation, tvPaid, tvUnPaid, tvTotal;
     private ImageView imUserImage;
+    private ImageView imDL, imVP, imRV, imIP;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,9 +84,31 @@ public class FragmentProfile extends Fragment {
 
         imUserImage = (ImageView) view.findViewById(R.id.image_Profile_UserImage);
 
+        imDL = (ImageView) view.findViewById(R.id.image_Profile_DL);
+        imVP = (ImageView) view.findViewById(R.id.image_Profile_VP);
+        imRV = (ImageView) view.findViewById(R.id.image_Profile_RV);
+        imIP = (ImageView) view.findViewById(R.id.image_Profile_IP);
 
+        imDL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listImages.size() > 0) {
+                    AppGlobal.openUserBannerAndDP(getActivity(), listImages.get(0), false);
+                }
+            }
+        });
+
+        imIP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listImages.size() > 0) {
+                    AppGlobal.openUserBannerAndDP(getActivity(), listImages.get(1), false);
+                }
+            }
+        });
 
         setImages();
+        getDigitalWallet();
     }
 
     public void setImages() {
@@ -104,7 +129,15 @@ public class FragmentProfile extends Fragment {
         HomeNavigationDrawer.imNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((HomeNavigationDrawer) mContext).callFragment(new FragmentEditProfile(), getString(R.string.Profile));
+
+                FragmentEditProfile fragment = new FragmentEditProfile();
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("digitalwallet", listImages);
+                fragment.setArguments(bundle);
+
+                ((HomeNavigationDrawer) mContext).callFragment(fragment, getString(R.string.Profile));
+
+
             }
         });
     }
@@ -166,6 +199,54 @@ public class FragmentProfile extends Fragment {
                 public void onFailure(Call<UserDetailsModel> call, Throwable t) {
                     AppGlobal.showLog(mContext, "Error : " + t.toString());
                     AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
+    }
+
+    ArrayList<String> listImages = new ArrayList<>();
+
+    public void getDigitalWallet() {
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("user", AppGlobal.getStringPreference(getActivity(), WsConstant.SP_ID));
+
+            new ApiHandlerToken(getActivity()).getApiService().getDigitalWallet(params).enqueue(new Callback<GetDigitalWalletModel>() {
+                @Override
+                public void onResponse(Call<GetDigitalWalletModel> call, Response<GetDigitalWalletModel> response) {
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+                                listImages = new ArrayList<>();
+                                if (response.body().getData().getData().size() > 0) {
+                                    listImages = response.body().getData().getData().get(0).getImages();
+
+                                    AppGlobal.loadImage(getActivity(), listImages.get(0), imDL);
+//                                AppGlobal.loadImage(getActivity(), listImages.get(1), imVP);
+//                                AppGlobal.loadImage(getActivity(), listImages.get(2), imRV);
+                                    AppGlobal.loadImage(getActivity(), listImages.get(1), imIP);
+                                }
+
+                            } else {
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetDigitalWalletModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
                 }
             });
 

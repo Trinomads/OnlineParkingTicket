@@ -27,50 +27,132 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/_25sdp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.onlineparkingticket.commonTextView.TextViewBold
-            android:id="@+id/tv_Plea_Guilty"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:background="@drawable/textarea"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/guilty"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
 
-        <com.onlineparkingticket.commonTextView.TextViewBold
-            android:id="@+id/tv_Plea_NoContest"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:background="@drawable/textarea"
-            android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/no_contest"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold" />
+            <com.onlineparkingticket.commonTextView.TextViewRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/plea_title"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
 
-        <com.onlineparkingticket.commonTextView.TextViewBold
-            android:id="@+id/tv_Plea_RequestCourtDate"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:background="@drawable/textarea"
-            android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/request_court_date"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp">
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_trans"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical">
+
+                    <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/plea_guilty_title"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_9sdp"
+                        android:textStyle="bold" />
+
+                    <com.onlineparkingticket.commonTextView.TextViewBold
+                        android:id="@+id/tv_Plea_Guilty"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60sdp"
+                        android:background="@drawable/textarea"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/guilty"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/border_trans"
+                    android:orientation="vertical">
+
+                    <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/plea_no_content_title"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_9sdp"
+                        android:textStyle="bold" />
+
+                    <com.onlineparkingticket.commonTextView.TextViewBold
+                        android:id="@+id/tv_Plea_NoContest"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60sdp"
+                        android:background="@drawable/textarea"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/no_contest"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/border_trans"
+                    android:orientation="vertical">
+
+                    <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/plea_court_title"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_9sdp"
+                        android:textStyle="bold" />
+
+                    <com.onlineparkingticket.commonTextView.TextViewBold
+                        android:id="@+id/tv_Plea_RequestCourtDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60sdp"
+                        android:background="@drawable/textarea"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/request_court_date"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

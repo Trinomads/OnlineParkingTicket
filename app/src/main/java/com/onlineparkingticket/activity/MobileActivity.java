@@ -85,7 +85,7 @@ public class MobileActivity extends BaseActivity {
                 } else {
                     if (redirect.equalsIgnoreCase("0")) {
                         //Signup
-                        sendOTPRegister("+" + cppCode.getSelectedCountryCode());
+                        sendOTPRegister("+" + cppCode.getSelectedCountryCode(), cppCode.getSelectedCountryName());
                     } else {
                         //ForgotPassword
                         sendOTPForgotPassword("+" + cppCode.getSelectedCountryCode());
@@ -103,16 +103,17 @@ public class MobileActivity extends BaseActivity {
         cppCode = (CountryCodePicker) findViewById(R.id.cpp_CountryCode);
     }
 
-    public void sendOTPRegister(final String countryCode) {
+    public void sendOTPRegister(final String countryCode, final String countryName) {
 
         if (CommonUtils.isConnectingToInternet(activity)) {
             AppGlobal.showProgressDialog(activity);
 
             Map<String, String> params = new HashMap<String, String>();
 
-            params.put("phone_number", countryCode + "" + edtMobile.getText().toString());
+            params.put("phone_number", edtMobile.getText().toString());
             params.put("country_code", countryCode);
             params.put("via", "sms");
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().getOTP(params).enqueue(new Callback<OTPModel>() {
                 @Override
@@ -129,6 +130,7 @@ public class MobileActivity extends BaseActivity {
                                 i.putExtra("redirect", redirect);
                                 i.putExtra("mobileNo", edtMobile.getText().toString());
                                 i.putExtra("countryCode", countryCode);
+                                i.putExtra("countryName", countryName);
 //                                i.putExtra("OTP", response.body().getOTPcode());
 //                                i.putExtra("userToken", response.body().getData().getResetpasswordtoken());
                                 startActivity(i);
@@ -163,6 +165,7 @@ public class MobileActivity extends BaseActivity {
 
             params.put("phone_number", edtMobile.getText().toString());
             params.put("country_code", countryCode);
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 //            params.put("via", "sms");
 
             ApiHandler.getApiService().getOTPForgotPassword(params).enqueue(new Callback<ForgotPasswordModel>() {

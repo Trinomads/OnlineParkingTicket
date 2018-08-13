@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="@dimen/_2sdp"
-                    android:text="Violation No. 1020302040"
+                    android:text="Citation No. 1020302040"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_10sdp" />
 

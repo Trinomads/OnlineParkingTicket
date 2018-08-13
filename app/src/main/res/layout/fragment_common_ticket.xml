@@ -15,8 +15,11 @@
         android:orientation="horizontal">
 
         <com.onlineparkingticket.commonTextView.EditTextBold
+            android:id="@+id/ed_Common_SearchEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:hint="@string/hint_search_ticket"
@@ -26,6 +29,7 @@
             android:textSize="@dimen/_11sdp" />
 
         <ImageView
+            android:id="@+id/image_Common_Search"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:padding="@dimen/_7sdp"

@@ -42,7 +42,7 @@ public class ConfirmPasswordActivity extends BaseActivity {
     private String redirect = "0";
     private TextViewRegular txt_password;
     public String stMobile = "", stName = "", stEmail = "", stLicense = "", stToken = "";
-    public String stResetToken = "", stCountryCode = "", stOTP = "";
+    public String stResetToken = "", stCountryCode = "", stOTP = "", countryName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class ConfirmPasswordActivity extends BaseActivity {
                 stLicense = b.getString("drivingLicense");
                 stToken = b.getString("userToken");
                 stCountryCode = b.getString("stCountryCode");
+                countryName = b.getString("countryName");
             }
 
             if (redirect.equalsIgnoreCase("1")) {
@@ -111,6 +112,7 @@ public class ConfirmPasswordActivity extends BaseActivity {
                         intent.putExtra("password", edtPassword.getText().toString());
                         intent.putExtra("userToken", stToken);
                         intent.putExtra("stCountryCode", stCountryCode);
+                        intent.putExtra("countryName", countryName);
                         startActivity(intent);
                     }
                 }
@@ -146,10 +148,11 @@ public class ConfirmPasswordActivity extends BaseActivity {
 
             Map<String, String> params = new HashMap<String, String>();
             params.put("country_code", stCountryCode);
-            params.put("phone_number", stCountryCode + "" + stMobile);
+            params.put("phone_number", stMobile);
             params.put("token", stOTP);
             params.put("reset_token", stResetToken);
             params.put("password", edtPassword.getText().toString().trim());
+            AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().changePasswordForgotPassword(params).enqueue(new Callback<VerifyForgotPasswordModel>() {
                 @Override
@@ -161,11 +164,7 @@ public class ConfirmPasswordActivity extends BaseActivity {
 
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
-
-//                                CommonUtils.commonToast(activity, response.body().getMessage());
-
                                 dialogRequestDate();
-
                             } else {
                                 CommonUtils.commonToast(activity, response.body().getMessage());
                             }

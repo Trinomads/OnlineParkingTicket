@@ -36,15 +36,15 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
     private OnLoadMoreListener onLoadMoreListener;
     private OnItemClick listener;
     private Context mContext;
-    String flag = "0";
     TextView textView;
+    boolean fromHome;
 
-    public PendingTicketAdapter(Context mContext, final ArrayList<TicketListingModel.Ticket> commentList, RecyclerView rvTrending, OnItemClick listener) {
+    public PendingTicketAdapter(Context mContext, final ArrayList<TicketListingModel.Ticket> commentList, RecyclerView rvTrending, OnItemClick listener, boolean fromHome) {
         this.commentList = commentList;
         this.mContext = mContext;
-        this.flag = flag;
         this.rvTrending = rvTrending;
         this.listener = listener;
+        this.fromHome = fromHome;
 
         if (rvTrending.getLayoutManager() instanceof LinearLayoutManager) {
 
@@ -99,7 +99,17 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + mData.getPrice(), "0"));
             ((ViewHolder) holder).tvDate.setText(AppGlobal.getDateFromServer(AppGlobal.isTextAvailableWithData(mData.getDate(), "")));
             ((ViewHolder) holder).tvPlate.setText("Plate Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
-            ((ViewHolder) holder).tvViolationNo.setText("Violation Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
+            ((ViewHolder) holder).tvViolationNo.setText("Citation Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
+
+            if (fromHome) {
+                ((ViewHolder) holder).tvPaid.setVisibility(View.GONE);
+                ((ViewHolder) holder).tvPrice.setVisibility(View.GONE);
+                ((ViewHolder) holder).tvPlate.setVisibility(View.GONE);
+            } else {
+                ((ViewHolder) holder).tvPaid.setVisibility(View.VISIBLE);
+                ((ViewHolder) holder).tvPrice.setVisibility(View.VISIBLE);
+                ((ViewHolder) holder).tvPlate.setVisibility(View.VISIBLE);
+            }
 
             ((ViewHolder) holder).lvMain.setOnClickListener(new View.OnClickListener() {
                 @Override

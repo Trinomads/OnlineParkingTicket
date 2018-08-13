@@ -12,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -40,10 +42,13 @@ public class FragmentResolvedTicket extends Fragment {
     public static Context mContext;
     private TextView tvNoTicket;
     private RecyclerView rvList;
+    private ImageView imSearch;
+    private EditText edSearch;
     private SwipeRefreshLayout refreshLayout;
     private ArrayList<TicketListingModel.Ticket> listTicket = new ArrayList<>();
     private ResolvedTicketAdapter adapter;
     int pageNo = 0;
+    String stSearch = "";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class FragmentResolvedTicket extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         HomeNavigationDrawer.mainTitle.setText(getString(R.string.Resolvedtickets));
         init(view);
-        getPaidListing(true, pageNo);
+        getPaidListing(true, pageNo, stSearch);
     }
 
     private void init(View view) {
@@ -72,7 +77,7 @@ public class FragmentResolvedTicket extends Fragment {
             @Override
             public void onRefresh() {
                 pageNo = 0;
-                getPaidListing(false, pageNo);
+                getPaidListing(false, pageNo, stSearch);
             }
         });
 
@@ -80,6 +85,18 @@ public class FragmentResolvedTicket extends Fragment {
 
         rvList = (RecyclerView) view.findViewById(R.id.rv_Common);
         rvList.setLayoutManager(new LinearLayoutManager(mContext));
+
+        edSearch = (EditText) view.findViewById(R.id.ed_Common_SearchEdit);
+        imSearch = (ImageView) view.findViewById(R.id.image_Common_Search);
+
+        imSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stSearch = edSearch.getText().toString().trim();
+                pageNo = 0;
+                getPaidListing(false, pageNo, stSearch);
+            }
+        });
     }
 
     public void setRefreshAdapter() {
@@ -88,13 +105,13 @@ public class FragmentResolvedTicket extends Fragment {
                 @Override
                 public void onLoadMore() {
                     pageNo = pageNo + 1;
-                    getPaidListing(false, pageNo);
+                    getPaidListing(false, pageNo, stSearch);
                 }
             });
         }
     }
 
-    public void getPaidListing(boolean loader, final int pageNo) {
+    public void getPaidListing(boolean loader, final int pageNo, String searchKey) {
         if (CommonUtils.isConnectingToInternet(mContext)) {
 
             if (loader) {
@@ -104,6 +121,9 @@ public class FragmentResolvedTicket extends Fragment {
             Map<String, String> params = new HashMap<String, String>();
             params.put("user", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
             params.put("status", "PAID");
+            params.put("pageNo", "" + pageNo);
+            params.put("perPage", "20");
+            params.put("q", searchKey);
 
             new ApiHandlerToken(mContext).getApiService().resolvedList(params).enqueue(new Callback<TicketListingModel>() {
                 @Override

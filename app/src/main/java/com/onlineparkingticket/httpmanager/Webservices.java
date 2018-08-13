@@ -5,6 +5,7 @@ import com.onlineparkingticket.model.ChangePasswordModel;
 import com.onlineparkingticket.model.DigitalWalletModel;
 import com.onlineparkingticket.model.EditUserDetailsModel;
 import com.onlineparkingticket.model.ForgotPasswordModel;
+import com.onlineparkingticket.model.GetDigitalWalletModel;
 import com.onlineparkingticket.model.LoginModel;
 import com.onlineparkingticket.model.MobileVerifyModel;
 import com.onlineparkingticket.model.NotificationModel;
@@ -15,6 +16,7 @@ import com.onlineparkingticket.model.TicketDetailsModel;
 import com.onlineparkingticket.model.TicketListingModel;
 import com.onlineparkingticket.model.UserDetailsModel;
 import com.onlineparkingticket.model.VerifyForgotPasswordModel;
+import com.onlineparkingticket.model.WalletImageModel;
 
 import java.util.Map;
 
@@ -84,8 +86,20 @@ public interface Webservices {
     @POST("user/save-images-single")
     Call<SaveImageModel> editUserProfile(@Part MultipartBody.Part image);
 
+    @Multipart
+    @POST("Wallet/save-image")
+    Call<WalletImageModel> uploadWalletImages(@Part MultipartBody.Part image);
+
     @FormUrlEncoded
     @POST("wallet/create")
     Call<DigitalWalletModel> createDigitalWallet(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("wallet/update")
+    Call<DigitalWalletModel> updateDigitalWallet(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("wallet/listing")
+    Call<GetDigitalWalletModel> getDigitalWallet(@FieldMap Map<String, String> params);
 }
 

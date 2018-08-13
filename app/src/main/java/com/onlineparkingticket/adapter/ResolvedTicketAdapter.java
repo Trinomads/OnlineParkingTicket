@@ -96,7 +96,7 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + mData.getPrice(), "0"));
             ((ViewHolder) holder).tvDate.setText(AppGlobal.getDateFromServer(AppGlobal.isTextAvailableWithData(mData.getDate(), "")));
             ((ViewHolder) holder).tvPlate.setText("Plate Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
-            ((ViewHolder) holder).tvViolationNo.setText("Violation Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
+            ((ViewHolder) holder).tvViolationNo.setText("Citation Number : " + AppGlobal.isTextAvailableWithData(mData.getViolationno(), ""));
 
         } else {
             ((ProgressViewHolder) holder).pbLoadMore.setIndeterminate(true);
