@@ -114,38 +114,38 @@
     <string name="gallery">Gallery</string>
     <string name="cancel">Cancel</string>
 
-    <string name="img_license">Please select driving licence photo</string>
-    <string name="img_plate">Please select vehicle number photo</string>
-    <string name="img_vin">Please select registration or VIN photo</string>
-    <string name="img_insurance">Please select insurance paper photo</string>
+    <string name="img_license">Select driving licence photo</string>
+    <string name="img_plate">Select vehicle number photo</string>
+    <string name="img_vin">Select registration or VIN photo</string>
+    <string name="img_insurance">Delect insurance paper photo</string>
 
-    <string name="msg_plz_enter_license">Please enter Licence no.</string>
-    <string name="msg_plz_enter_plat">Please enter plate no.</string>
-    <string name="msg_plz_enter_vin">Please enter Registration / VIN</string>
-    <string name="msg_plz_enter_insurance">Please enter insurance</string>
-    <string name="msg_plz_enter_state">Please enter state</string>
-    <string name="msg_plz_enter_zip">Please enter zip code</string>
+    <string name="msg_plz_enter_license">Enter Licence no.</string>
+    <string name="msg_plz_enter_plat">Enter plate no.</string>
+    <string name="msg_plz_enter_vin">Enter Registration / VIN</string>
+    <string name="msg_plz_enter_insurance">Enter insurance</string>
+    <string name="msg_plz_enter_state">Enter state</string>
+    <string name="msg_plz_enter_zip">Enter zip code</string>
 
     <string name="msg_validate_password">Password must be minimum 8 characters.</string>
     <string name="msg_validate_new_password">New Password must be minimum 8 characters.</string>
     <string name="msg_validate_cnf_password">Confirm Password must be minimum 8 characters.</string>
-    <string name="msg_plz_enter_vio_no">Please enter Citation no.</string>
-    <string name="msg_plz_enter_vio_desc">Please enter Citation desc.</string>
-    <string name="msg_plz_enter_ticket_charge">Please enter ticket charge.</string>
-    <string name="msg_plz_select_file">Please select another image.</string>
-    <string name="msg_plz_enter_address">Please enter address.</string>
-    <string name="msg_plz_enter_mobile">Please enter mobile no.</string>
-    <string name="msg_plz_enter_opt">Please enter OTP code.</string>
-    <string name="msg_plz_enter_valid_opt">Please enter valid OTP code.</string>
-    <string name="msg_plz_enter_name">Please enter name.</string>
-    <string name="msg_plz_enter_email">Please enter email.</string>
-    <string name="msg_plz_enter_valid_email">Please enter valid email.</string>
-    <string name="msg_plz_enter_password">Please enter password.</string>
-    <string name="msg_plz_enter_new_password">Please enter new password.</string>
-    <string name="msg_plz_enter_confirm_password">Please enter confirm password.</string>
+    <string name="msg_plz_enter_vio_no">Enter Citation no.</string>
+    <string name="msg_plz_enter_vio_desc">Enter Citation desc.</string>
+    <string name="msg_plz_enter_ticket_charge">Enter ticket charge.</string>
+    <string name="msg_plz_select_file">Select another image.</string>
+    <string name="msg_plz_enter_address">Enter address.</string>
+    <string name="msg_plz_enter_mobile">Enter mobile no.</string>
+    <string name="msg_plz_enter_opt">Enter OTP code.</string>
+    <string name="msg_plz_enter_valid_opt">Enter valid OTP code.</string>
+    <string name="msg_plz_enter_name">Enter name.</string>
+    <string name="msg_plz_enter_email">Enter email.</string>
+    <string name="msg_plz_enter_valid_email">Enter valid email.</string>
+    <string name="msg_plz_enter_password">Enter password.</string>
+    <string name="msg_plz_enter_new_password">Enter new password.</string>
+    <string name="msg_plz_enter_confirm_password">Enter confirm password.</string>
     <string name="validate_password">password and confirm password does not match.</string>
-    <string name="msg_plz_enter_dl">Please enter driving licence number.</string>
-    <string name="msg_plz_checked_agree">Please agree with condition.</string>
+    <string name="msg_plz_enter_dl">Enter driving licence number.</string>
+    <string name="msg_plz_checked_agree">Agree with condition.</string>
     <string name="name">Name</string>
     <string name="enterpersonaldetail">Enter Your Personal Details</string>
     <string name="drivinglicence">Driving Licence</string>
@@ -166,7 +166,6 @@
     <string name="createnewpassword">Create New Password</string>
     <string name="user">User</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="Resolvedtickets">Resolved tickets</string>
