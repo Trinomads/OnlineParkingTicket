@@ -15,6 +15,7 @@ public class HandleITActivity extends BaseActivity {
     public static Context mContext;
 
     private TextView tvDispositoin, tvDrivingCourse;
+    private String stItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,11 @@ public class HandleITActivity extends BaseActivity {
         mContext = HandleITActivity.this;
         init(HandleITActivity.this);
         setHeaderWithBack(getString(R.string.handle_it), true, false);
+        Intent intent = getIntent();
+        if (intent != null) {
+            stItemId = intent.getStringExtra("itemId");
 
+        }
         init();
     }
 
@@ -34,7 +39,11 @@ public class HandleITActivity extends BaseActivity {
         tvDispositoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HandleITActivity.this, DefferedDispositionActivity.class));
+                Intent intent = new Intent(mContext, DefferedDispositionActivity.class);
+                intent.putExtra("itemId",stItemId);
+                startActivity(intent);
+                finish();
+
             }
         });
 

@@ -18,6 +18,8 @@ public class FixItOneActivity extends BaseActivity {
     private TextView tvDesc;
     private CheckBox chkAgree;
 
+    String date ="",name ="",email ="",phoneno ="",violationno ="";
+    String stItemId ="",address="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,17 @@ public class FixItOneActivity extends BaseActivity {
         activity = this;
         init(activity);
         setHeaderWithBack(getResources().getString(R.string.fixit), true, false);
+        Intent intent = getIntent();
+        if (intent != null) {
+            stItemId = intent.getStringExtra("itemId");
+            date = intent.getStringExtra("date");
+            name = intent.getStringExtra("name");
+            email = intent.getStringExtra("email");
+            phoneno = intent.getStringExtra("phoneno");
+            violationno = intent.getStringExtra("violationno");
+            address = intent.getStringExtra("address");
+
+        }
 
         init();
     }
@@ -39,7 +52,16 @@ public class FixItOneActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (chkAgree.isChecked()) {
-                    startActivity(new Intent(activity, FixItPleaActivity.class));
+                    Intent intent = new Intent(activity, FixItPleaActivity.class);
+                    intent.putExtra("itemId",stItemId);
+                    intent.putExtra("date",date);
+                    intent.putExtra("name",name);
+                    intent.putExtra("email",email);
+                    intent.putExtra("phoneno",phoneno);
+                    intent.putExtra("violationno",violationno);
+                    intent.putExtra("address",address);
+                    startActivity(intent);
+                    finish();
                 } else {
                     CommonUtils.commonToast(activity, getString(R.string.msg_plz_checked_agree));
                 }

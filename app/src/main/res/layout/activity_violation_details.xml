@@ -65,7 +65,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/_2sdp"
-                            android:text="Jun 12, 2018"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
 
@@ -81,7 +81,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="@dimen/_2sdp"
-                            android:text="Plate No : 1010"
+                            android:text="Plate No :"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
 
@@ -97,7 +97,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="@dimen/_2sdp"
-                            android:text="Citation No : 12542"
+                            android:text="Citation No :"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_11sdp" />
 
@@ -132,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_2sdp"
-                        android:text="Mr. John Doe"
+                        android:text=""
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_11sdp" />
 
@@ -148,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="@dimen/_2sdp"
-                        android:text="You are being accused of speeding Going 15 over the limit."
+                        android:text=""
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_11sdp" />
 
@@ -183,15 +183,16 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="@dimen/_2sdp"
-                            android:text="Speed : 65"
+                            android:text="Speed : "
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_13sdp" />
 
                         <com.onlineparkingticket.commonTextView.TextViewBold
                             android:layout_width="wrap_content"
+                            android:id="@+id/tv_ViolationDetails_zone"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/_2sdp"
-                            android:text="Zone :50"
+                            android:text="Zone :"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_13sdp" />
 
@@ -218,7 +219,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/_2sdp"
-                            android:text="$6.75 USD"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_13sdp" />
 

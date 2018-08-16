@@ -2,8 +2,12 @@ package com.onlineparkingticket.activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -11,9 +15,28 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.constant.AppGlobal;
 import com.onlineparkingticket.constant.CommonUtils;
+import com.onlineparkingticket.constant.WsConstant;
+import com.onlineparkingticket.httpmanager.ApiHandlerToken;
+import com.onlineparkingticket.model.TicketListingModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 @SuppressWarnings("All")
 public class DefferedDispositionActivity extends BaseActivity {
@@ -21,6 +44,7 @@ public class DefferedDispositionActivity extends BaseActivity {
     public static Context mContext;
     private LinearLayout lvNext;
     private EditText edName, edEmail, edDrivingLicense, edVioNo, edVioDesc, edTicketCharge;
+    private String stItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +53,11 @@ public class DefferedDispositionActivity extends BaseActivity {
         mContext = DefferedDispositionActivity.this;
         init(DefferedDispositionActivity.this);
         setHeaderWithBack(getString(R.string.deffered_disposition), true, false);
+        Intent intent = getIntent();
+        if (intent != null) {
+            stItemId = intent.getStringExtra("itemId");
 
+        }
         init();
     }
 
@@ -46,9 +74,11 @@ public class DefferedDispositionActivity extends BaseActivity {
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (isValidField()) {
-                    dialogRequestDate();
-//                }
+                if (isValidField()) {
+
+                    uploadUserProfile();
+
+               }
             }
         });
     }
@@ -111,5 +141,72 @@ public class DefferedDispositionActivity extends BaseActivity {
         });
 
         dialog.show();
+    }
+
+
+    public void uploadUserProfile() {
+        if (CommonUtils.isConnectingToInternet(mContext)) {
+
+
+            AppGlobal.showProgressDialog(mContext);
+
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("user", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
+            params.put("_id", stItemId);
+            params.put("type", "nocontest");
+
+            JsonObject gsonObject = new JsonObject();
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put("type","DEFFERED_DISPOSITION");
+                jsonObject.put("name",edName.getText().toString().trim());
+                jsonObject.put("email",edEmail.getText().toString().trim());
+                jsonObject.put("drivinglicense",edDrivingLicense.getText().toString().trim());
+                jsonObject.put("violationnumber",edVioNo.getText().toString().trim());
+                jsonObject.put("violationdescription",edVioDesc.getText().toString().trim());
+                jsonObject.put("price",edTicketCharge.getText().toString().trim());
+                jsonObject.put("currency","$");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            params.put("nocontest", String.valueOf(jsonObject));
+            System.out.println("Map is " + params);
+            new ApiHandlerToken(DefferedDispositionActivity.this).getApiService().fixit(params).enqueue(new Callback<TicketListingModel>() {
+                @Override
+                public void onResponse(Call<TicketListingModel> call, Response<TicketListingModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+                                dialogRequestDate();
+                            } else {
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TicketListingModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            Log.e("this", "error" + "no internet");
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
+
     }
 }

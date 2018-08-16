@@ -2,6 +2,7 @@ package com.onlineparkingticket.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,9 +14,11 @@ import com.onlineparkingticket.constant.CommonUtils;
 import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.httpmanager.ApiHandlerToken;
 import com.onlineparkingticket.model.TicketDetailsModel;
+import com.onlineparkingticket.model.TicketListingModel;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +32,9 @@ public class ViolationDetailsActivity extends BaseActivity {
     public static ViolationDetailsActivity mContext;
     private LinearLayout lvNext, lvFixIt;
     private String stItemId = "";
-    private TextView tvDate, tvPlateNo, tvViolationNo, tvUserName, tvViolationDesc, tvSpeed, tvPrice;
+    private TextView tvDate, tvPlateNo, tvViolationNo, tvUserName, tvViolationDesc, tvSpeed, tvPrice,tvZone;
+    private String cretedat ="";
+    private ArrayList<TicketListingModel.Ticket> tickets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class ViolationDetailsActivity extends BaseActivity {
         Intent intent = getIntent();
         if (intent != null) {
             stItemId = intent.getStringExtra("itemId");
+            cretedat = intent.getStringExtra("cretedat");
         }
 
         init();
@@ -62,6 +68,7 @@ public class ViolationDetailsActivity extends BaseActivity {
         tvUserName = (TextView) findViewById(R.id.tv_violation_Name);
         tvViolationDesc = (TextView) findViewById(R.id.tv_violation_Description);
         tvSpeed = (TextView) findViewById(R.id.tv_ViolationDetails_Speed);
+        tvZone = (TextView) findViewById(R.id.tv_ViolationDetails_zone);
         tvPrice = (TextView) findViewById(R.id.tv_ViolationDetails_Price);
     }
 
@@ -69,14 +76,58 @@ public class ViolationDetailsActivity extends BaseActivity {
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, PleaActivity.class));
+
+                String date ="",name ="",email ="",phoneno ="",violationno ="",address="";
+                for (int i = 0; i < tickets.size(); i++) {
+
+                    date  = AppGlobal.getDateFromServer(tickets.get(i).getDate());
+                    name = tickets.get(i).getUser().getName();
+                    email = tickets.get(i).getUser().getEmail();
+                    phoneno = tickets.get(i).getUser().getPhoneno();
+                    violationno = tickets.get(i).getViolationno();
+                    address = tickets.get(i).getUser().getAddress();
+                    stItemId = tickets.get(i).getId();
+                }
+                Intent intent = new Intent(mContext, PleaActivity.class);
+                intent.putExtra("itemId",stItemId);
+                intent.putExtra("date",date);
+                intent.putExtra("name",name);
+                intent.putExtra("email",email);
+                intent.putExtra("phoneno",phoneno);
+                intent.putExtra("violationno",violationno);
+                intent.putExtra("address",address);
+                mContext.startActivity(intent);
+                finish();
             }
         });
 
         lvFixIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, FixItOneActivity.class));
+
+                String date ="",name ="",email ="",phoneno ="",violationno ="",address="";
+                for (int i = 0; i < tickets.size(); i++) {
+
+                     date  = AppGlobal.getDateFromServer(tickets.get(i).getDate());
+                     name = tickets.get(i).getUser().getName();
+                     email = tickets.get(i).getUser().getEmail();
+                     phoneno = tickets.get(i).getUser().getPhoneno();
+                     violationno = tickets.get(i).getViolationno();
+                     address = tickets.get(i).getUser().getAddress();
+                     stItemId = tickets.get(i).getId();
+                }
+                Intent intent = new Intent(mContext, FixItOneActivity.class);
+                intent.putExtra("itemId",stItemId);
+                intent.putExtra("date",date);
+                intent.putExtra("name",name);
+                intent.putExtra("email",email);
+                intent.putExtra("phoneno",phoneno);
+                intent.putExtra("violationno",violationno);
+                intent.putExtra("address",address);
+                mContext.startActivity(intent);
+                finish();
+
+
             }
         });
     }
@@ -89,9 +140,9 @@ public class ViolationDetailsActivity extends BaseActivity {
             params.put("user", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
             params.put("_id", stItemId);
 
-            new ApiHandlerToken(mContext).getApiService().getTicketDetails(params).enqueue(new Callback<TicketDetailsModel>() {
+            new ApiHandlerToken(mContext).getApiService().getTicketDetails(params).enqueue(new Callback<TicketListingModel>() {
                 @Override
-                public void onResponse(Call<TicketDetailsModel> call, Response<TicketDetailsModel> response) {
+                public void onResponse(Call<TicketListingModel> call, Response<TicketListingModel> response) {
                     AppGlobal.hideProgressDialog();
                     try {
                         JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
@@ -99,12 +150,22 @@ public class ViolationDetailsActivity extends BaseActivity {
 
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
-                                tvDate.setText(AppGlobal.getDateFromServer(response.body().getData().getDate()));
-                                tvPlateNo.setText("Plate No : " + AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getPlatno(), ""));
-                                tvViolationNo.setText("Citation No : " + AppGlobal.isTextAvailableWithData(response.body().getData().getViolationno(), ""));
-                                tvViolationDesc.setText("Description");
-                                tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + response.body().getData().getPrice(), "0"));
-                                tvUserName.setText(AppGlobal.isTextAvailableWithData(response.body().getData().getUser().getName(), ""));
+
+                                tickets = new ArrayList<>();
+                                tickets = response.body().getData().getTickets();
+                                for (int i = 0; i < tickets.size(); i++) {
+
+                                    tvDate.setText(AppGlobal.getDateFromServer(tickets.get(i).getDate()));
+                                    tvPlateNo.setText("Plate No : " + AppGlobal.isTextAvailableWithData(tickets.get(i).getPlateno(), ""));
+                                    tvViolationNo.setText("Citation No : " + AppGlobal.isTextAvailableWithData(tickets.get(i).getViolationno(), ""));
+                                    tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + tickets.get(i).getPrice(), "0"));
+                                    tvUserName.setText(AppGlobal.isTextAvailableWithData(tickets.get(i).getUser().getName(), ""));
+                                    tvViolationDesc.setText("Description");
+                                    tvSpeed.setText("Speed : " +" "+AppGlobal.isTextAvailableWithData(tickets.get(i).getSpeed() ,""));
+                                    tvZone.setText("Zone : " +" "+AppGlobal.isTextAvailableWithData(tickets.get(i).getZone(),"" ));
+
+                                }
+
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());
                             }
@@ -116,7 +177,7 @@ public class ViolationDetailsActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onFailure(Call<TicketDetailsModel> call, Throwable t) {
+                public void onFailure(Call<TicketListingModel> call, Throwable t) {
                     AppGlobal.showLog(mContext, "Error : " + t.toString());
                     AppGlobal.hideProgressDialog();
                 }

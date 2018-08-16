@@ -152,6 +152,8 @@ public class ConfirmPasswordActivity extends BaseActivity {
             params.put("token", stOTP);
             params.put("reset_token", stResetToken);
             params.put("password", edtPassword.getText().toString().trim());
+
+
             AppGlobal.showLog(activity, activity.getClass().getSimpleName() + " Paramteter : " + params.toString());
 
             ApiHandler.getApiService().changePasswordForgotPassword(params).enqueue(new Callback<VerifyForgotPasswordModel>() {

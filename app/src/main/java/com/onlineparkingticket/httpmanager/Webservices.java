@@ -1,6 +1,7 @@
 package com.onlineparkingticket.httpmanager;
 
 
+import com.google.gson.JsonObject;
 import com.onlineparkingticket.model.ChangePasswordModel;
 import com.onlineparkingticket.model.DigitalWalletModel;
 import com.onlineparkingticket.model.EditUserDetailsModel;
@@ -22,6 +23,8 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
@@ -30,6 +33,8 @@ import retrofit2.http.Part;
 
 public interface Webservices {
 
+
+    //Auth
     @FormUrlEncoded
     @POST("auth/request-phone-verfication")
     Call<OTPModel> getOTP(@FieldMap Map<String, String> params);
@@ -63,8 +68,8 @@ public interface Webservices {
     Call<EditUserDetailsModel> editUserDetails(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
-    @POST("ticket/view")
-    Call<TicketDetailsModel> getTicketDetails(@FieldMap Map<String, String> params);
+    @POST("ticket/listing")
+    Call<TicketListingModel> getTicketDetails(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("notification/listing")
@@ -85,6 +90,11 @@ public interface Webservices {
     @Multipart
     @POST("user/save-images-single")
     Call<SaveImageModel> editUserProfile(@Part MultipartBody.Part image);
+
+    @FormUrlEncoded
+    @POST("ticket/update")
+    Call<TicketListingModel> fixit(@FieldMap Map<String, Object> params);
+
 
     @Multipart
     @POST("Wallet/save-image")

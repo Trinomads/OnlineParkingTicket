@@ -264,6 +264,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
     public void onItemClickPosition(int position) {
         Intent intent = new Intent(mContext, ViolationDetailsActivity.class);
         intent.putExtra("itemId", listTicket.get(position).getId());
+        intent.putExtra("cretedat", listTicket.get(position).getCreatedAt());
         mContext.startActivity(intent);
     }
 }

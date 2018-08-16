@@ -43,7 +43,8 @@ public class FixItPleaActivity extends BaseActivity implements OnItemClick{
     private RecyclerView rvListImages;
     private CheckBox chkAgree;
     private ArrayList<String> listImages = new ArrayList<>();
-
+    String date ="",name ="",email ="",phoneno ="",violationno ="",address="";
+    String stItemId ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,18 @@ public class FixItPleaActivity extends BaseActivity implements OnItemClick{
         mContext = this;
         init(mContext);
         setHeaderWithBack(getResources().getString(R.string.fixit_plea), true, false);
+        Intent intent = getIntent();
+        if (intent != null) {
+            stItemId = intent.getStringExtra("itemId");
+            date = intent.getStringExtra("date");
+            name = intent.getStringExtra("name");
+            email = intent.getStringExtra("email");
+            phoneno = intent.getStringExtra("phoneno");
+            violationno = intent.getStringExtra("violationno");
+            address = intent.getStringExtra("address");
 
+
+        }
         init();
         setClickEvent();
     }
@@ -88,7 +100,16 @@ public class FixItPleaActivity extends BaseActivity implements OnItemClick{
                     Intent intent = new Intent(mContext, RequestReviewActivity.class);
                     intent.putExtra("msg", edExplanation.getText().toString().trim());
                     intent.putStringArrayListExtra("listImages", listImages);
+                    intent.putExtra("itemId",stItemId);
+                    intent.putExtra("date",date);
+                    intent.putExtra("name",name);
+                    intent.putExtra("email",email);
+                    intent.putExtra("phoneno",phoneno);
+                    intent.putExtra("violationno",violationno);
+                    intent.putExtra("address",address);
                     startActivity(intent);
+                    finish();
+
                 } else {
                     CommonUtils.commonToast(mContext, getString(R.string.msg_plz_checked_agree));
                 }
