@@ -71,7 +71,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="@string/nameco"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -80,7 +80,7 @@
                                     android:id="@+id/tv_RequestReview_Name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="John Doe"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -94,7 +94,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="@string/date"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -103,7 +103,7 @@
                                     android:id="@+id/tv_RequestReview_Date"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="@string/datetime"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -117,7 +117,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="@string/emaill"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -126,7 +126,7 @@
                                     android:id="@+id/tv_RequestReview_Email"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="@string/emaillis"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -140,7 +140,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="Phone :"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -149,7 +149,7 @@
                                     android:id="@+id/tv_RequestReview_Mobile"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="123456789"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -163,7 +163,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="Address :"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -172,7 +172,7 @@
                                     android:id="@+id/tv_RequestReview_Address"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="Ahmedabad"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -186,7 +186,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="Violation No :"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -195,7 +195,7 @@
                                     android:id="@+id/tv_RequestReview_ViolationNo"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/_2sdp"
+                                    android:padding="@dimen/_3sdp"
                                     android:text="12542"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/_11sdp" />
@@ -225,7 +225,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:padding="@dimen/_2sdp"
+                                android:padding="@dimen/_3sdp"
                                 android:text="Message"
                                 android:textColor="@color/text_color"
                                 android:textSize="@dimen/_11sdp" />
@@ -249,12 +249,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:enabled="false"
-                                android:imeOptions="actionDone"
-                                android:padding="@dimen/_2sdp"
+                                android:padding="@dimen/_3sdp"
                                 android:background="@android:color/transparent"
                                 android:maxLines="3"
                                 android:singleLine="false"
-                                android:text=""
                                 android:textColor="@color/text_color"
                                 android:textSize="@dimen/_11sdp" />
 
@@ -268,6 +266,7 @@
                         android:background="@color/text_color" />
 
                     <LinearLayout
+                        android:id="@+id/linear_RequestReview_ImageSection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -275,19 +274,26 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ll_editimage">
+                            android:layout_height="wrap_content">
 
                             <com.onlineparkingticket.commonTextView.TextViewRegular
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:drawableRight="@drawable/edit"
-                                android:padding="@dimen/_2sdp"
+                                android:layout_weight="1"
+                                android:padding="@dimen/_3sdp"
                                 android:text="Evidence Added"
                                 android:textColor="@color/text_color"
                                 android:textSize="@dimen/_11sdp" />
 
+                            <ImageView
+                                android:id="@+id/image_RequestReview_Image"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:padding="@dimen/_3sdp"
+                                android:src="@drawable/edit"/>
+
                         </LinearLayout>
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -298,21 +304,22 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:padding="@dimen/_2sdp"
+                                android:padding="@dimen/_3sdp"
                                 android:text="I did not intend to submit any evidence images."
                                 android:textColor="@color/text_color"
                                 android:textSize="@dimen/_11sdp" />
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerView_RequestReview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:nestedScrollingEnabled="false" />
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerView_RequestReview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_5sdp"
-                        android:nestedScrollingEnabled="false" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -330,23 +337,15 @@
             android:paddingTop="@dimen/_10sdp">
 
             <CheckBox
-                android:id="@+id/checkbox_ItemCommonList_Select"
+                android:id="@+id/checkbox_RequestReview_Agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/custom_check_box" />
-
-            <com.onlineparkingticket.commonTextView.TextViewRegular
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:gravity="center_vertical"
-                android:singleLine="false"
                 android:text="@string/check_box_read"
                 android:textColor="@color/text_color"
-                android:textColorHint="@color/text_color"
                 android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                android:typeface="normal" />
+                android:paddingLeft="@dimen/_5sdp"
+                android:button="@drawable/custom_check_box" />
+
         </LinearLayout>
 
         <LinearLayout

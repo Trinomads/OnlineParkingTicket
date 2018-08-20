@@ -34,7 +34,6 @@ import com.onlineparkingticket.model.WalletImageModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +51,7 @@ import retrofit2.Response;
 public class DigitalWalletDocumentsActivity extends BaseActivity {
 
     public static Context mContext;
-    private LinearLayout lvSubmit;
+    private LinearLayout lvSubmit, lvTitles;
     private RelativeLayout rvDL, rvVP, rvRV, rvIP;
     private ImageView imDL, imVP, imRV, imIP;
     private ImageView imCancelDL, imCancelVP, imCancelRV, imCancelIP;
@@ -96,6 +95,7 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
 
     private void init() {
         lvSubmit = (LinearLayout) findViewById(R.id.linear_DigitalWalletDocuments_Submit);
+        lvTitles = (LinearLayout) findViewById(R.id.linear_DigitalWalletDocuments_Title);
 
         rvDL = (RelativeLayout) findViewById(R.id.relative_DigitalWalletDetails_DL);
         rvVP = (RelativeLayout) findViewById(R.id.relative_DigitalWalletDetails_VP);
@@ -127,6 +127,18 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
 //            tvVP.setVisibility(View.GONE);
 //            tvRV.setVisibility(View.GONE);
             tvIP.setVisibility(View.GONE);
+
+            lvTitles.setVisibility(View.VISIBLE);
+        } else {
+            lvTitles.setVisibility(View.GONE);
+        }
+    }
+
+    public void checkSubmit() {
+        if (!imagePathDL.equalsIgnoreCase("") && !imagePathIP.equalsIgnoreCase("")) {
+            lvSubmit.setVisibility(View.VISIBLE);
+        } else {
+            lvSubmit.setVisibility(View.GONE);
         }
     }
 
@@ -195,6 +207,8 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
                 tvDL.setVisibility(View.VISIBLE);
                 imCancelDL.setVisibility(View.GONE);
                 imDL.setImageDrawable(null);
+
+                checkSubmit();
             }
         });
 
@@ -225,6 +239,8 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
                 tvIP.setVisibility(View.VISIBLE);
                 imCancelIP.setVisibility(View.GONE);
                 imIP.setImageDrawable(null);
+
+                checkSubmit();
             }
         });
     }
@@ -340,6 +356,7 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
                             imCancelIP.setVisibility(View.VISIBLE);
                         }
 
+                        checkSubmit();
                         AppGlobal.showLog(mContext, "FilePath : " + selectedImagePathFront);
                     }
                 } catch (Exception e) {
@@ -373,6 +390,7 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
                     imCancelIP.setVisibility(View.VISIBLE);
                 }
 
+                checkSubmit();
                 AppGlobal.showLog(mContext, "FilePath : " + selectedImagePathFront);
             }
         }
@@ -464,7 +482,6 @@ public class DigitalWalletDocumentsActivity extends BaseActivity {
             params.put("city", stZip);
 
             JSONArray json = new JSONArray(Arrays.asList(imagesLink));
-            Gson gson = new Gson();
             params.put("images", json.toString());
 
             AppGlobal.showLog(this, "resposen : " + params);

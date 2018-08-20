@@ -3,9 +3,7 @@ package com.onlineparkingticket.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -26,11 +23,9 @@ import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.httpmanager.ApiHandlerToken;
 import com.onlineparkingticket.model.TicketListingModel;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,10 +70,8 @@ public class DefferedDispositionActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (isValidField()) {
-
                     uploadUserProfile();
-
-               }
+                }
             }
         });
     }
@@ -136,6 +129,8 @@ public class DefferedDispositionActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                PleaActivity.mContext.finish();
+                HandleITActivity.mContext.finish();
                 DefferedDispositionActivity.this.finish();
             }
         });
@@ -159,14 +154,14 @@ public class DefferedDispositionActivity extends BaseActivity {
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.put("type","DEFFERED_DISPOSITION");
-                jsonObject.put("name",edName.getText().toString().trim());
-                jsonObject.put("email",edEmail.getText().toString().trim());
-                jsonObject.put("drivinglicense",edDrivingLicense.getText().toString().trim());
-                jsonObject.put("violationnumber",edVioNo.getText().toString().trim());
-                jsonObject.put("violationdescription",edVioDesc.getText().toString().trim());
-                jsonObject.put("price",edTicketCharge.getText().toString().trim());
-                jsonObject.put("currency","$");
+                jsonObject.put("type", "DEFFERED_DISPOSITION");
+                jsonObject.put("name", edName.getText().toString().trim());
+                jsonObject.put("email", edEmail.getText().toString().trim());
+                jsonObject.put("drivinglicense", edDrivingLicense.getText().toString().trim());
+                jsonObject.put("violationnumber", edVioNo.getText().toString().trim());
+                jsonObject.put("violationdescription", edVioDesc.getText().toString().trim());
+                jsonObject.put("price", edTicketCharge.getText().toString().trim());
+                jsonObject.put("currency", "$");
 
             } catch (JSONException e) {
                 e.printStackTrace();

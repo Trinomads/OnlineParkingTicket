@@ -24,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_15sdp"
+            android:padding="@dimen/_12sdp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -87,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_1sdp"
                     android:text="@string/paid"
+                    android:visibility="gone"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_11sdp" />
 

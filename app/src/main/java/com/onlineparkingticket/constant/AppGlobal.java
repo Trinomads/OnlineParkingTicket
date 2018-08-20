@@ -855,7 +855,7 @@ public class AppGlobal {
 
     public static void logoutApp(Activity mainActivity) {
 
-        if (!AppGlobal.getStringPreference(mainActivity, WsConstant.SP_REMEMBER).equalsIgnoreCase("1")) {
+        if (AppGlobal.getStringPreference(mainActivity, WsConstant.SP_REMEMBER).equalsIgnoreCase("0")) {
             AppGlobal.setStringPreference(mainActivity, "", WsConstant.SP_PHONE);
         }
 

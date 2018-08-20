@@ -2,7 +2,6 @@ package com.onlineparkingticket.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import com.onlineparkingticket.constant.AppGlobal;
 import com.onlineparkingticket.constant.CommonUtils;
 import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.httpmanager.ApiHandlerToken;
-import com.onlineparkingticket.model.TicketDetailsModel;
 import com.onlineparkingticket.model.TicketListingModel;
 
 import org.json.JSONObject;
@@ -32,9 +30,10 @@ public class ViolationDetailsActivity extends BaseActivity {
     public static ViolationDetailsActivity mContext;
     private LinearLayout lvNext, lvFixIt;
     private String stItemId = "";
-    private TextView tvDate, tvPlateNo, tvViolationNo, tvUserName, tvViolationDesc, tvSpeed, tvPrice,tvZone;
-    private String cretedat ="";
+    private TextView tvDate, tvPlateNo, tvViolationNo, tvUserName, tvViolationDesc, tvSpeed, tvPrice, tvZone;
+    private String cretedat = "";
     private ArrayList<TicketListingModel.Ticket> tickets;
+    String date = "", name = "", email = "", phoneno = "", violationno = "", address = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +75,9 @@ public class ViolationDetailsActivity extends BaseActivity {
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String date ="",name ="",email ="",phoneno ="",violationno ="",address="";
                 for (int i = 0; i < tickets.size(); i++) {
 
-                    date  = AppGlobal.getDateFromServer(tickets.get(i).getDate());
+                    date = AppGlobal.getDateFromServer(tickets.get(i).getDate());
                     name = tickets.get(i).getUser().getName();
                     email = tickets.get(i).getUser().getEmail();
                     phoneno = tickets.get(i).getUser().getPhoneno();
@@ -89,45 +86,39 @@ public class ViolationDetailsActivity extends BaseActivity {
                     stItemId = tickets.get(i).getId();
                 }
                 Intent intent = new Intent(mContext, PleaActivity.class);
-                intent.putExtra("itemId",stItemId);
-                intent.putExtra("date",date);
-                intent.putExtra("name",name);
-                intent.putExtra("email",email);
-                intent.putExtra("phoneno",phoneno);
-                intent.putExtra("violationno",violationno);
-                intent.putExtra("address",address);
+                intent.putExtra("itemId", stItemId);
+                intent.putExtra("date", date);
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("phoneno", phoneno);
+                intent.putExtra("violationno", violationno);
+                intent.putExtra("address", address);
                 mContext.startActivity(intent);
-                finish();
             }
         });
 
         lvFixIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String date ="",name ="",email ="",phoneno ="",violationno ="",address="";
                 for (int i = 0; i < tickets.size(); i++) {
 
-                     date  = AppGlobal.getDateFromServer(tickets.get(i).getDate());
-                     name = tickets.get(i).getUser().getName();
-                     email = tickets.get(i).getUser().getEmail();
-                     phoneno = tickets.get(i).getUser().getPhoneno();
-                     violationno = tickets.get(i).getViolationno();
-                     address = tickets.get(i).getUser().getAddress();
-                     stItemId = tickets.get(i).getId();
+                    date = AppGlobal.getDateFromServer(tickets.get(i).getDate());
+                    name = tickets.get(i).getUser().getName();
+                    email = tickets.get(i).getUser().getEmail();
+                    phoneno = tickets.get(i).getUser().getPhoneno();
+                    violationno = tickets.get(i).getViolationno();
+                    address = tickets.get(i).getUser().getAddress();
+                    stItemId = tickets.get(i).getId();
                 }
                 Intent intent = new Intent(mContext, FixItOneActivity.class);
-                intent.putExtra("itemId",stItemId);
-                intent.putExtra("date",date);
-                intent.putExtra("name",name);
-                intent.putExtra("email",email);
-                intent.putExtra("phoneno",phoneno);
-                intent.putExtra("violationno",violationno);
-                intent.putExtra("address",address);
+                intent.putExtra("itemId", stItemId);
+                intent.putExtra("date", date);
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("phoneno", phoneno);
+                intent.putExtra("violationno", violationno);
+                intent.putExtra("address", address);
                 mContext.startActivity(intent);
-                finish();
-
-
             }
         });
     }
@@ -154,18 +145,15 @@ public class ViolationDetailsActivity extends BaseActivity {
                                 tickets = new ArrayList<>();
                                 tickets = response.body().getData().getTickets();
                                 for (int i = 0; i < tickets.size(); i++) {
-
                                     tvDate.setText(AppGlobal.getDateFromServer(tickets.get(i).getDate()));
                                     tvPlateNo.setText("Plate No : " + AppGlobal.isTextAvailableWithData(tickets.get(i).getPlateno(), ""));
                                     tvViolationNo.setText("Citation No : " + AppGlobal.isTextAvailableWithData(tickets.get(i).getViolationno(), ""));
                                     tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + tickets.get(i).getPrice(), "0"));
                                     tvUserName.setText(AppGlobal.isTextAvailableWithData(tickets.get(i).getUser().getName(), ""));
                                     tvViolationDesc.setText("Description");
-                                    tvSpeed.setText("Speed : " +" "+AppGlobal.isTextAvailableWithData(tickets.get(i).getSpeed() ,""));
-                                    tvZone.setText("Zone : " +" "+AppGlobal.isTextAvailableWithData(tickets.get(i).getZone(),"" ));
-
+                                    tvSpeed.setText("Speed : " + AppGlobal.isTextAvailableWithData(tickets.get(i).getSpeed(), ""));
+                                    tvZone.setText("Zone : " + AppGlobal.isTextAvailableWithData(tickets.get(i).getZone(), ""));
                                 }
-
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());
                             }

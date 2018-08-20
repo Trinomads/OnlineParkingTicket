@@ -1,7 +1,6 @@
 package com.onlineparkingticket.httpmanager;
 
 
-import com.google.gson.JsonObject;
 import com.onlineparkingticket.model.ChangePasswordModel;
 import com.onlineparkingticket.model.DigitalWalletModel;
 import com.onlineparkingticket.model.EditUserDetailsModel;
@@ -13,7 +12,6 @@ import com.onlineparkingticket.model.NotificationModel;
 import com.onlineparkingticket.model.OTPModel;
 import com.onlineparkingticket.model.SaveImageModel;
 import com.onlineparkingticket.model.SignupModel;
-import com.onlineparkingticket.model.TicketDetailsModel;
 import com.onlineparkingticket.model.TicketListingModel;
 import com.onlineparkingticket.model.UserDetailsModel;
 import com.onlineparkingticket.model.VerifyForgotPasswordModel;
@@ -23,8 +21,6 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;

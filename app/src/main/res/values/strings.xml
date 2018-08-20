@@ -35,7 +35,7 @@
     <string name="request_successfully">Request Successfully</string>
     <string name="msg_request_court">Your Request has been successfully sent to the court. Court will sent you mail regarding appointment date.</string>
 
-    <string name="payment_screen">Payment Screen, Comming soon</string>
+    <string name="payment_screen">Payment Screen, Coming soon</string>
 
     <string name="handle_it">Handle IT</string>
     <string name="deffered_disposition">Deffered Disposition</string>
@@ -51,7 +51,7 @@
     <string name="title_ticket_charge">Ticket Charge</string>
 
     <string name="thank_you">Thank You</string>
-    <string name="thank_you_desc">Your form has beed submitted. A Notification will be sent once the court has revised the document.</string>
+    <string name="thank_you_desc">Your form has been submitted. A Notification will be sent once the court has revised the document.</string>
 
     <string name="license_plate">Licence Plate #</string>
     <string name="registration_vin">Registration / VIN</string>
@@ -88,8 +88,9 @@
     <string name="unpaid_small">Unpaid</string>
     <string name="total_small">Total</string>
     <string name="documents">Documents</string>
+    <string name="digital_title">Digital Wallet Information</string>
     <string name="edit">Edit</string>
-    <string name="check_box_read">Check box is you are read, and have agreed to above statement.</string>
+    <string name="check_box_read">Check box if you\'ve read, and have agreed to above statement.</string>
     <string name="message">Message</string>
     <string name="i_did_not">I did not intend to submit any evidence images</string>
     <string name="add_image">Add Image</string>
@@ -162,6 +163,7 @@
     <string name="and"> and </string>
     <string name="getstarted">Get Started</string>
     <string name="choosepassword">Choose Password</string>
+    <string name="create_password">Create Password</string>
     <string name="newpassword">New Password</string>
     <string name="createnewpassword">Create New Password</string>
     <string name="user">User</string>
@@ -170,10 +172,13 @@
     <string name="home">Home</string>
     <string name="Resolvedtickets">Resolved tickets</string>
     <string name="pendingtickets">Pending tickets</string>
+    <string name="resolved">Resolved</string>
+    <string name="pendings">Pending</string>
     <string name="Profile">Profile</string>
     <string name="setting">Settings</string>
     <string name="searchbyplate">Search by Plate Number/ Citation Number</string>
     <string name="search">Search</string>
+    <string name="search_now">Search Now</string>
 
 
     <string name="fixit">Fix it</string>
@@ -198,7 +203,11 @@
     <string name="success">Successfull</string>
     <string name="plea_title">There are three pleas which may be entered before the Court to the charges which will be filed as a result of the issuance of this citation. There are : Guilty, No Contest, Not Guilty <font color="red">Failure to submit to the Court to enter a plea on or before the date show on ticket will result in a separate offense being charges against you, and a warrant being issued for your arrest.</font></string>
     <string name="plea_guilty_title">A plea of GUILTY means you admit that you committed the act charged and that it is prohibited by law, and that you have no defense of excuse for your act. By Pleading guilty and paying the fine the violation will appear on your driving record.</string>
-    <string name="plea_no_content_title">A plea of NO CONTEST means that you do not contest the carges against you. A pea of no contest cannot be used against you in the event of a subsequent civil suit for damages. Keep case of record without trial. If eligible. complete a Dave* Safety Course or Deferred Disposition (probation) so that If successfully completed. your case as be dismissed.</string>
+    <string name="plea_no_content_title">A plea of NO CONTEST means that you do not contest the charges against you. A pea of no contest cannot be used against you in the event of a subsequent civil suit for damages. Keep case of record without trial. If eligible. complete a Dave* Safety Course or Deferred Disposition (probation) so that If successfully completed. your case as be dismissed.</string>
     <string name="plea_court_title">If you wish to plead NOT GUILTY and have a Vial. you must submit this form on or before the appearance date posted on your Mice! to arrange a court date. You may have a Mal before a Judge or a Jury and you may represent yourself or lyre a lawyer to represent you. If you choose to rre a lawyer. your lawyer must maKe a written representation to Me court before me appearance date on your Motet. Failure to make a timely appearance may result in the issuance or a warrant for your arrest.</string>
+    <string name="msg_plz_sign">Please sign before submit</string>
+    <string name="driving_licence_title">Driving Licence</string>
+    <string name="insurance_paper_title">Insurance Paper</string>
+    <string name="no_ticket_available">No Ticket available</string>
 
 </resources>

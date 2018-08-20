@@ -96,7 +96,9 @@ public class FixItPleaActivity extends BaseActivity implements OnItemClick{
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (chkAgree.isChecked()) {
+                if (!CommonUtils.isTextAvailable(edExplanation.getText().toString().trim())) {
+                    CommonUtils.commonToast(mContext, getString(R.string.hint_message));
+                } else {
                     Intent intent = new Intent(mContext, RequestReviewActivity.class);
                     intent.putExtra("msg", edExplanation.getText().toString().trim());
                     intent.putStringArrayListExtra("listImages", listImages);
@@ -107,11 +109,8 @@ public class FixItPleaActivity extends BaseActivity implements OnItemClick{
                     intent.putExtra("phoneno",phoneno);
                     intent.putExtra("violationno",violationno);
                     intent.putExtra("address",address);
+                    intent.putExtra("isChecked", chkAgree.isChecked());
                     startActivity(intent);
-                    finish();
-
-                } else {
-                    CommonUtils.commonToast(mContext, getString(R.string.msg_plz_checked_agree));
                 }
             }
         });

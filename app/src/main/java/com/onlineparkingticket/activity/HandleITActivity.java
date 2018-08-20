@@ -12,7 +12,7 @@ import com.onlineparkingticket.R;
 @SuppressWarnings("All")
 public class HandleITActivity extends BaseActivity {
 
-    public static Context mContext;
+    public static HandleITActivity mContext;
 
     private TextView tvDispositoin, tvDrivingCourse;
     private String stItemId;
@@ -42,7 +42,6 @@ public class HandleITActivity extends BaseActivity {
                 Intent intent = new Intent(mContext, DefferedDispositionActivity.class);
                 intent.putExtra("itemId",stItemId);
                 startActivity(intent);
-                finish();
 
             }
         });

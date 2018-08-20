@@ -56,7 +56,7 @@ public class DigitalWalletActivity extends BaseActivity {
         edState = (EditText) findViewById(R.id.ed_DigitalWallet_State);
         edZip = (EditText) findViewById(R.id.ed_DigitalWallet_Zip);
 
-        edDrivingLicense.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
+//        edDrivingLicense.setText(AppGlobal.isTextAvailableWithData(AppGlobal.getStringPreference(mContext, WsConstant.SP_LICENCE_PLAT), ""));
 
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override

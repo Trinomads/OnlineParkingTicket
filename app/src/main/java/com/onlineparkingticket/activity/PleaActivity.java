@@ -17,7 +17,7 @@ import com.onlineparkingticket.R;
 @SuppressWarnings("All")
 public class PleaActivity extends BaseActivity {
 
-    public static Context mContext;
+    public static PleaActivity mContext;
 
     private TextView tvGuilty, tvNoContest, tvRequestDate;
     String date ="",name ="",email ="",phoneno ="",violationno ="";
@@ -118,13 +118,10 @@ public class PleaActivity extends BaseActivity {
                     intent.putExtra("violationno",violationno);
                     intent.putExtra("address",address);
                     startActivity(intent);
-                    finish();
                 } else {
-
                     Intent intent = new Intent(mContext, HandleITActivity.class);
                     intent.putExtra("itemId",stItemId);
                     startActivity(intent);
-                    finish();
                 }
                 dialog.dismiss();
             }

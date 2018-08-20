@@ -195,7 +195,6 @@ public class HomeFragment extends Fragment implements OnItemClick {
                         JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
                         AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
                         SearckKey ="";
-                        edtSearch.setText("");
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
 
@@ -207,6 +206,9 @@ public class HomeFragment extends Fragment implements OnItemClick {
                                 tvTotalTickets.setText(String.valueOf(response.body().getData().getTotalRecords()));
 
                                 if (response.body().getData().getTickets().size() > 0) {
+
+                                    edtsrch.setText(edtSearch.getText().toString().trim());
+                                    edtSearch.setText("");
 
                                     listTicket.addAll(response.body().getData().getTickets());
 
@@ -225,7 +227,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
                                     if (pageNo == 0) {
                                         mainserach.setVisibility(View.VISIBLE);
                                         llSearch.setVisibility(View.GONE);
-                                        Toast.makeText(getActivity(), "No data found.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), getString(R.string.no_ticket_available), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -236,7 +238,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
                                 if (pageNo == 0) {
                                     mainserach.setVisibility(View.VISIBLE);
                                     llSearch.setVisibility(View.GONE);
-                                    Toast.makeText(getActivity(), "No data found.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), getString(R.string.no_ticket_available), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }

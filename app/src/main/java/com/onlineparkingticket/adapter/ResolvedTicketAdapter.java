@@ -92,6 +92,7 @@ public class ResolvedTicketAdapter extends RecyclerView.Adapter {
 
             TicketListingModel.Ticket mData = commentList.get(position);
             ((ViewHolder) holder).tvPaid.setText(AppGlobal.isTextAvailableWithData(mData.getStatus(), ""));
+            ((ViewHolder) holder).tvPaid.setVisibility(View.GONE);
 
             ((ViewHolder) holder).tvPrice.setText("$ " + AppGlobal.isTextAvailableWithData("" + mData.getPrice(), "0"));
             ((ViewHolder) holder).tvDate.setText(AppGlobal.getDateFromServer(AppGlobal.isTextAvailableWithData(mData.getDate(), "")));

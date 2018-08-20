@@ -106,7 +106,7 @@ public class PendingTicketAdapter extends RecyclerView.Adapter {
                 ((ViewHolder) holder).tvPrice.setVisibility(View.GONE);
                 ((ViewHolder) holder).tvPlate.setVisibility(View.GONE);
             } else {
-                ((ViewHolder) holder).tvPaid.setVisibility(View.VISIBLE);
+                ((ViewHolder) holder).tvPaid.setVisibility(View.GONE);
                 ((ViewHolder) holder).tvPrice.setVisibility(View.VISIBLE);
                 ((ViewHolder) holder).tvPlate.setVisibility(View.VISIBLE);
             }

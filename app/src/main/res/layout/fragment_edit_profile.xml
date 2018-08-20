@@ -140,6 +140,7 @@
             android:paddingLeft="@dimen/_30sdp"
             android:paddingRight="@dimen/_30sdp"
             android:paddingTop="@dimen/_10sdp"
+            android:visibility="gone"
             android:textColor="@color/text_color"
             android:textColorHint="@color/hint_color"
             android:textSize="@dimen/_12sdp"
@@ -184,6 +185,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/driving_licence_title"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <com.onlineparkingticket.commonTextView.TextViewRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/insurance_paper_title"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal">
 
                     <LinearLayout

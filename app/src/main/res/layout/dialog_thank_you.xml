@@ -44,7 +44,7 @@
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_20sdp"
                 android:paddingRight="@dimen/_20sdp"
-                android:gravity="center"
+                android:gravity="left"
                 android:paddingTop="@dimen/_10sdp"
                 android:text="@string/thank_you_desc"
                 android:textColor="@color/text_color"

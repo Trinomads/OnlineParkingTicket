@@ -22,17 +22,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.onlineparkingticket.R;
 import com.onlineparkingticket.adapter.ImageListAdapter;
 import com.onlineparkingticket.allInterface.OnItemClick;
@@ -41,7 +38,6 @@ import com.onlineparkingticket.constant.CommonUtils;
 import com.onlineparkingticket.constant.CompressImageUtil;
 import com.onlineparkingticket.constant.WsConstant;
 import com.onlineparkingticket.httpmanager.ApiHandlerToken;
-import com.onlineparkingticket.model.DigitalWalletModel;
 import com.onlineparkingticket.model.SaveImageModel;
 import com.onlineparkingticket.model.TicketListingModel;
 
@@ -51,7 +47,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -68,16 +63,19 @@ import retrofit2.Response;
 public class RequestReviewActivity extends BaseActivity implements OnItemClick {
 
     public static RequestReviewActivity mContext;
-    private LinearLayout lvSubmit,ll_editimage;
+    private LinearLayout lvSubmit, lvImageSection;
     private ArrayList<String> listImages = new ArrayList<>();
     private String stMessage = "";
     private TextView tvEvidence, tvName, tvDate, tvEmail, tvMobile, tvAddress, tvViolationNo;
     private EditText edMsg;
     private RecyclerView rvImages;
     private ImageListAdapter adapterImages;
-    private ImageView imEditMessage;
-    String date ="",name ="",email ="",phoneno ="",violationno ="",address="";
-    String stItemId ="";
+    private ImageView imEditMessage, imAddImages;
+    String date = "", name = "", email = "", phoneno = "", violationno = "", address = "";
+    boolean isImagesSend;
+    String stItemId = "";
+    private CheckBox chkAgree;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +87,6 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
         Intent intent = getIntent();
         if (intent != null) {
             stMessage = intent.getStringExtra("msg");
-            listImages = new ArrayList<>();
-            listImages = intent.getStringArrayListExtra("listImages");
             stItemId = intent.getStringExtra("itemId");
             date = intent.getStringExtra("date");
             name = intent.getStringExtra("name");
@@ -98,6 +94,13 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
             phoneno = intent.getStringExtra("phoneno");
             violationno = intent.getStringExtra("violationno");
             address = intent.getStringExtra("address");
+            isImagesSend = intent.getBooleanExtra("isChecked", false);
+
+
+            listImages = new ArrayList<>();
+            if (!isImagesSend) {
+                listImages = intent.getStringArrayListExtra("listImages");
+            }
         }
 
         init();
@@ -107,18 +110,19 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
 
     private void setData() {
 
-        tvName.setText(AppGlobal.isTextAvailableWithData(name,""));
-        tvDate.setText(AppGlobal.isTextAvailableWithData(date,""));
-        tvEmail.setText(AppGlobal.isTextAvailableWithData(email,""));
-        tvMobile.setText(AppGlobal.isTextAvailableWithData(phoneno,""));
-        tvViolationNo.setText(AppGlobal.isTextAvailableWithData(violationno,""));
-        tvAddress.setText(AppGlobal.isTextAvailableWithData(address,""));
+        tvName.setText(AppGlobal.isTextAvailableWithData(name, ""));
+        tvDate.setText(AppGlobal.isTextAvailableWithData(date, ""));
+        tvEmail.setText(AppGlobal.isTextAvailableWithData(email, ""));
+        tvMobile.setText(AppGlobal.isTextAvailableWithData(phoneno, ""));
+        tvViolationNo.setText(AppGlobal.isTextAvailableWithData(violationno, ""));
+        tvAddress.setText(AppGlobal.isTextAvailableWithData(address, ""));
 
 
     }
 
     private void init() {
         lvSubmit = (LinearLayout) findViewById(R.id.linear_RequestReview_Next);
+        lvImageSection = (LinearLayout) findViewById(R.id.linear_RequestReview_ImageSection);
 
         tvEvidence = (TextView) findViewById(R.id.tv_RequestReview_Evidence);
 
@@ -128,17 +132,24 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
         tvMobile = (TextView) findViewById(R.id.tv_RequestReview_Mobile);
         tvAddress = (TextView) findViewById(R.id.tv_RequestReview_Address);
         tvViolationNo = (TextView) findViewById(R.id.tv_RequestReview_ViolationNo);
-        ll_editimage = (LinearLayout) findViewById(R.id.ll_editimage);
 
         edMsg = (EditText) findViewById(R.id.tv_RequestReview_Message);
         edMsg.setText(stMessage);
 
         imEditMessage = (ImageView) findViewById(R.id.image_RequestReview_Msg);
+        imAddImages = (ImageView) findViewById(R.id.image_RequestReview_Image);
+
+        chkAgree = (CheckBox) findViewById(R.id.checkbox_RequestReview_Agree);
 
         rvImages = (RecyclerView) findViewById(R.id.recyclerView_RequestReview);
         rvImages.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
-        setAdapterImages();
+        if (isImagesSend) {
+            lvImageSection.setVisibility(View.GONE);
+        } else {
+            lvImageSection.setVisibility(View.VISIBLE);
+            setAdapterImages();
+        }
     }
 
     private void setClickEvent() {
@@ -157,17 +168,28 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
         lvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (chkAgree.isChecked()) {
+                    if (listImages.size() > 0) {
+                        isImagesSend = false;
+                    } else {
+                        isImagesSend = true;
+                    }
 
-                uploadUserProfile();
-
+                    if (isImagesSend) {
+                        requestReviewSend();
+                    } else {
+                        uploadImages();
+                    }
+                } else {
+                    CommonUtils.commonToast(mContext, getString(R.string.msg_plz_checked_agree));
+                }
             }
         });
-        ll_editimage.setOnClickListener(new View.OnClickListener() {
+
+        imAddImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 showImageDialog();
-
             }
         });
 
@@ -216,6 +238,9 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                ViolationDetailsActivity.mContext.finish();
+                FixItOneActivity.mContext.finish();
+                FixItPleaActivity.mContext.finish();
                 finish();
             }
         });
@@ -229,32 +254,99 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
         setAdapterImages();
     }
 
+    MultipartBody.Part body;
+    ArrayList<String> listImageLinks = new ArrayList<>();
+    int imageCount = 0;
 
-    public void uploadUserProfile() {
+    public void uploadImages() {
+
         if (CommonUtils.isConnectingToInternet(mContext)) {
+            AppGlobal.showProgressDialog(mContext);
 
+            File file = new File(listImages.get(imageCount));
+            MultipartBody.Part body = null;
+
+            if (!file.exists()) {
+                Toast.makeText(mContext, getString(R.string.msg_plz_select_file), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+            new ApiHandlerToken(mContext).getApiService().editUserProfile(body).enqueue(new Callback<SaveImageModel>() {
+                @Override
+                public void onResponse(Call<SaveImageModel> call, Response<SaveImageModel> response) {
+                    AppGlobal.hideProgressDialog();
+                    try {
+                        JSONObject jsonObj = new JSONObject(new Gson().toJson(response).toString());
+                        AppGlobal.showLog(mContext, "Response : " + jsonObj.getJSONObject("body").toString());
+
+                        if (response.isSuccessful()) {
+                            if (response.body().getSuccess()) {
+
+
+                                listImageLinks.add(response.body().getData().getNewimgpath());
+                                imageCount = imageCount + 1;
+
+                                if (imageCount < listImages.size()) {
+                                    uploadImages();
+                                } else {
+                                    requestReviewSend();
+                                }
+
+                            } else {
+                                CommonUtils.commonToast(mContext, response.body().getMessage());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AppGlobal.showLog(mContext, "Error : " + e.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SaveImageModel> call, Throwable t) {
+                    AppGlobal.showLog(mContext, "Error : " + t.toString());
+                    AppGlobal.hideProgressDialog();
+                }
+            });
+
+        } else {
+            Log.e("this", "error" + "no internet");
+            CommonUtils.commonToast(mContext, getResources().getString(R.string.no_internet_exist));
+        }
+
+    }
+
+    public void requestReviewSend() {
+        if (CommonUtils.isConnectingToInternet(mContext)) {
 
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("user", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
             params.put("_id", stItemId);
             params.put("type", "fixit");
 
-            JsonObject gsonObject = new JsonObject();
             JSONObject jsonObject = new JSONObject();
-            JSONArray array = new JSONArray();
-            for (int i = 0; i < listImages.size(); i++) {
-                array.put(listImages.get(i));
-            }
+            /*JSONArray array = new JSONArray();
+            for (int i = 0; i < listImageLinks.size(); i++) {
+                array.put(listImageLinks.get(i));
+            }*/
             try {
-                jsonObject.put("message",stMessage);
-                jsonObject.put("images",array);
+                jsonObject.put("message", edMsg.getText().toString().trim());
+                if (listImageLinks.size() > 0) {
+                    JSONArray json = new JSONArray(Arrays.asList(listImageLinks));
+                    jsonObject.put("images", json.toString());
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-
             params.put("fixit", String.valueOf(jsonObject));
-            System.out.println("Map is " + params);
+
+            AppGlobal.showLog(mContext, "Parameter of FIXIT API : " + params);
+
+            AppGlobal.showProgressDialog(mContext);
             new ApiHandlerToken(RequestReviewActivity.this).getApiService().fixit(params).enqueue(new Callback<TicketListingModel>() {
                 @Override
                 public void onResponse(Call<TicketListingModel> call, Response<TicketListingModel> response) {
@@ -265,7 +357,7 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
 
                         if (response.isSuccessful()) {
                             if (response.body().getSuccess()) {
-                          dialogRequestDate();
+                                dialogRequestDate();
                             } else {
                                 CommonUtils.commonToast(mContext, response.body().getMessage());
                             }
@@ -345,7 +437,6 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
 
         popupDialog.show();
     }
-
 
 
     @Override

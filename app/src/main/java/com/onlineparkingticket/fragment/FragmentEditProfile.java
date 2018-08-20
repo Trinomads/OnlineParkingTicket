@@ -379,10 +379,10 @@ public class FragmentEditProfile extends Fragment {
         } else if (!CommonUtils.isEmailValid(edEmail.getText().toString().trim())) {
             CommonUtils.commonToast(mContext, getString(R.string.msg_plz_enter_valid_email));
             return false;
-        } else if (!CommonUtils.isTextAvailable(edAddress.getText().toString().trim())) {
+        } /*else if (!CommonUtils.isTextAvailable(edAddress.getText().toString().trim())) {
             CommonUtils.commonToast(mContext, getString(R.string.msg_plz_enter_address));
             return false;
-        } else if (!CommonUtils.isTextAvailable(edPlate.getText().toString().trim())) {
+        } */else if (!CommonUtils.isTextAvailable(edPlate.getText().toString().trim())) {
             CommonUtils.commonToast(mContext, getString(R.string.msg_plz_enter_dl));
             return false;
         } else

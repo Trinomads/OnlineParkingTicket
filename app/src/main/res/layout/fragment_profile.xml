@@ -146,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/paid_mini"
                         android:drawablePadding="@dimen/_5sdp"
-                        android:text="@string/paid_small"
+                        android:text="@string/resolved"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_12sdp" />
 
@@ -154,8 +154,10 @@
                         android:id="@+id/tv_UserProfile_Ticket_Paid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_minus15sdp"
+                        android:layout_marginLeft="@dimen/_minus26sdp"
                         android:text="0"
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_15sdp" />
 
@@ -174,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/unpaid_mini"
                         android:drawablePadding="@dimen/_5sdp"
-                        android:text="@string/unpaid_small"
+                        android:text="@string/pendings"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_12sdp" />
 
@@ -182,8 +184,10 @@
                         android:id="@+id/tv_UserProfile_Ticket_UnPaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_minus20sdp"
+                        android:layout_marginLeft="@dimen/_minus24sdp"
                         android:text="0"
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_15sdp" />
 
@@ -212,6 +216,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_minus15sdp"
                         android:text="0"
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_15sdp" />
 
@@ -233,9 +239,36 @@
             <com.onlineparkingticket.commonTextView.TextViewBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/documents"
+                android:text="@string/digital_title"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/_14sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.onlineparkingticket.commonTextView.TextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/driving_licence_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.onlineparkingticket.commonTextView.TextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/insurance_paper_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

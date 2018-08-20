@@ -13,7 +13,7 @@ import com.onlineparkingticket.constant.CommonUtils;
 @SuppressWarnings("All")
 public class FixItOneActivity extends BaseActivity {
 
-    public static FixItOneActivity activity;
+    public static FixItOneActivity mContext;
     private LinearLayout lvNext;
     private TextView tvDesc;
     private CheckBox chkAgree;
@@ -24,8 +24,8 @@ public class FixItOneActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fix_it_one);
-        activity = this;
-        init(activity);
+        mContext = this;
+        init(mContext);
         setHeaderWithBack(getResources().getString(R.string.fixit), true, false);
         Intent intent = getIntent();
         if (intent != null) {
@@ -52,7 +52,7 @@ public class FixItOneActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (chkAgree.isChecked()) {
-                    Intent intent = new Intent(activity, FixItPleaActivity.class);
+                    Intent intent = new Intent(mContext, FixItPleaActivity.class);
                     intent.putExtra("itemId",stItemId);
                     intent.putExtra("date",date);
                     intent.putExtra("name",name);
@@ -61,9 +61,8 @@ public class FixItOneActivity extends BaseActivity {
                     intent.putExtra("violationno",violationno);
                     intent.putExtra("address",address);
                     startActivity(intent);
-                    finish();
                 } else {
-                    CommonUtils.commonToast(activity, getString(R.string.msg_plz_checked_agree));
+                    CommonUtils.commonToast(mContext, getString(R.string.msg_plz_checked_agree));
                 }
             }
         });
