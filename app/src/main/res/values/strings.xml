@@ -20,6 +20,8 @@
     <string name="next">Next</string>
     <string name="done">Done</string>
     <string name="submit">Submit</string>
+    <string name="pay">Pay Now</string>
+    <string name="payment">Payment</string>
 
     <string name="guilty">Guilty</string>
     <string name="no_contest">No Contest</string>
@@ -49,6 +51,9 @@
     <string name="title_vio_no">Citation Number</string>
     <string name="title_vio_desc">Citation Description</string>
     <string name="title_ticket_charge">Ticket Charge</string>
+    <string name="title_cardnumber">Card Number</string>
+    <string name="title_date">Expiry Date</string>
+    <string name="title_cvv">C&#160;V&#160;V</string>
 
     <string name="thank_you">Thank You</string>
     <string name="thank_you_desc">Your form has been submitted. A Notification will be sent once the court has revised the document.</string>
@@ -147,6 +152,14 @@
     <string name="validate_password">password and confirm password does not match.</string>
     <string name="msg_plz_enter_dl">Enter driving licence number.</string>
     <string name="msg_plz_checked_agree">Agree with condition.</string>
+    <string name="msg_plz_enter_card">Enter card number</string>
+    <string name="msg_plz_enter_card_valid">Enter valid card number</string>
+    <string name="msg_plz_enter_exp_Date">Enter date</string>
+    <string name="msg_plz_enter_exp_Date_valid">Enter valid date</string>
+    <string name="msg_plz_enter_exp_Date_future">Expiration date must be in the future</string>
+    <string name="msg_plz_enter_cvv">Enter CVV number</string>
+
+
     <string name="name">Name</string>
     <string name="enterpersonaldetail">Enter Your Personal Details</string>
     <string name="drivinglicence">Driving Licence</string>

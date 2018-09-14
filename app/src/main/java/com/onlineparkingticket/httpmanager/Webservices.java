@@ -10,6 +10,7 @@ import com.onlineparkingticket.model.LoginModel;
 import com.onlineparkingticket.model.MobileVerifyModel;
 import com.onlineparkingticket.model.NotificationModel;
 import com.onlineparkingticket.model.OTPModel;
+import com.onlineparkingticket.model.PaymentModel;
 import com.onlineparkingticket.model.SaveImageModel;
 import com.onlineparkingticket.model.SignupModel;
 import com.onlineparkingticket.model.TicketListingModel;
@@ -107,5 +108,9 @@ public interface Webservices {
     @FormUrlEncoded
     @POST("wallet/listing")
     Call<GetDigitalWalletModel> getDigitalWallet(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("order/create")
+    Call<PaymentModel> createPayment(@FieldMap Map<String, String> params);
 }
 

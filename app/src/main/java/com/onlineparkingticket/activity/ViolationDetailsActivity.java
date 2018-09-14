@@ -75,15 +75,41 @@ public class ViolationDetailsActivity extends BaseActivity {
         lvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < tickets.size(); i++) {
 
-                    date = AppGlobal.getDateFromServer(tickets.get(i).getDate());
-                    name = tickets.get(i).getUser().getName();
-                    email = tickets.get(i).getUser().getEmail();
-                    phoneno = tickets.get(i).getUser().getPhoneno();
-                    violationno = tickets.get(i).getViolationno();
-                    address = tickets.get(i).getUser().getAddress();
-                    stItemId = tickets.get(i).getId();
+                for (int i = 0; i < tickets.size(); i++) {
+                    if (CommonUtils.isTextAvailable(tickets.get(i).getDate()))
+                    {
+                        date = AppGlobal.getDateFromServer(tickets.get(i).getDate());
+                    }
+
+
+                    if (CommonUtils.isTextAvailable(tickets.get(i).getUser().getName()))
+                    {
+                        name = tickets.get(i).getUser().getName();
+
+                    }
+                    if (CommonUtils.isTextAvailable(tickets.get(i).getUser().getEmail()))
+                    {
+                        email = tickets.get(i).getUser().getEmail();
+
+                    } if (CommonUtils.isTextAvailable(tickets.get(i).getUser().getPhoneno()))
+                    {
+                        phoneno = tickets.get(i).getUser().getPhoneno();
+
+                    }
+                    if (CommonUtils.isTextAvailable(tickets.get(i).getViolationno()))
+                    {
+                        violationno = tickets.get(i).getViolationno();
+
+                    }
+
+                    if (CommonUtils.isTextAvailable(tickets.get(i).getUser().getId()))
+                    {
+                        stItemId = tickets.get(i).getId();
+
+                    }
+
+
                 }
                 Intent intent = new Intent(mContext, PleaActivity.class);
                 intent.putExtra("itemId", stItemId);

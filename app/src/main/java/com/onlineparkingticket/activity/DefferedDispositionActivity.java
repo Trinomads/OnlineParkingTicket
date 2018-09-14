@@ -145,7 +145,7 @@ public class DefferedDispositionActivity extends BaseActivity {
 
             AppGlobal.showProgressDialog(mContext);
 
-            Map<String, Object> params = new HashMap<String, Object>();
+                    Map<String, Object> params = new HashMap<String, Object>();
             params.put("user", AppGlobal.getStringPreference(mContext, WsConstant.SP_ID));
             params.put("_id", stItemId);
             params.put("type", "nocontest");

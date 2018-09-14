@@ -71,4 +71,7 @@ dependencies {
 
     //Shoe Password
     implementation 'com.github.scottyab:showhidepasswordedittext:0.6'
+
+    //Payment gateway
+    implementation 'net.authorize:accept-sdk-android:1.0.2'
 }

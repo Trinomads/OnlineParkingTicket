@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.hbb20.CountryCodePicker;
 import com.onlineparkingticket.R;
+import com.onlineparkingticket.activity.DigitalWalletActivity;
 import com.onlineparkingticket.activity.HomeNavigationDrawer;
 import com.onlineparkingticket.constant.AppGlobal;
 import com.onlineparkingticket.constant.CommonUtils;
@@ -68,7 +69,7 @@ public class FragmentEditProfile extends Fragment {
     private LinearLayout lvEditDP;
     private ImageView imDP;
     private CountryCodePicker ccpCountryCode;
-    private ImageView imDL, imVP, imRV, imIP;
+    private ImageView imDL, imVP, imRV, imIP, imDigitalWallet;
     private ImageView imEditDL, imEditIP;
     private String imagePathDL = "", imagePathIP = "";
 
@@ -128,6 +129,7 @@ public class FragmentEditProfile extends Fragment {
         edAddress = (EditText) view.findViewById(R.id.ed_EditProfile_Address);
 
         imDP = (ImageView) view.findViewById(R.id.image_EditProfile_DP);
+        imDigitalWallet = (ImageView) view.findViewById(R.id.image_EditProfile_floating);
 
         ccpCountryCode = (CountryCodePicker) view.findViewById(R.id.cpp_EditProfile_CountryCode);
 
@@ -230,6 +232,13 @@ public class FragmentEditProfile extends Fragment {
             public void onClick(View view) {
                 stFromImage = "IP";
                 showImageDialog(mContext);
+            }
+        });
+
+        imDigitalWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mContext.startActivity(new Intent(mContext, DigitalWalletActivity.class));
             }
         });
     }

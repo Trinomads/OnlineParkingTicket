@@ -155,7 +155,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
         floating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mContext, DigitalWalletActivity.class));
+                mContext.startActivity(new Intent(mContext, DigitalWalletActivity.class));
             }
         });
     }

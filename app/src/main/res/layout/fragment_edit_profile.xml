@@ -1,338 +1,380 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_screen"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/bg_screen"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="@dimen/_10sdp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_EditProfile_DP"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:src="@drawable/icon_user_placeholder" />
-
-            <LinearLayout
-                android:id="@+id/linear_EditProfile_DP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingRight="@dimen/_5sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:padding="@dimen/_3sdp"
-                    android:src="@drawable/edit" />
-
-                <com.onlineparkingticket.commonTextView.TextViewRegular
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/edit"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12sdp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <com.onlineparkingticket.commonTextView.EditTextBold
-            android:id="@+id/ed_EditProfile_Name"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/textarea"
-            android:hint="@string/name"
-            android:imeOptions="actionNext"
-            android:inputType="textPersonName"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/hint_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold"
-            android:typeface="normal" />
-
-        <LinearLayout
-            android:id="@+id/linear_login_mobile"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:layout_below="@+id/txt_appname"
-            android:background="@drawable/textarea"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_25sdp"
-            android:paddingRight="@dimen/_25sdp"
-            android:paddingTop="@dimen/_10sdp">
-
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/cpp_EditProfile_CountryCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:ccpDialog_keyboardAutoPopup="false"
-                app:ccpDialog_textColor="@color/white"
-                app:ccp_autoDetectCountry="true"
-                app:ccp_autoFormatNumber="true"
-                app:ccp_defaultNameCode="IN"
-                app:ccp_showFlag="false"
-                app:ccp_showNameCode="false"
-                app:ccp_textSize="@dimen/_13sdp" />
-
-            <com.onlineparkingticket.commonTextView.EditTextBold
-                android:id="@+id/ed_EditProfile_Mobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:imeOptions="actionNext"
-                android:inputType="phone"
-                android:padding="@dimen/_7sdp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/hint_color"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold"
-                android:typeface="normal" />
-
-        </LinearLayout>
-
-        <com.onlineparkingticket.commonTextView.EditTextBold
-            android:id="@+id/ed_EditProfile_Email"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/textarea"
-            android:hint="@string/email"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/hint_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="normal"
-            android:typeface="normal" />
-
-        <com.onlineparkingticket.commonTextView.EditTextBold
-            android:id="@+id/ed_EditProfile_Address"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/textarea"
-            android:hint="@string/address"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:visibility="gone"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/hint_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="normal"
-            android:typeface="normal" />
-
-        <com.onlineparkingticket.commonTextView.EditTextBold
-            android:id="@+id/ed_EditProfile_PlateNo"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/textarea"
-            android:hint="@string/license_plate"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLines="3"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:singleLine="false"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/hint_color"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="normal"
-            android:typeface="normal" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/_10sdp"
-            android:paddingLeft="@dimen/_15sdp"
-            android:paddingRight="@dimen/_15sdp"
-            android:paddingTop="@dimen/_10sdp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_EditProfile_DP"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:src="@drawable/icon_user_placeholder" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linear_EditProfile_DP"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:padding="@dimen/_3sdp"
+                        android:src="@drawable/edit" />
 
                     <com.onlineparkingticket.commonTextView.TextViewRegular
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="@string/driving_licence_title"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <com.onlineparkingticket.commonTextView.TextViewRegular
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="@string/insurance_paper_title"
-                        android:textColor="@color/black"
+                        android:text="@string/edit"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/_12sdp" />
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <com.onlineparkingticket.commonTextView.EditTextBold
+                android:id="@+id/ed_EditProfile_Name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/textarea"
+                android:hint="@string/name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+            <LinearLayout
+                android:id="@+id/linear_login_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_below="@+id/txt_appname"
+                android:background="@drawable/textarea"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_25sdp"
+                android:paddingRight="@dimen/_25sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/cpp_EditProfile_CountryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccpDialog_keyboardAutoPopup="false"
+                    app:ccpDialog_textColor="@color/white"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_autoFormatNumber="true"
+                    app:ccp_defaultNameCode="IN"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textSize="@dimen/_13sdp" />
+
+                <com.onlineparkingticket.commonTextView.EditTextBold
+                    android:id="@+id/ed_EditProfile_Mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:padding="@dimen/_7sdp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+            </LinearLayout>
+
+            <com.onlineparkingticket.commonTextView.EditTextBold
+                android:id="@+id/ed_EditProfile_Email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/textarea"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal"
+                android:typeface="normal" />
+
+            <com.onlineparkingticket.commonTextView.EditTextBold
+                android:id="@+id/ed_EditProfile_Address"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/textarea"
+                android:hint="@string/address"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal"
+                android:typeface="normal"
+                android:visibility="gone" />
+
+            <com.onlineparkingticket.commonTextView.EditTextBold
+                android:id="@+id/ed_EditProfile_PlateNo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/textarea"
+                android:hint="@string/license_plate"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="3"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:singleLine="false"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal"
+                android:typeface="normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingTop="@dimen/_10sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_100sdp">
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/driving_licence_title"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
 
-                            <ImageView
-                                android:id="@+id/image_Profile_DL"
-                                android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_100sdp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/icon_user_placeholder" />
-
-                            <ImageView
-                                android:id="@+id/image_Wallet_Cancel_DL"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginTop="@dimen/_3sdp"
-                                android:layout_marginRight="@dimen/_3sdp"
-                                android:padding="@dimen/_5sdp"
-                                android:background="@drawable/circle_blue"
-                                android:src="@drawable/edit_white"/>
-
-                        </RelativeLayout>
+                        <com.onlineparkingticket.commonTextView.TextViewRegular
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/insurance_paper_title"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_100sdp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
 
-                            <ImageView
-                                android:id="@+id/image_Profile_IP"
+                            <RelativeLayout
                                 android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_100sdp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/icon_user_placeholder" />
+                                android:layout_height="@dimen/_100sdp">
 
-                            <ImageView
-                                android:id="@+id/image_Wallet_Cancel_IP"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginTop="@dimen/_3sdp"
-                                android:layout_marginRight="@dimen/_3sdp"
-                                android:padding="@dimen/_5sdp"
-                                android:background="@drawable/circle_blue"
-                                android:src="@drawable/edit_white"/>
+                                <ImageView
+                                    android:id="@+id/image_Profile_DL"
+                                    android:layout_width="@dimen/_100sdp"
+                                    android:layout_height="@dimen/_100sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icon_user_placeholder" />
 
-                        </RelativeLayout>
+                                <ImageView
+                                    android:id="@+id/image_Wallet_Cancel_DL"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/_3sdp"
+                                    android:layout_marginTop="@dimen/_3sdp"
+                                    android:background="@drawable/circle_blue"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/edit_white" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_100sdp">
+
+                                <ImageView
+                                    android:id="@+id/image_Profile_IP"
+                                    android:layout_width="@dimen/_100sdp"
+                                    android:layout_height="@dimen/_100sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icon_user_placeholder" />
+
+                                <ImageView
+                                    android:id="@+id/image_Wallet_Cancel_IP"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/_3sdp"
+                                    android:layout_marginTop="@dimen/_3sdp"
+                                    android:background="@drawable/circle_blue"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/edit_white" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
-                        <RelativeLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_100sdp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
 
-                            <ImageView
-                                android:id="@+id/image_Profile_RV"
+                            <RelativeLayout
                                 android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_100sdp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/icon_user_placeholder" />
+                                android:layout_height="@dimen/_100sdp">
 
-                        </RelativeLayout>
+                                <ImageView
+                                    android:id="@+id/image_Profile_RV"
+                                    android:layout_width="@dimen/_100sdp"
+                                    android:layout_height="@dimen/_100sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icon_user_placeholder" />
 
-                    </LinearLayout>
+                            </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
+                        </LinearLayout>
 
-                        <RelativeLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_100sdp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
 
-                            <ImageView
-                                android:id="@+id/image_Profile_VP"
+                            <RelativeLayout
                                 android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_100sdp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/icon_user_placeholder" />
+                                android:layout_height="@dimen/_100sdp">
 
-                        </RelativeLayout>
+                                <ImageView
+                                    android:id="@+id/image_Profile_VP"
+                                    android:layout_width="@dimen/_100sdp"
+                                    android:layout_height="@dimen/_100sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icon_user_placeholder" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_EditProfile_floating"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_alignParentBottom="true"
+                    android:elevation="@dimen/_5sdp"
+                    android:padding="@dimen/_12sdp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/icon_folder_lock" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-</android.support.v4.widget.NestedScrollView>
+    <ImageView
+        android:id="@+id/image_EditProfile_floating_Second"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_margin="@dimen/_15sdp"
+        android:layout_alignParentBottom="true"
+        android:elevation="@dimen/_5sdp"
+        android:padding="@dimen/_12sdp"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/circle_white"
+        android:src="@drawable/icon_folder_lock" />
+
+</RelativeLayout>

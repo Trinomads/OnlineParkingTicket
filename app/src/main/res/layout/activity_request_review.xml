@@ -250,10 +250,12 @@
                                 android:layout_weight="1"
                                 android:enabled="false"
                                 android:padding="@dimen/_3sdp"
+                                android:hint="@string/hint_message"
                                 android:background="@android:color/transparent"
                                 android:maxLines="3"
                                 android:singleLine="false"
                                 android:textColor="@color/text_color"
+                                android:textColorHint="@color/hint_color"
                                 android:textSize="@dimen/_11sdp" />
 
                         </LinearLayout>

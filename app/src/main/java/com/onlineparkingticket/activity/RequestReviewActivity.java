@@ -145,7 +145,7 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
         rvImages.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
         if (isImagesSend) {
-            lvImageSection.setVisibility(View.GONE);
+            lvImageSection.setVisibility(View.VISIBLE);
         } else {
             lvImageSection.setVisibility(View.VISIBLE);
             setAdapterImages();
@@ -238,7 +238,6 @@ public class RequestReviewActivity extends BaseActivity implements OnItemClick {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                ViolationDetailsActivity.mContext.finish();
                 FixItOneActivity.mContext.finish();
                 FixItPleaActivity.mContext.finish();
                 finish();
